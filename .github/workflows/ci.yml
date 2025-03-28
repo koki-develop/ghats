@@ -19,7 +19,7 @@ jobs:
           persist-credentials: false
       - uses: ./.github/actions/setup
 
-      - run: bun run ./actions/ci/hello.ts
+      - run: bun run ./lib/cli build ./actions/ci/hello
       - uses: ./actions/ci/hello
 
   test:
@@ -33,5 +33,5 @@ jobs:
           persist-credentials: false
       - uses: ./.github/actions/setup
 
-      - run: bun run ./actions/ci/test.ts
+      - run: bun run ./lib/cli build ./actions/ci/test
       - uses: ./actions/ci/test
