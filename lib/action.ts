@@ -1,5 +1,3 @@
-import { mkdirSync, writeFileSync } from "node:fs";
-
 export type Step = {
   command: string;
 };
@@ -25,11 +23,5 @@ export class Action {
     }
 
     return lines.join("\n") + "\n";
-  }
-
-  public build(output: string) {
-    const actionYml = this.toString();
-    mkdirSync(output, { recursive: true });
-    writeFileSync(`${output}/action.yml`, actionYml);
   }
 }
