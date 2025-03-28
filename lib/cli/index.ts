@@ -12,20 +12,24 @@ program
   .action(async (targetPath: string) => {
     register("@swc-node/register/esm", pathToFileURL("./"));
 
-    const actionPath = path.resolve(process.cwd(), targetPath);
-    const module = await import(actionPath);
-    const action = module.default;
-    const actionYml = action.toString();
+    const workflowPath = path.resolve(process.cwd(), targetPath);
+    const module = await import(workflowPath);
+    const workflow = module.default;
+    const workflowYml = JSON.stringify(workflow);
 
-    const actionPathWithoutExtension = path.join(
-      path.dirname(actionPath),
-      path.basename(actionPath, path.extname(actionPath)),
+    const filenameWithoutExtension = path.basename(
+      workflowPath,
+      path.extname(workflowPath),
     );
 
-    mkdirSync(actionPathWithoutExtension, { recursive: true });
+    const githubWorkflowsPath = path.resolve(
+      process.cwd(),
+      ".github/workflows",
+    );
+    mkdirSync(githubWorkflowsPath, { recursive: true });
     writeFileSync(
-      path.join(actionPathWithoutExtension, "action.yml"),
-      actionYml,
+      path.join(githubWorkflowsPath, `${filenameWithoutExtension}.yml`),
+      workflowYml,
     );
   });
 
