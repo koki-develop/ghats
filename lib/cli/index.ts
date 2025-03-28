@@ -3,7 +3,6 @@ import { register } from "node:module";
 import * as path from "node:path";
 import { pathToFileURL } from "node:url";
 import { Command } from "commander";
-import { Action } from "../action";
 
 const program = new Command();
 
