@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "prepare": "husky",
-    "fmt": "biome check --write --unsafe ."
+    "fmt": "biome check --write --unsafe .",
+    "build:cli": "bun run tasks/build-cli.ts"
   },
   "dependencies": {
     "@swc-node/register": "1.10.10",
