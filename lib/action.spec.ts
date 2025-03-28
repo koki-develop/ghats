@@ -1,4 +1,4 @@
-import { describe, test, expect } from "bun:test";
+import { describe, expect, test } from "bun:test";
 import { Action } from "./action";
 
 describe("Action", () => {
@@ -12,7 +12,7 @@ describe("Action", () => {
   steps:
     - run: echo 'Hello, world!'
       shell: bash
-`
+`,
     );
   });
 });

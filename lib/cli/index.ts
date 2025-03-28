@@ -1,9 +1,9 @@
-import * as path from "node:path";
-import { Command } from "commander";
-import { Action } from "../action";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { register } from "node:module";
+import * as path from "node:path";
 import { pathToFileURL } from "node:url";
+import { Command } from "commander";
+import { Action } from "../action";
 
 const program = new Command();
 
@@ -19,7 +19,7 @@ program
 
     if (!(action instanceof Action)) {
       throw new Error(
-        `Action class is not exported as default from ${actionPath}`
+        `Action class is not exported as default from ${actionPath}`,
       );
     }
 
@@ -27,13 +27,13 @@ program
 
     const actionPathWithoutExtension = path.join(
       path.dirname(actionPath),
-      path.basename(actionPath, path.extname(actionPath))
+      path.basename(actionPath, path.extname(actionPath)),
     );
 
     mkdirSync(actionPathWithoutExtension, { recursive: true });
     writeFileSync(
       path.join(actionPathWithoutExtension, "action.yml"),
-      actionYml
+      actionYml,
     );
   });
 
