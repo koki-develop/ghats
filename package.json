@@ -4,6 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "prepare": "husky",
     "fmt": "biome check --write --unsafe ."
   },
   "dependencies": {
