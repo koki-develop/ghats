@@ -16,13 +16,6 @@ program
     const actionPath = path.resolve(process.cwd(), targetPath);
     const module = await import(actionPath);
     const action = module.default;
-
-    if (!(action instanceof Action)) {
-      throw new Error(
-        `Action class is not exported as default from ${actionPath}`,
-      );
-    }
-
     const actionYml = action.toString();
 
     const actionPathWithoutExtension = path.join(
