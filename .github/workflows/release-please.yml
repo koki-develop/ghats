@@ -38,6 +38,7 @@ jobs:
         with:
           persist-credentials: false
       - uses: ./.github/actions/setup
+      - run: bun run build:package
       - name: Create .npmrc
         run: |
           (
