@@ -49,4 +49,5 @@ await Bun.build({
   root: "lib",
   outdir: "./dist/lib",
   plugins: [getDtsBunPlugin()],
+  packages: "external",
 });
