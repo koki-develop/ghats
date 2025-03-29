@@ -12,7 +12,7 @@ export class Workflow {
     this._config = { name, ...config };
   }
 
-  public job(job: Job): Workflow {
+  public addJob(job: Job): Workflow {
     this._jobs[job.name] = job;
     return this;
   }

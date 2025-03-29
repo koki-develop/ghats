@@ -2,7 +2,7 @@ import { Job, Workflow } from "../../lib";
 
 const workflow = new Workflow("CI");
 
-workflow.job(
+workflow.addJob(
   new Job("test", { runsOn: "ubuntu-latest" })
     .uses("actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683", {
       with: { "persist-credentials": "false" },
