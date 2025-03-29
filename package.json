@@ -15,7 +15,7 @@
   "files": [
     "dist"
   ],
-  "types": "dist/index.d.ts",
+  "types": "dist/lib/index.d.ts",
   "module": "lib/index.ts",
   "type": "module",
   "scripts": {
