@@ -25,8 +25,22 @@ export class Job {
     return this;
   }
 
-  public uses(action: string, params?: Omit<UsesStep, "kind" | "action">): Job {
-    this._steps.push({ kind: "uses", action, ...params });
+  public uses(action: {
+    name: string;
+    params?: Omit<UsesStep, "kind" | "action">;
+  }): Job;
+  public uses(action: string, params?: Omit<UsesStep, "kind" | "action">): Job;
+  public uses(
+    action:
+      | string
+      | { name: string; params?: Omit<UsesStep, "kind" | "action"> },
+    params?: Omit<UsesStep, "kind" | "action">,
+  ): Job {
+    if (typeof action === "string") {
+      this._steps.push({ kind: "uses", action, ...params });
+    } else {
+      this._steps.push({ kind: "uses", action: action.name, ...action.params });
+    }
     return this;
   }
 
