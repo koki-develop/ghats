@@ -5,6 +5,7 @@ export type JobConfig = {
   name: string;
   runsOn: string;
   permissions?: Permissions;
+  timeoutMinutes?: number;
 };
 
 export class Job {
@@ -33,6 +34,7 @@ export class Job {
     return {
       "runs-on": this._config.runsOn,
       permissions: this._config.permissions,
+      "timeout-minutes": this._config.timeoutMinutes,
       steps: this._steps.map((step) => {
         switch (step.kind) {
           case "run":
