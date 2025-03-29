@@ -2,7 +2,6 @@
   "name": "ghats",
   "module": "index.ts",
   "type": "module",
-  "private": true,
   "scripts": {
     "prepare": "husky",
     "fmt": "biome check --write --unsafe .",
