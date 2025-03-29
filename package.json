@@ -6,9 +6,9 @@
   "scripts": {
     "prepare": "husky",
     "fmt": "biome check --write --unsafe .",
-    "build:cli": "bun run tasks/build-cli.ts",
-    "prebuild:workflows": "bun run build:cli",
-    "build:workflows": "./dist/index.js build"
+    "build:package": "bun run tasks/build.ts",
+    "prebuild:workflows": "bun run build:package",
+    "build:workflows": "node ./dist/cli/index.js build"
   },
   "dependencies": {
     "@swc-node/register": "1.10.10",
