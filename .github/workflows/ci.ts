@@ -1,4 +1,4 @@
-import { Job, Workflow } from "../../lib";
+import { Job, Workflow } from "ghats";
 
 const workflow = new Workflow("CI", {
   on: "push",
