@@ -10,6 +10,7 @@
       "devDependencies": {
         "@biomejs/biome": "2.0.0-beta.1",
         "@types/bun": "1.2.8",
+        "ghats": "0.0.5",
         "husky": "9.1.7",
         "lint-staged": "15.5.0",
         "oxc-transform": "0.61.2",
@@ -165,6 +166,8 @@
     "get-east-asian-width": ["get-east-asian-width@1.3.0", "", {}, "sha512-vpeMIQKxczTD/0s2CdEWHcb0eeJe6TFjxb+J5xgX7hScxqrGuyjmv4c1D4A/gelKfyox0gJJwIHF+fLjeaM8kQ=="],
 
     "get-stream": ["get-stream@8.0.1", "", {}, "sha512-VaUJspBffn/LMCJVoMvSAdmscJyS1auj5Zulnn5UoYcY531UWmdwhRWkcGKnGU93m5HSXP9LP2usOryrBtQowA=="],
+
+    "ghats": ["ghats@0.0.5", "", { "dependencies": { "@swc-node/register": "1.10.10", "commander": "13.1.0" }, "bin": { "ghats": "dist/cli/index.js" } }, "sha512-4AocwlMuKh7qpBdz9l6D3FobkzwX3nS2rVtALALPDYzn2qYjgUlsnvtgW5XFP7RhGQh5XoXPqcGzcSbk9OEeEQ=="],
 
     "human-signals": ["human-signals@5.0.0", "", {}, "sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ=="],
 
