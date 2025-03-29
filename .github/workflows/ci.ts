@@ -1,9 +1,14 @@
 import { Job, Workflow } from "../../lib";
 
-const workflow = new Workflow("CI");
+const workflow = new Workflow("CI", {
+  permissions: {},
+});
 
 workflow.addJob(
-  new Job("test", { runsOn: "ubuntu-latest" })
+  new Job("test", {
+    runsOn: "ubuntu-latest",
+    permissions: { contents: "read" },
+  })
     .uses("actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683", {
       with: { "persist-credentials": "false" },
     })
