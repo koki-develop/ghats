@@ -16,8 +16,8 @@
     "dist"
   ],
   "main": "dist/lib/index.js",
+  "module": "dist/lib/index.js",
   "types": "dist/lib/index.d.ts",
-  "module": "lib/index.ts",
   "type": "module",
   "scripts": {
     "prepare": "husky",
