@@ -1,6 +1,7 @@
 import { Job, Workflow } from "../../lib";
 
 const workflow = new Workflow("CI", {
+  on: "push",
   permissions: {},
 });
 
