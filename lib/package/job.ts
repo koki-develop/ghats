@@ -1,8 +1,10 @@
+import type { Permissions } from "./permission";
 import type { RunStep, Step, UsesStep } from "./step";
 
 export type JobConfig = {
   name: string;
   runsOn: string;
+  permissions?: Permissions;
 };
 
 export class Job {
@@ -30,6 +32,7 @@ export class Job {
   public toJSON(): Record<string, unknown> {
     return {
       "runs-on": this._config.runsOn,
+      permissions: this._config.permissions,
       steps: this._steps.map((step) => {
         switch (step.kind) {
           case "run":
