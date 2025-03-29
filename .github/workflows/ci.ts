@@ -9,6 +9,7 @@ workflow.addJob(
   new Job("test", {
     runsOn: "ubuntu-latest",
     permissions: { contents: "read" },
+    timeoutMinutes: 5,
   })
     .uses("actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683", {
       with: { "persist-credentials": "false" },
