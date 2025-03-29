@@ -1,4 +1,4 @@
-import type { Step } from "./step";
+import type { RunStep, Step, UsesStep } from "./step";
 
 export type JobConfig = {
   name: string;
@@ -17,17 +17,27 @@ export class Job {
     return this._config.name;
   }
 
-  public run(command: string): Job {
-    this._steps.push({ command });
+  public run(command: string, params?: Omit<RunStep, "kind" | "command">): Job {
+    this._steps.push({ kind: "run", command, ...params });
+    return this;
+  }
+
+  public uses(action: string, params?: Omit<UsesStep, "kind" | "action">): Job {
+    this._steps.push({ kind: "uses", action, ...params });
     return this;
   }
 
   public toJSON(): Record<string, unknown> {
     return {
       "runs-on": this._config.runsOn,
-      steps: this._steps.map((step) => ({
-        run: step.command,
-      })),
+      steps: this._steps.map((step) => {
+        switch (step.kind) {
+          case "run":
+            return { run: step.command, env: step.env };
+          case "uses":
+            return { uses: step.action, with: step.with };
+        }
+      }),
     };
   }
 }
