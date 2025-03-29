@@ -11,7 +11,7 @@ import * as path from "node:path";
 function action(name, params) {
   const githubDir = path.resolve(process.cwd(), ".github");
   const actionsJsonPath = path.resolve(githubDir, "actions.json");
-  const actionsLockJsonPath = path.resolve(githubDir, "actions.lock.json");
+  const actionsLockJsonPath = path.resolve(githubDir, "actions-lock.json");
   const actionsJson = JSON.parse(fs.readFileSync(actionsJsonPath, "utf8"));
   const actionsLockJson = JSON.parse(fs.readFileSync(actionsLockJsonPath, "utf8"));
 
@@ -45,7 +45,7 @@ export type InstalledActionParams<T extends InstalledAction> = Omit<
 `,
   ];
 
-  // TODO: load existing actions.json and actions.lock.json
+  // TODO: load existing actions.json and actions-lock.json
   const actionsJson: Record<string, string> = {};
   const actionsLockJson: { actions: Record<string, string> } = { actions: {} };
 
@@ -83,7 +83,7 @@ export type InstalledActionParams<T extends InstalledAction> = Omit<
     JSON.stringify(actionsJson, null, 2),
   );
   fs.writeFileSync(
-    path.resolve(process.cwd(), ".github/actions.lock.json"),
+    path.resolve(process.cwd(), ".github/actions-lock.json"),
     JSON.stringify(actionsLockJson, null, 2),
   );
 
