@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.5](https://github.com/koki-develop/ghats/compare/v0.0.4...v0.0.5) (2025-03-29)
+
+
+### Bug Fixes
+
+* Fix module field ([b0e304d](https://github.com/koki-develop/ghats/commit/b0e304de941a5711bff958d6b9283ca5940d2746))
+* Set main field ([e8969e2](https://github.com/koki-develop/ghats/commit/e8969e29abfd8159b6be32ac72de7d0a3391c274))
+
 ## [0.0.4](https://github.com/koki-develop/ghats/compare/v0.0.3...v0.0.4) (2025-03-29)
 
 
