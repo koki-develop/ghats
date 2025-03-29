@@ -1,6 +1,21 @@
 {
   "name": "ghats",
-  "module": "index.ts",
+  "description": "GitHub Actions with TypeScript",
+  "version": "0.0.0",
+  "author": "koki-develop <kou.pg.0131@gmail.com>",
+  "homepage": "https://github.com/koki-develop/ghats",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koki-develop/ghats.git"
+  },
+  "license": "MIT",
+  "bin": {
+    "ghats": "dist/cli/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "module": "lib/index.ts",
   "type": "module",
   "scripts": {
     "prepare": "husky",
