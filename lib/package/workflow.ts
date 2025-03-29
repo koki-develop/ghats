@@ -8,7 +8,7 @@ export class Workflow {
   private readonly _config: WorkflowConfig;
   private readonly _jobs: Record<string, Job> = {};
 
-  public constructor(name: string, config: Omit<WorkflowConfig, "name">) {
+  public constructor(name: string, config?: Omit<WorkflowConfig, "name">) {
     this._config = { name, ...config };
   }
 
