@@ -4,6 +4,8 @@ import type { Permissions } from "./permission";
 
 export type WorkflowConfig = {
   name: string;
+  runName?: string;
+
   on: On;
   permissions?: Permissions;
 };
@@ -24,8 +26,17 @@ export class Workflow {
   public toJSON(): Record<string, unknown> {
     return {
       name: this._config.name,
-      permissions: this._config.permissions,
+      "run-name": this._config.runName,
       on: this._config.on,
+
+      permissions: this._config.permissions,
+
+      // TODO: env
+
+      // TODO: defaults
+
+      // TODO: concurrency
+
       jobs: Object.fromEntries(
         Object.entries(this._jobs).map(([name, job]) => [name, job.toJSON()]),
       ),
