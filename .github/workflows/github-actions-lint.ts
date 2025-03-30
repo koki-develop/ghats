@@ -29,11 +29,7 @@ workflow.addJob(
   setupJob("ghalint", {
     permissions: { contents: "read" },
     timeoutMinutes: 5,
-  }).uses(
-    action("koki-develop/github-actions-lint/ghalint", {
-      with: { "action-path": "./.github/actions/**/action.yml" },
-    }),
-  ),
+  }).uses(action("koki-develop/github-actions-lint/ghalint")),
 );
 
 workflow.addJob(
