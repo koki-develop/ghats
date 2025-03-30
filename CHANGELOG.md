@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.0.8](https://github.com/koki-develop/ghats/compare/v0.0.7...v0.0.8) (2025-03-30)
+
+
+### Bug Fixes
+
+* Add retry ([f8e77ff](https://github.com/koki-develop/ghats/commit/f8e77ff96fe42ab11bfd8d2806faeda0194336c8))
+* cache action.yml ([84cfade](https://github.com/koki-develop/ghats/commit/84cfade0e4afa3315e10d4b6a8d1241269887a1b))
+* fix ([13c58b9](https://github.com/koki-develop/ghats/commit/13c58b9617979537a4fb6ce70c911b54ffb3744e))
+* Implement Basic Features ([#9](https://github.com/koki-develop/ghats/issues/9)) ([c07aecc](https://github.com/koki-develop/ghats/commit/c07aecc01e45ad5b938fe823b8e4838a75fd7e44))
+* name -&gt; id ([d5ebb43](https://github.com/koki-develop/ghats/commit/d5ebb431e3b3c4ded2d2349651c2d2e2640a8f11))
+* Support name ([bf65af5](https://github.com/koki-develop/ghats/commit/bf65af5d26492dc91b01ff26c996c126eef253a7))
+* Use stepJSON ([57f9d01](https://github.com/koki-develop/ghats/commit/57f9d01fc7de7402b94ae8177e66d473d2303cb7))
+
 ## [0.0.7](https://github.com/koki-develop/ghats/compare/v0.0.6...v0.0.7) (2025-03-30)
 
 
