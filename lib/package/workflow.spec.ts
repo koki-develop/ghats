@@ -12,6 +12,29 @@ describe("Workflow", () => {
       "run-name": undefined,
       on: "push",
       permissions: undefined,
+      env: undefined,
+      jobs: {},
+    });
+  });
+
+  test("workflow with env", () => {
+    const workflow = new Workflow("simple", {
+      on: "push",
+      env: {
+        FOO: "foo",
+        BAR: "bar",
+      },
+    });
+
+    expect(workflow.toJSON()).toEqual({
+      name: "simple",
+      "run-name": undefined,
+      on: "push",
+      env: {
+        FOO: "foo",
+        BAR: "bar",
+      },
+      permissions: undefined,
       jobs: {},
     });
   });
