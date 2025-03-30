@@ -21,7 +21,7 @@ export class Workflow {
 
   public addJob(...jobs: Job[]): Workflow {
     for (const job of jobs) {
-      this._jobs[job.name] = job;
+      this._jobs[job.id] = job;
     }
     return this;
   }
