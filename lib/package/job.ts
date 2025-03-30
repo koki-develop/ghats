@@ -1,4 +1,4 @@
-import { type Permissions, permissionJSON } from "./permission";
+import { type Permissions, permissionsJSON } from "./permission";
 import { type RunStep, type Step, stepJSON, type UsesStep } from "./step";
 
 export type JobConfig = {
@@ -51,7 +51,7 @@ export class Job {
   public toJSON(): Record<string, unknown> {
     return {
       "runs-on": this._config.runsOn,
-      permissions: permissionJSON(this._config.permissions),
+      permissions: permissionsJSON(this._config.permissions),
       "timeout-minutes": this._config.timeoutMinutes,
       outputs: this._config.outputs,
       needs: this._config.needs,

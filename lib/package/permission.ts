@@ -17,7 +17,7 @@ export type Permissions = {
   statuses?: Permission;
 };
 
-export function permissionJSON(
+export function permissionsJSON(
   permissions?: Permissions,
 ): Record<string, unknown> | undefined {
   if (permissions == null) return undefined;
