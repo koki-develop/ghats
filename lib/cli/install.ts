@@ -11,6 +11,31 @@ import { getCommit, getFileContent, getLatestRelease } from "../util/git";
 import { toUpperCamelCase } from "../util/util";
 
 export async function install(actions: string[]) {
+  const actionsJson = loadActionsJson();
+  const actionsLockJson = loadActionsLockJson();
+
+  for (const action of actions) {
+    // if action is already installed, skip
+    if (actionsJson[action]) continue;
+
+    const [owner, repo] = action.split("/"); // TODO: use regex
+    if (!owner || !repo) {
+      throw new Error(`Invalid action format: ${action}`);
+    }
+
+    const latestRelease = await getLatestRelease(owner, repo);
+    const version = latestRelease.tag_name;
+    const commit = await getCommit(owner, repo, version);
+
+    actionsJson[action] = version;
+    actionsLockJson.actions[`${owner}/${repo}@${version}`] = commit.sha;
+  }
+
+  saveActionsJson(actionsJson);
+  saveActionsLockJson(actionsLockJson);
+
+  // ---
+
   const actionJs = `import * as fs from "node:fs";
 import * as path from "node:path";
 
@@ -51,42 +76,21 @@ export type InstalledActionParams<T extends InstalledAction> = Omit<
 `,
   ];
 
-  const actionsJson = loadActionsJson();
-  const actionsLockJson = loadActionsLockJson();
-
-  for (const action of actions) {
-    // if action is already installed, skip
-    if (actionsJson[action]) continue;
-
-    const [owner, repo] = action.split("/"); // TODO: use regex
-    if (!owner || !repo) {
-      throw new Error(`Invalid action format: ${action}`);
-    }
-
-    const latestRelease = await getLatestRelease(owner, repo);
-    const version = latestRelease.tag_name;
-    const commit = await getCommit(owner, repo, version);
+  for (const [actionWithVersion, sha] of Object.entries(
+    actionsLockJson.actions,
+  )) {
+    const [action] = actionWithVersion.split("@") as [string];
+    const [owner, repo] = action.split("/") as [string, string];
 
     // TODO: cache action.yml
-    const actionYamlRaw = await getFileContent(
-      owner,
-      repo,
-      commit.sha,
-      "action.yml",
-    );
+    const actionYamlRaw = await getFileContent(owner, repo, sha, "action.yml");
     const actionYaml = parseYaml(actionYamlRaw);
     const inputsDefinition = buildInputsTypeDefinition(
       action,
       actionYaml.inputs,
     );
     actionDtsLines.push(inputsDefinition);
-
-    actionsJson[action] = version;
-    actionsLockJson.actions[`${owner}/${repo}@${version}`] = commit.sha;
   }
-
-  saveActionsJson(actionsJson);
-  saveActionsLockJson(actionsLockJson);
 
   actionDtsLines.push(
     `export type InstalledAction = ${Object.keys(actionsJson)
