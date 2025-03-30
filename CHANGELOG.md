@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.9](https://github.com/koki-develop/ghats/compare/v0.0.8...v0.0.9) (2025-03-30)
+
+
+### Bug Fixes
+
+* .github/actions.json -&gt; .github/workflows/action.json ([7960cc2](https://github.com/koki-develop/ghats/commit/7960cc2e7bcde63235cb25b6173446e3b4c2b69d))
+* ignore _*.ts ([1494e4f](https://github.com/koki-develop/ghats/commit/1494e4f0b9fddaf6964ce610fcc128e37b21a5d3))
+
 ## [0.0.8](https://github.com/koki-develop/ghats/compare/v0.0.7...v0.0.8) (2025-03-30)
 
 
