@@ -28,7 +28,7 @@ export async function install(actions: string[]) {
     const commit = await getCommit(owner, repo, version);
 
     actionsJson[action] = version;
-    actionsLockJson.actions[`${owner}/${repo}@${version}`] = commit.sha;
+    actionsLockJson.actions[`${action}@${version}`] = commit.sha;
   }
 
   saveActionsJson(actionsJson);
@@ -80,12 +80,10 @@ export type InstalledActionParams<T extends InstalledAction> = Omit<
     actionsLockJson.actions,
   )) {
     const [action] = actionWithVersion.split("@") as [string];
-    const [owner, repo] = action.split("/") as [string, string];
 
-    // TODO: cache action.yml
-    const actionYamlRaw = await getFileContent(owner, repo, sha, "action.yml");
+    const actionYamlRaw = await _downloadActionYaml(action, sha);
     const actionYaml = parseYaml(actionYamlRaw);
-    const inputsDefinition = buildInputsTypeDefinition(
+    const inputsDefinition = _buildInputsTypeDefinition(
       action,
       actionYaml.inputs,
     );
@@ -117,7 +115,36 @@ export type InstalledActionParams<T extends InstalledAction> = Omit<
   fs.writeFileSync(path.resolve(dir, "action.js"), actionJs);
 }
 
-function buildInputsTypeDefinition(
+async function _downloadActionYaml(
+  action: string,
+  sha: string,
+): Promise<string> {
+  const cacheDir = path.resolve(
+    process.cwd(),
+    path.join("node_modules", ".cache", "ghats", "actions", action, sha),
+  );
+  const cachedActionYamlPath = path.join(cacheDir, "action.yml");
+  if (fs.existsSync(cachedActionYamlPath)) {
+    return fs.readFileSync(cachedActionYamlPath, "utf8");
+  }
+
+  const [owner, repo, ...rest] = action.split("/");
+  if (!owner || !repo)
+    throw new Error("Failed to parse action name: " + action);
+
+  const actionYamlRaw = await getFileContent(
+    owner,
+    repo,
+    sha,
+    path.join(...rest, "action.yml"),
+  );
+  fs.mkdirSync(cacheDir, { recursive: true });
+  fs.writeFileSync(cachedActionYamlPath, actionYamlRaw);
+
+  return actionYamlRaw;
+}
+
+function _buildInputsTypeDefinition(
   action: string,
   inputs: Record<
     string,
@@ -126,23 +153,27 @@ function buildInputsTypeDefinition(
       default?: string;
       required?: boolean;
     }
-  >,
+  > | null,
 ) {
   const lines: string[] = [];
   lines.push(
     `export type InstalledActionInputs${toUpperCamelCase(action)} = {`,
   );
 
-  for (const [key, value] of Object.entries(inputs)) {
-    lines.push("  /**");
-    if (value.description) {
-      lines.push(`  ${value.description}`);
+  if (inputs) {
+    for (const [key, value] of Object.entries(inputs)) {
+      lines.push("  /**");
+      if (value.description) {
+        lines.push(`  ${value.description}`);
+      }
+      if (value.default) {
+        lines.push(`  @default ${JSON.stringify(value.default)}`);
+      }
+      lines.push("  */");
+      lines.push(
+        `  ${JSON.stringify(key)}${value.required ? "" : "?"}: string;`,
+      );
     }
-    if (value.default) {
-      lines.push(`  @default ${JSON.stringify(value.default)}`);
-    }
-    lines.push("  */");
-    lines.push(`  ${JSON.stringify(key)}${value.required ? "" : "?"}: string;`);
   }
 
   lines.push("};");
