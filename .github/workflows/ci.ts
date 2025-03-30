@@ -2,7 +2,10 @@ import { Workflow } from "ghats";
 import { setupJob } from "./_helpers";
 
 const workflow = new Workflow("CI", {
-  on: "push",
+  on: {
+    pullRequest: { branches: ["main"] },
+    push: { branches: ["main"] },
+  },
   permissions: {},
 });
 
