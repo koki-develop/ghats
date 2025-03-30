@@ -2,7 +2,7 @@ import { type Permissions, permissionJSON } from "./permission";
 import { type RunStep, type Step, stepJSON, type UsesStep } from "./step";
 
 export type JobConfig = {
-  name: string;
+  id: string;
   runsOn: string;
   permissions?: Permissions;
   timeoutMinutes?: number;
@@ -15,12 +15,12 @@ export class Job {
   private readonly _config: JobConfig;
   private readonly _steps: Step[] = [];
 
-  public constructor(name: string, config: Omit<JobConfig, "name">) {
-    this._config = { name, ...config };
+  public constructor(id: string, config: Omit<JobConfig, "id">) {
+    this._config = { id, ...config };
   }
 
-  public get name(): string {
-    return this._config.name;
+  public get id(): string {
+    return this._config.id;
   }
 
   public run(command: string, params?: Omit<RunStep, "kind" | "command">): Job {
