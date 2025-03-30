@@ -13,7 +13,7 @@ export type WorkflowConfig = {
 export class Workflow {
   private readonly _name: string;
   private readonly _config: WorkflowConfig;
-  private readonly _jobs: Record<string, Job> = {};
+  private readonly _jobs: Job[] = [];
 
   public constructor(name: string, config: WorkflowConfig) {
     this._name = name;
@@ -21,9 +21,7 @@ export class Workflow {
   }
 
   public addJob(...jobs: Job[]): Workflow {
-    for (const job of jobs) {
-      this._jobs[job.id] = job;
-    }
+    this._jobs.push(...jobs);
     return this;
   }
 
@@ -40,9 +38,10 @@ export class Workflow {
 
       concurrency: concurrencyJSON(this._config.concurrency),
 
-      jobs: Object.fromEntries(
-        Object.entries(this._jobs).map(([name, job]) => [name, job.toJSON()]),
-      ),
+      jobs: this._jobs.reduce<Record<string, unknown>>((acc, job) => {
+        acc[job.id] = job.toJSON();
+        return acc;
+      }, {}),
     };
   }
 }
