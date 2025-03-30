@@ -12,7 +12,7 @@
       "devDependencies": {
         "@biomejs/biome": "2.0.0-beta.1",
         "@types/bun": "1.2.8",
-        "ghats": "0.0.12",
+        "ghats": "0.0.13",
         "husky": "9.1.7",
         "lint-staged": "15.5.0",
         "oxc-transform": "0.61.2",
@@ -227,7 +227,7 @@
 
     "get-stream": ["get-stream@8.0.1", "", {}, "sha512-VaUJspBffn/LMCJVoMvSAdmscJyS1auj5Zulnn5UoYcY531UWmdwhRWkcGKnGU93m5HSXP9LP2usOryrBtQowA=="],
 
-    "ghats": ["ghats@0.0.12", "", { "dependencies": { "@swc-node/register": "1.10.10", "commander": "13.1.0", "octokit": "4.1.2", "yaml": "2.7.1" }, "bin": { "ghats": "dist/cli/index.js" } }, "sha512-uJFgRlBfaAnlIZgJGUiAy4K1mbmF0UXK1xK2ZyczorWnz9a7apa0RsafmU7dwWr3DkXD3SW1MbvWG2eOcCBaRg=="],
+    "ghats": ["ghats@0.0.13", "", { "dependencies": { "@swc-node/register": "1.10.10", "commander": "13.1.0", "octokit": "4.1.2", "yaml": "2.7.1" }, "bin": { "ghats": "dist/cli/index.js" } }, "sha512-0u74IbqwUTtHH4ls4vcGxSONx1oNKLtEe8VDJJddU/VNL+091AOPC3c9N7dyRDp/9WlpCBK8MF+Bc1LnQsJvRg=="],
 
     "human-signals": ["human-signals@5.0.0", "", {}, "sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ=="],
 
