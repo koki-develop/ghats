@@ -1,4 +1,4 @@
-export type Permission = "read" | "write";
+export type Permission = "read" | "write" | "none";
 
 export type Permissions = {
   actions?: Permission;
