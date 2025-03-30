@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.6](https://github.com/koki-develop/ghats/compare/v0.0.5...v0.0.6) (2025-03-30)
+
+
+### Bug Fixes
+
+* actions.lock.json -&gt; actions-lock.json ([9817560](https://github.com/koki-develop/ghats/commit/98175603f4eac3e8f919172a07eeb62fdf65250b))
+* Export .ghats/action ([98fc961](https://github.com/koki-develop/ghats/commit/98fc961dc10652c686e0c61f3bfe00f9982a120b))
+* Implement install command ([abd3c7b](https://github.com/koki-develop/ghats/commit/abd3c7bd034b6655d30b17eeaea8ed12eb288afb))
+
 ## [0.0.5](https://github.com/koki-develop/ghats/compare/v0.0.4...v0.0.5) (2025-03-29)
 
 
