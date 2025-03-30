@@ -1,4 +1,5 @@
-import { action, Job, Workflow } from "ghats";
+import { Workflow } from "ghats";
+import { setupJob } from "./_helpers";
 
 const workflow = new Workflow("CI", {
   on: "push",
@@ -6,17 +7,11 @@ const workflow = new Workflow("CI", {
 });
 
 workflow.addJob(
-  new Job("test", {
-    runsOn: "ubuntu-latest",
+  setupJob("test", {
     permissions: { contents: "read" },
     timeoutMinutes: 5,
-  })
-    .uses(
-      action("actions/checkout", { with: { "persist-credentials": "false" } }),
-    )
-    .uses(action("jdx/mise-action"))
-    .run("bun install --frozen-lockfile")
-    .run("bun test"),
+    withBun: true,
+  }).run("bun test"),
 );
 
 export default workflow;

@@ -1,4 +1,5 @@
-import { action, Job, Workflow } from "ghats";
+import { action, Workflow } from "ghats";
+import { setupJob } from "./_helpers";
 
 const workflow = new Workflow("GitHub Actions Lint", {
   permissions: {},
@@ -18,58 +19,35 @@ const workflow = new Workflow("GitHub Actions Lint", {
 });
 
 workflow.addJob(
-  new Job("actionlint", {
-    runsOn: "ubuntu-latest",
-    permissions: {
-      contents: "read",
-    },
+  setupJob("actionlint", {
+    permissions: { contents: "read" },
     timeoutMinutes: 5,
-  })
-    .uses(
-      action("actions/checkout", { with: { "persist-credentials": "false" } }),
-    )
-    .uses(action("koki-develop/github-actions-lint/actionlint")),
+  }).uses(action("koki-develop/github-actions-lint/actionlint")),
 );
 
 workflow.addJob(
-  new Job("ghalint", {
-    runsOn: "ubuntu-latest",
-    permissions: {
-      contents: "read",
-    },
+  setupJob("ghalint", {
+    permissions: { contents: "read" },
     timeoutMinutes: 5,
-  })
-    .uses(
-      action("actions/checkout", { with: { "persist-credentials": "false" } }),
-    )
-    .uses(
-      action("koki-develop/github-actions-lint/ghalint", {
-        with: {
-          "action-path": "./.github/actions/**/action.yml",
-        },
-      }),
-    ),
+  }).uses(
+    action("koki-develop/github-actions-lint/ghalint", {
+      with: { "action-path": "./.github/actions/**/action.yml" },
+    }),
+  ),
 );
 
 workflow.addJob(
-  new Job("zizmor", {
-    runsOn: "ubuntu-latest",
-    permissions: {
-      contents: "read",
-    },
+  setupJob("zizmor", {
+    permissions: { contents: "read" },
     timeoutMinutes: 5,
-  })
-    .uses(
-      action("actions/checkout", { with: { "persist-credentials": "false" } }),
-    )
-    .uses(
-      action("koki-develop/github-actions-lint/zizmor", {
-        with: {
-          "github-token": "${{ github.token }}",
-          persona: "auditor",
-        },
-      }),
-    ),
+  }).uses(
+    action("koki-develop/github-actions-lint/zizmor", {
+      with: {
+        "github-token": "${{ github.token }}",
+        persona: "auditor",
+      },
+    }),
+  ),
 );
 
 export default workflow;

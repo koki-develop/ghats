@@ -1,4 +1,5 @@
-import { action, Job, Workflow } from "ghats";
+import { action, Workflow } from "ghats";
+import { setupJob } from "./_helpers";
 
 const workflow = new Workflow("Release Please", {
   permissions: {},
@@ -11,8 +12,8 @@ const workflow = new Workflow("Release Please", {
   },
 });
 
-const releasePleaseJob = new Job("releasePlease", {
-  runsOn: "ubuntu-latest",
+const releasePleaseJob = setupJob("releasePlease", {
+  withoutCheckout: true,
   timeoutMinutes: 10,
   permissions: {
     contents: "write",
@@ -28,8 +29,8 @@ const releasePleaseJob = new Job("releasePlease", {
   }),
 );
 
-const releaseJob = new Job("release", {
-  runsOn: "ubuntu-latest",
+const releaseJob = setupJob("release", {
+  withBun: true,
   timeoutMinutes: 10,
   needs: releasePleaseJob.id,
   if: `\${{ needs.${releasePleaseJob.id}.outputs.shouldRelease }}`,
@@ -37,11 +38,6 @@ const releaseJob = new Job("release", {
     contents: "read",
   },
 })
-  .uses(
-    action("actions/checkout", { with: { "persist-credentials": "false" } }),
-  )
-  .uses(action("jdx/mise-action"))
-  .run("bun install --frozen-lockfile")
   .run("bun run build:package")
   .run(
     `
