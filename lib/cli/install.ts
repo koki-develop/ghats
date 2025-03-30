@@ -80,11 +80,11 @@ export type InstalledActionParams<T extends InstalledAction> = Omit<
   fs.mkdirSync(path.resolve(process.cwd(), ".github"), { recursive: true });
   fs.writeFileSync(
     path.resolve(process.cwd(), ".github/actions.json"),
-    JSON.stringify(actionsJson, null, 2),
+    JSON.stringify(actionsJson, null, 2) + "\n",
   );
   fs.writeFileSync(
     path.resolve(process.cwd(), ".github/actions-lock.json"),
-    JSON.stringify(actionsLockJson, null, 2),
+    JSON.stringify(actionsLockJson, null, 2) + "\n",
   );
 
   actionDtsLines.push(
