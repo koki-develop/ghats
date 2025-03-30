@@ -1,4 +1,4 @@
-import { type Permissions, permissionsJSON } from "./permission";
+import { type Permissions, permissionsJSON } from "./permissions";
 import { type RunStep, type Step, stepJSON, type UsesStep } from "./step";
 
 export type JobConfig = {
