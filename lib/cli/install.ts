@@ -37,7 +37,7 @@ export async function install(actions: string[]) {
 import * as path from "node:path";
 
 function action(name, params) {
-  const githubDir = path.resolve(process.cwd(), ".github");
+  const githubDir = path.resolve(process.cwd(), ".github/workflows");
   const actionsJsonPath = path.resolve(githubDir, "actions.json");
   const actionsLockJsonPath = path.resolve(githubDir, "actions-lock.json");
   const actionsJson = JSON.parse(fs.readFileSync(actionsJsonPath, "utf8"));

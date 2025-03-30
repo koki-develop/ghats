@@ -9,11 +9,11 @@ function _prepareGitHubDir() {
 }
 
 function _actionsJsonPath() {
-  return path.resolve(process.cwd(), ".github/actions.json");
+  return path.resolve(process.cwd(), ".github/workflows/actions.json");
 }
 
 function _actionsLockJsonPath() {
-  return path.resolve(process.cwd(), ".github/actions-lock.json");
+  return path.resolve(process.cwd(), ".github/workflows/actions-lock.json");
 }
 
 export type ActionsJson = Record<string, string>;
