@@ -1,4 +1,4 @@
-import type { Permissions } from "./permission";
+import { type Permissions, permissionJSON } from "./permission";
 import type { RunStep, Step, UsesStep } from "./step";
 
 export type JobConfig = {
@@ -6,6 +6,9 @@ export type JobConfig = {
   runsOn: string;
   permissions?: Permissions;
   timeoutMinutes?: number;
+  outputs?: Record<string, string>;
+  needs?: string | string[];
+  if?: string | boolean | number;
 };
 
 export class Job {
@@ -47,8 +50,11 @@ export class Job {
   public toJSON(): Record<string, unknown> {
     return {
       "runs-on": this._config.runsOn,
-      permissions: this._config.permissions,
+      permissions: permissionJSON(this._config.permissions),
       "timeout-minutes": this._config.timeoutMinutes,
+      outputs: this._config.outputs,
+      needs: this._config.needs,
+      if: this._config.if,
       steps: this._steps.map((step) => {
         switch (step.kind) {
           case "run":

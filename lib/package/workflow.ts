@@ -1,11 +1,12 @@
+import { type Concurrency, concurrencyJSON } from "./concurrency";
 import { Job } from "./job";
-import type { On } from "./on";
+import { type On, onJSON } from "./on";
 import type { Permissions } from "./permission";
 
 export type WorkflowConfig = {
   name: string;
   runName?: string;
-
+  concurrency?: Concurrency;
   on: On;
   permissions?: Permissions;
 };
@@ -26,8 +27,10 @@ export class Workflow {
   public toJSON(): Record<string, unknown> {
     return {
       name: this._config.name,
+
       "run-name": this._config.runName,
-      on: this._config.on,
+
+      on: onJSON(this._config.on),
 
       permissions: this._config.permissions,
 
@@ -35,7 +38,7 @@ export class Workflow {
 
       // TODO: defaults
 
-      // TODO: concurrency
+      concurrency: concurrencyJSON(this._config.concurrency),
 
       jobs: Object.fromEntries(
         Object.entries(this._jobs).map(([name, job]) => [name, job.toJSON()]),
