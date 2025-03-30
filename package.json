@@ -22,9 +22,9 @@
   "scripts": {
     "prepare": "husky",
     "fmt": "biome check --write --unsafe .",
-    "build:package": "bun run tasks/build.ts",
-    "prebuild:workflows": "bun run build:package",
-    "build:workflows": "node ./dist/cli/index.js build"
+    "gha:install": "ghats install",
+    "gha:build": "ghats build",
+    "build:package": "bun run tasks/build.ts"
   },
   "dependencies": {
     "@swc-node/register": "1.10.10",
