@@ -1,0 +1,4 @@
+{
+  "actions/checkout": "v4.2.2",
+  "jdx/mise-action": "v2.1.11"
+}
