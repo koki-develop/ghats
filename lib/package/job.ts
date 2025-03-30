@@ -51,11 +51,21 @@ export class Job {
   public toJSON(): Record<string, unknown> {
     return {
       "runs-on": this._config.runsOn,
-      permissions: permissionsJSON(this._config.permissions),
-      "timeout-minutes": this._config.timeoutMinutes,
-      outputs: this._config.outputs,
-      needs: this._config.needs,
-      if: this._config.if,
+
+      ...(this._config.permissions && {
+        permissions: permissionsJSON(this._config.permissions),
+      }),
+
+      ...(this._config.timeoutMinutes && {
+        "timeout-minutes": this._config.timeoutMinutes,
+      }),
+
+      ...(this._config.outputs && { outputs: this._config.outputs }),
+
+      ...(this._config.needs && { needs: this._config.needs }),
+
+      ...(this._config.if && { if: this._config.if }),
+
       steps: this._steps.map((step) => stepJSON(step)),
     };
   }
