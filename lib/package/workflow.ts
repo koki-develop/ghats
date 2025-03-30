@@ -43,7 +43,9 @@ export class Workflow {
 
       // TODO: defaults
 
-      concurrency: concurrencyJSON(this._config.concurrency),
+      ...(this._config.concurrency && {
+        concurrency: concurrencyJSON(this._config.concurrency),
+      }),
 
       jobs: this._jobs.reduce<Record<string, unknown>>((acc, job) => {
         acc[job.id] = job.toJSON();
