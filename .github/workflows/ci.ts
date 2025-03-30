@@ -1,4 +1,4 @@
-import { Job, Workflow } from "ghats";
+import { action, Job, Workflow } from "ghats";
 
 const workflow = new Workflow("CI", {
   on: "push",
@@ -11,10 +11,10 @@ workflow.addJob(
     permissions: { contents: "read" },
     timeoutMinutes: 5,
   })
-    .uses("actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683", {
-      with: { "persist-credentials": "false" },
-    })
-    .uses("jdx/mise-action@5083fe46898c414b2475087cc79da59e7da859e8")
+    .uses(
+      action("actions/checkout", { with: { "persist-credentials": "false" } }),
+    )
+    .uses(action("jdx/mise-action"))
     .run("bun install --frozen-lockfile")
     .run("bun test"),
 );
