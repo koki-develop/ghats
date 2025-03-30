@@ -4,7 +4,6 @@ import { type On, onJSON } from "./on";
 import type { Permissions } from "./permission";
 
 export type WorkflowConfig = {
-  name: string;
   runName?: string;
   concurrency?: Concurrency;
   on: On;
@@ -12,11 +11,13 @@ export type WorkflowConfig = {
 };
 
 export class Workflow {
+  private readonly _name: string;
   private readonly _config: WorkflowConfig;
   private readonly _jobs: Record<string, Job> = {};
 
-  public constructor(name: string, config: Omit<WorkflowConfig, "name">) {
-    this._config = { name, ...config };
+  public constructor(name: string, config: WorkflowConfig) {
+    this._name = name;
+    this._config = config;
   }
 
   public addJob(...jobs: Job[]): Workflow {
@@ -28,7 +29,7 @@ export class Workflow {
 
   public toJSON(): Record<string, unknown> {
     return {
-      name: this._config.name,
+      name: this._name,
 
       "run-name": this._config.runName,
 
