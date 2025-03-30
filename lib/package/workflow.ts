@@ -1,7 +1,7 @@
 import { type Concurrency, concurrencyJSON } from "./concurrency";
 import { Job } from "./job";
 import { type On, onJSON } from "./on";
-import type { Permissions } from "./permission";
+import { type Permissions, permissionsJSON } from "./permission";
 
 export type WorkflowConfig = {
   runName?: string;
@@ -30,12 +30,9 @@ export class Workflow {
   public toJSON(): Record<string, unknown> {
     return {
       name: this._name,
-
       "run-name": this._config.runName,
-
       on: onJSON(this._config.on),
-
-      permissions: this._config.permissions,
+      permissions: permissionsJSON(this._config.permissions),
 
       // TODO: env
 
