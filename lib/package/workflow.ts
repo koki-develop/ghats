@@ -30,10 +30,16 @@ export class Workflow {
   public toJSON(): Record<string, unknown> {
     return {
       name: this._name,
-      "run-name": this._config.runName,
+
+      ...(this._config.runName && { "run-name": this._config.runName }),
+
       on: onJSON(this._config.on),
-      permissions: permissionsJSON(this._config.permissions),
-      env: envJSON(this._config.env),
+
+      ...(this._config.permissions && {
+        permissions: permissionsJSON(this._config.permissions),
+      }),
+
+      ...(this._config.env && { env: envJSON(this._config.env) }),
 
       // TODO: defaults
 

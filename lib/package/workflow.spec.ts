@@ -9,10 +9,7 @@ describe("Workflow", () => {
 
     expect(workflow.toJSON()).toEqual({
       name: "simple",
-      "run-name": undefined,
       on: "push",
-      permissions: undefined,
-      env: undefined,
       jobs: {},
     });
   });
@@ -28,13 +25,11 @@ describe("Workflow", () => {
 
     expect(workflow.toJSON()).toEqual({
       name: "simple",
-      "run-name": undefined,
       on: "push",
       env: {
         FOO: "foo",
         BAR: "bar",
       },
-      permissions: undefined,
       jobs: {},
     });
   });
