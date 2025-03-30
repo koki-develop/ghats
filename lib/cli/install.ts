@@ -31,9 +31,6 @@ export async function install(actions: string[]) {
     actionsLockJson.actions[`${action}@${version}`] = commit.sha;
   }
 
-  saveActionsJson(actionsJson);
-  saveActionsLockJson(actionsLockJson);
-
   // ---
 
   const actionJs = `import * as fs from "node:fs";
@@ -113,6 +110,9 @@ export type InstalledActionParams<T extends InstalledAction> = Omit<
     actionDtsLines.join("\n") + "\n",
   );
   fs.writeFileSync(path.resolve(dir, "action.js"), actionJs);
+
+  saveActionsJson(actionsJson);
+  saveActionsLockJson(actionsLockJson);
 }
 
 async function _downloadActionYaml(
