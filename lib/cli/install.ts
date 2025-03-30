@@ -175,13 +175,13 @@ function _buildInputsTypeDefinition(
     for (const [key, value] of Object.entries(inputs)) {
       lines.push("  /**");
       if (value.description) {
-        lines.push(`  ${value.description}`);
+        lines.push(`  * ${value.description}`);
       }
       if (value.default) {
-        lines.push(`  @default ${JSON.stringify(value.default)}`);
+        lines.push(`  * @default ${JSON.stringify(value.default)}`);
       }
       if (value.deprecationMessage) {
-        lines.push(`  @deprecated ${value.deprecationMessage}`);
+        lines.push(`  * @deprecated ${value.deprecationMessage}`);
       }
       lines.push("  */");
       lines.push(
