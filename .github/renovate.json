@@ -1,0 +1,22 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>koki-develop/renovate-config"],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["^\\.github/workflows/actions\\.json$"],
+      "versioningTemplate": "semver",
+      "datasourceTemplate": "github-releases",
+      "matchStrings": ["\"(?<depName>[^\"]+)\": \"(?<currentValue>[^\"]+)\""]
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["^\\.github/workflows/actions-lock\\.json$"],
+      "versioningTemplate": "semver",
+      "datasourceTemplate": "github-releases",
+      "matchStrings": [
+        "\"(?<depName>.+?)@(?<currentValue>.+?)\": \"(?<currentDigest>[a-f0-9]{40})\""
+      ]
+    }
+  ]
+}
