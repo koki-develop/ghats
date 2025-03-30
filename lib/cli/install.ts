@@ -1,6 +1,12 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { parse as parseYaml } from "yaml";
+import {
+  loadActionsJson,
+  loadActionsLockJson,
+  saveActionsJson,
+  saveActionsLockJson,
+} from "../util/actions";
 import { getCommit, getFileContent, getLatestRelease } from "../util/git";
 import { toUpperCamelCase } from "../util/util";
 
@@ -45,11 +51,13 @@ export type InstalledActionParams<T extends InstalledAction> = Omit<
 `,
   ];
 
-  // TODO: load existing actions.json and actions-lock.json
-  const actionsJson: Record<string, string> = {};
-  const actionsLockJson: { actions: Record<string, string> } = { actions: {} };
+  const actionsJson = loadActionsJson();
+  const actionsLockJson = loadActionsLockJson();
 
   for (const action of actions) {
+    // if action is already installed, skip
+    if (actionsJson[action]) continue;
+
     const [owner, repo] = action.split("/"); // TODO: use regex
     if (!owner || !repo) {
       throw new Error(`Invalid action format: ${action}`);
@@ -77,15 +85,8 @@ export type InstalledActionParams<T extends InstalledAction> = Omit<
     actionsLockJson.actions[`${owner}/${repo}@${version}`] = commit.sha;
   }
 
-  fs.mkdirSync(path.resolve(process.cwd(), ".github"), { recursive: true });
-  fs.writeFileSync(
-    path.resolve(process.cwd(), ".github/actions.json"),
-    JSON.stringify(actionsJson, null, 2) + "\n",
-  );
-  fs.writeFileSync(
-    path.resolve(process.cwd(), ".github/actions-lock.json"),
-    JSON.stringify(actionsLockJson, null, 2) + "\n",
-  );
+  saveActionsJson(actionsJson);
+  saveActionsLockJson(actionsLockJson);
 
   actionDtsLines.push(
     `export type InstalledAction = ${Object.keys(actionsJson)
