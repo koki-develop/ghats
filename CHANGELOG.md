@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.0](https://github.com/koki-develop/ghats/compare/v0.1.0...v0.2.0) (2025-03-30)
+
+
+### Features
+
+* Support Workflow level `env:` ([#19](https://github.com/koki-develop/ghats/issues/19)) ([ee3ff6d](https://github.com/koki-develop/ghats/commit/ee3ff6df7b1d4f90fd32cc8c3025ceb1ed191d08))
+
+
+### Bug Fixes
+
+* Added "none" to the Permission type definition ([16e9440](https://github.com/koki-develop/ghats/commit/16e944088017ca9d6d8a3831b6892dd200652dff))
+* Fixed workflow.permissions format ([4063f1b](https://github.com/koki-develop/ghats/commit/4063f1bee247d1237e16ca8d26c69a49ba5e5c1c))
+* Remove unnecessary fields from job json ([6d167e1](https://github.com/koki-develop/ghats/commit/6d167e18ab62841185802a759dd6995ef6ed366a))
+
 ## [0.1.0](https://github.com/koki-develop/ghats/compare/v0.0.13...v0.1.0) (2025-03-30)
 
 
