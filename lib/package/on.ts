@@ -1,12 +1,12 @@
 // https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/github-workflow.json
 export type Events = {
-  branch_protection_rule: {
+  branchProtectionRule: {
     types?: ("created" | "edited" | "deleted")[];
   };
-  check_run: {
+  checkRun: {
     types?: ("created" | "rerequested" | "completed" | "requested_action")[];
   };
-  check_suite: {
+  checkSuite: {
     types?: ("completed" | "requested" | "rerequested")[];
   };
   // biome-ignore lint/complexity/noBannedTypes:
@@ -16,7 +16,7 @@ export type Events = {
   // biome-ignore lint/complexity/noBannedTypes:
   deployment: {};
   // biome-ignore lint/complexity/noBannedTypes:
-  deployment_status: {};
+  deploymentStatus: {};
   discussion: {
     types?: (
       | "created"
@@ -34,14 +34,14 @@ export type Events = {
       | "unanswered"
     )[];
   };
-  discussion_comment: {
+  discussionComment: {
     types?: ("created" | "edited" | "deleted")[];
   };
   // biome-ignore lint/complexity/noBannedTypes:
   fork: {};
   // biome-ignore lint/complexity/noBannedTypes:
   gollum: {};
-  issue_comment: {
+  issueComment: {
     types?: ("created" | "edited" | "deleted")[];
   };
   issues: {
@@ -67,14 +67,14 @@ export type Events = {
   label: {
     types?: ("created" | "edited" | "deleted")[];
   };
-  merge_group: {
+  mergeGroup: {
     types?: "checks_requested"[];
   };
   milestone: {
     types?: ("created" | "closed" | "opened" | "edited" | "deleted")[];
   };
   // biome-ignore lint/complexity/noBannedTypes:
-  page_build: {};
+  pageBuild: {};
   project: {
     types?: (
       | "created"
@@ -85,15 +85,15 @@ export type Events = {
       | "deleted"
     )[];
   };
-  project_card: {
+  projectCard: {
     types?: ("created" | "moved" | "converted" | "edited" | "deleted")[];
   };
-  project_column: {
+  projectColumn: {
     types?: ("created" | "updated" | "moved" | "deleted")[];
   };
   // biome-ignore lint/complexity/noBannedTypes:
   public: {};
-  pull_request: {
+  pullRequest: {
     types?: (
       | "assigned"
       | "unassigned"
@@ -118,19 +118,19 @@ export type Events = {
       | "dequeued"
     )[];
     branches?: string[];
-    "branches-ignore"?: string[];
+    branchesIgnore?: string[];
     tags?: string[];
-    "tags-ignore"?: string[];
+    tagsIgnore?: string[];
     paths?: string[];
-    "paths-ignore"?: string[];
+    pathsIgnore?: string[];
   };
-  pull_request_review: {
+  pullRequestReview: {
     types?: ("submitted" | "edited" | "dismissed")[];
   };
-  pull_request_review_comment: {
+  pullRequestReviewComment: {
     types?: ("created" | "edited" | "deleted")[];
   };
-  pull_request_target: {
+  pullRequestTarget: {
     types?: (
       | "assigned"
       | "unassigned"
@@ -151,21 +151,21 @@ export type Events = {
       | "auto_merge_disabled"
     )[];
     branches?: string[];
-    "branches-ignore"?: string[];
+    branchesIgnore?: string[];
     tags?: string[];
-    "tags-ignore"?: string[];
+    tagsIgnore?: string[];
     paths?: string[];
-    "paths-ignore"?: string[];
+    pathsIgnore?: string[];
   };
   push: {
     branches?: string[];
-    "branches-ignore"?: string[];
+    branchesIgnore?: string[];
     tags?: string[];
-    "tags-ignore"?: string[];
+    tagsIgnore?: string[];
     paths?: string[];
-    "paths-ignore"?: string[];
+    pathsIgnore?: string[];
   };
-  registry_package: {
+  registryPackage: {
     types?: ("published" | "updated")[];
   };
   release: {
@@ -183,7 +183,7 @@ export type Events = {
   status: {};
   // biome-ignore lint/complexity/noBannedTypes:
   watch: {};
-  workflow_call: {
+  workflowCall: {
     inputs?: {
       [key: string]: {
         description?: string;
@@ -199,7 +199,7 @@ export type Events = {
       };
     };
   };
-  workflow_dispatch: {
+  workflowDispatch: {
     inputs?: {
       [key: string]: {
         description: string;
@@ -214,14 +214,14 @@ export type Events = {
       );
     };
   };
-  workflow_run: {
+  workflowRun: {
     types?: ("requested" | "completed" | "in_progress")[];
     workflows?: string[];
     branches?: string[];
-    "branches-ignore"?: string[];
+    branchesIgnore?: string[];
   };
   // biome-ignore lint/complexity/noBannedTypes:
-  repository_dispatch: {};
+  repositoryDispatch: {};
   schedule: {
     cron: string;
   }[];
@@ -237,21 +237,21 @@ export function onJSON(on: On): string | string[] | Record<string, unknown> {
 
   const result: Record<string, unknown> = {};
 
-  if (on.branch_protection_rule) {
+  if (on.branchProtectionRule) {
     result.branch_protection_rule = {
-      types: on.branch_protection_rule.types,
+      types: on.branchProtectionRule.types,
     };
   }
 
-  if (on.check_run) {
+  if (on.checkRun) {
     result.check_run = {
-      types: on.check_run.types,
+      types: on.checkRun.types,
     };
   }
 
-  if (on.check_suite) {
+  if (on.checkSuite) {
     result.check_suite = {
-      types: on.check_suite.types,
+      types: on.checkSuite.types,
     };
   }
 
@@ -267,7 +267,7 @@ export function onJSON(on: On): string | string[] | Record<string, unknown> {
     result.deployment = {};
   }
 
-  if (on.deployment_status) {
+  if (on.deploymentStatus) {
     result.deployment_status = {};
   }
 
@@ -277,9 +277,9 @@ export function onJSON(on: On): string | string[] | Record<string, unknown> {
     };
   }
 
-  if (on.discussion_comment) {
+  if (on.discussionComment) {
     result.discussion_comment = {
-      types: on.discussion_comment.types,
+      types: on.discussionComment.types,
     };
   }
 
@@ -291,9 +291,9 @@ export function onJSON(on: On): string | string[] | Record<string, unknown> {
     result.gollum = {};
   }
 
-  if (on.issue_comment) {
+  if (on.issueComment) {
     result.issue_comment = {
-      types: on.issue_comment.types,
+      types: on.issueComment.types,
     };
   }
 
@@ -309,9 +309,9 @@ export function onJSON(on: On): string | string[] | Record<string, unknown> {
     };
   }
 
-  if (on.merge_group) {
+  if (on.mergeGroup) {
     result.merge_group = {
-      types: on.merge_group.types,
+      types: on.mergeGroup.types,
     };
   }
 
@@ -321,7 +321,7 @@ export function onJSON(on: On): string | string[] | Record<string, unknown> {
     };
   }
 
-  if (on.page_build) {
+  if (on.pageBuild) {
     result.page_build = {};
   }
 
@@ -331,15 +331,15 @@ export function onJSON(on: On): string | string[] | Record<string, unknown> {
     };
   }
 
-  if (on.project_card) {
+  if (on.projectCard) {
     result.project_card = {
-      types: on.project_card.types,
+      types: on.projectCard.types,
     };
   }
 
-  if (on.project_column) {
+  if (on.projectColumn) {
     result.project_column = {
-      types: on.project_column.types,
+      types: on.projectColumn.types,
     };
   }
 
@@ -347,56 +347,56 @@ export function onJSON(on: On): string | string[] | Record<string, unknown> {
     result.public = {};
   }
 
-  if (on.pull_request) {
+  if (on.pullRequest) {
     result.pull_request = {
-      types: on.pull_request.types,
-      branches: on.pull_request.branches,
-      "branches-ignore": on.pull_request["branches-ignore"],
-      tags: on.pull_request.tags,
-      "tags-ignore": on.pull_request["tags-ignore"],
-      paths: on.pull_request.paths,
-      "paths-ignore": on.pull_request["paths-ignore"],
+      types: on.pullRequest.types,
+      branches: on.pullRequest.branches,
+      "branches-ignore": on.pullRequest.branchesIgnore,
+      tags: on.pullRequest.tags,
+      "tags-ignore": on.pullRequest.tagsIgnore,
+      paths: on.pullRequest.paths,
+      "paths-ignore": on.pullRequest.pathsIgnore,
     };
   }
 
-  if (on.pull_request_review) {
+  if (on.pullRequestReview) {
     result.pull_request_review = {
-      types: on.pull_request_review.types,
+      types: on.pullRequestReview.types,
     };
   }
 
-  if (on.pull_request_review_comment) {
+  if (on.pullRequestReviewComment) {
     result.pull_request_review_comment = {
-      types: on.pull_request_review_comment.types,
+      types: on.pullRequestReviewComment.types,
     };
   }
 
-  if (on.pull_request_target) {
+  if (on.pullRequestTarget) {
     result.pull_request_target = {
-      types: on.pull_request_target.types,
-      branches: on.pull_request_target.branches,
-      "branches-ignore": on.pull_request_target["branches-ignore"],
-      tags: on.pull_request_target.tags,
-      "tags-ignore": on.pull_request_target["tags-ignore"],
-      paths: on.pull_request_target.paths,
-      "paths-ignore": on.pull_request_target["paths-ignore"],
+      types: on.pullRequestTarget.types,
+      branches: on.pullRequestTarget.branches,
+      "branches-ignore": on.pullRequestTarget.branchesIgnore,
+      tags: on.pullRequestTarget.tags,
+      "tags-ignore": on.pullRequestTarget.tagsIgnore,
+      paths: on.pullRequestTarget.paths,
+      "paths-ignore": on.pullRequestTarget.pathsIgnore,
     };
   }
 
   if (on.push) {
     result.push = {
       branches: on.push.branches,
-      "branches-ignore": on.push["branches-ignore"],
+      "branches-ignore": on.push.branchesIgnore,
       tags: on.push.tags,
-      "tags-ignore": on.push["tags-ignore"],
+      "tags-ignore": on.push.tagsIgnore,
       paths: on.push.paths,
-      "paths-ignore": on.push["paths-ignore"],
+      "paths-ignore": on.push.pathsIgnore,
     };
   }
 
-  if (on.registry_package) {
+  if (on.registryPackage) {
     result.registry_package = {
-      types: on.registry_package.types,
+      types: on.registryPackage.types,
     };
   }
 
@@ -414,12 +414,12 @@ export function onJSON(on: On): string | string[] | Record<string, unknown> {
     result.watch = {};
   }
 
-  if (on.workflow_call) {
+  if (on.workflowCall) {
     result.workflow_call = {
       inputs:
-        on.workflow_call.inputs &&
+        on.workflowCall.inputs &&
         Object.fromEntries(
-          Object.entries(on.workflow_call.inputs).map(([key, value]) => [
+          Object.entries(on.workflowCall.inputs).map(([key, value]) => [
             key,
             {
               description: value.description,
@@ -430,9 +430,9 @@ export function onJSON(on: On): string | string[] | Record<string, unknown> {
           ]),
         ),
       secrets:
-        on.workflow_call.secrets &&
+        on.workflowCall.secrets &&
         Object.fromEntries(
-          Object.entries(on.workflow_call.secrets).map(([key, value]) => [
+          Object.entries(on.workflowCall.secrets).map(([key, value]) => [
             key,
             {
               description: value.description,
@@ -443,12 +443,12 @@ export function onJSON(on: On): string | string[] | Record<string, unknown> {
     };
   }
 
-  if (on.workflow_dispatch) {
+  if (on.workflowDispatch) {
     result.workflow_dispatch = {
       inputs:
-        on.workflow_dispatch.inputs &&
+        on.workflowDispatch.inputs &&
         Object.fromEntries(
-          Object.entries(on.workflow_dispatch.inputs).map(([key, value]) => [
+          Object.entries(on.workflowDispatch.inputs).map(([key, value]) => [
             key,
             (() => {
               switch (value.type) {
@@ -479,16 +479,16 @@ export function onJSON(on: On): string | string[] | Record<string, unknown> {
     };
   }
 
-  if (on.workflow_run) {
+  if (on.workflowRun) {
     result.workflow_run = {
-      types: on.workflow_run.types,
-      workflows: on.workflow_run.workflows,
-      branches: on.workflow_run.branches,
-      "branches-ignore": on.workflow_run["branches-ignore"],
+      types: on.workflowRun.types,
+      workflows: on.workflowRun.workflows,
+      branches: on.workflowRun.branches,
+      "branches-ignore": on.workflowRun.branchesIgnore,
     };
   }
 
-  if (on.repository_dispatch) {
+  if (on.repositoryDispatch) {
     result.repository_dispatch = {};
   }
 
