@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.12](https://github.com/koki-develop/ghats/compare/v0.0.11...v0.0.12) (2025-03-30)
+
+
+### Bug Fixes
+
+* Update interface ([cc4bf40](https://github.com/koki-develop/ghats/commit/cc4bf407c9fdd29faaee21790a5e3fc31d939a01))
+
 ## [0.0.11](https://github.com/koki-develop/ghats/compare/v0.0.10...v0.0.11) (2025-03-30)
 
 
