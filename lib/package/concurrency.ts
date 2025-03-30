@@ -6,16 +6,16 @@ export type Concurrency =
     };
 
 export function concurrencyJSON(
-  concurrency?: Concurrency,
-): string | Record<string, unknown> | undefined {
-  if (concurrency == null) return undefined;
-
+  concurrency: Concurrency,
+): string | Record<string, unknown> {
   if (typeof concurrency === "string") {
     return concurrency;
   }
 
   return {
     group: concurrency.group,
-    "cancel-in-progress": concurrency.cancelInProgress,
+    ...(concurrency.cancelInProgress && {
+      "cancel-in-progress": concurrency.cancelInProgress,
+    }),
   };
 }
