@@ -19,8 +19,10 @@ export class Workflow {
     this._config = { name, ...config };
   }
 
-  public addJob(job: Job): Workflow {
-    this._jobs[job.name] = job;
+  public addJob(...jobs: Job[]): Workflow {
+    for (const job of jobs) {
+      this._jobs[job.name] = job;
+    }
     return this;
   }
 

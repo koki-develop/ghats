@@ -1,5 +1,5 @@
 import { type Permissions, permissionJSON } from "./permission";
-import type { RunStep, Step, UsesStep } from "./step";
+import { type RunStep, type Step, stepJSON, type UsesStep } from "./step";
 
 export type JobConfig = {
   name: string;
@@ -55,14 +55,7 @@ export class Job {
       outputs: this._config.outputs,
       needs: this._config.needs,
       if: this._config.if,
-      steps: this._steps.map((step) => {
-        switch (step.kind) {
-          case "run":
-            return { run: step.command, env: step.env };
-          case "uses":
-            return { uses: step.action, with: step.with };
-        }
-      }),
+      steps: this._steps.map((step) => stepJSON(step)),
     };
   }
 }
