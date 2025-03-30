@@ -15,7 +15,7 @@ const releasePleaseJob = new Job("releasePlease", {
   runsOn: "ubuntu-latest",
   timeoutMinutes: 10,
   permissions: {
-    contents: "read",
+    contents: "write",
     pullRequests: "write",
   },
   outputs: {
