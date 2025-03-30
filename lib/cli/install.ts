@@ -162,6 +162,7 @@ function _buildInputsTypeDefinition(
       description?: string;
       default?: string;
       required?: boolean;
+      deprecationMessage?: string;
     }
   > | null,
 ) {
@@ -178,6 +179,9 @@ function _buildInputsTypeDefinition(
       }
       if (value.default) {
         lines.push(`  @default ${JSON.stringify(value.default)}`);
+      }
+      if (value.deprecationMessage) {
+        lines.push(`  @deprecated ${value.deprecationMessage}`);
       }
       lines.push("  */");
       lines.push(
