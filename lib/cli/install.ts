@@ -137,7 +137,17 @@ async function _downloadActionYaml(
     repo,
     sha,
     path.join(...rest, "action.yml"),
-  );
+  ).catch(async (error) => {
+    if (error.status !== 404) throw error;
+
+    const actionYamlRaw = await getFileContent(
+      owner,
+      repo,
+      sha,
+      path.join(...rest, "action.yaml"),
+    );
+    return actionYamlRaw;
+  });
   fs.mkdirSync(cacheDir, { recursive: true });
   fs.writeFileSync(cachedActionYamlPath, actionYamlRaw);
 
