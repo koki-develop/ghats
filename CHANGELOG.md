@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.10](https://github.com/koki-develop/ghats/compare/v0.0.9...v0.0.10) (2025-03-30)
+
+
+### Bug Fixes
+
+* Support deprecationMessage ([1b068a4](https://github.com/koki-develop/ghats/commit/1b068a442730df8a441c64db3fdb75debcdad316))
+
 ## [0.0.9](https://github.com/koki-develop/ghats/compare/v0.0.8...v0.0.9) (2025-03-30)
 
 
