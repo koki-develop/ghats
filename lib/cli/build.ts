@@ -16,7 +16,12 @@ export async function build(args: string[]) {
       ...fs
         .readdirSync(githubWorkflowsPath)
         .map((file) => path.join(githubWorkflowsPath, file))
-        .filter((file) => file.endsWith(".ts")),
+        .filter((file) => {
+          if (!file.endsWith(".ts")) return false;
+          if (path.basename(file).startsWith("_")) return false;
+
+          return true;
+        }),
     );
   }
 
