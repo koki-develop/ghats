@@ -69,7 +69,7 @@ export declare function action<T extends InstalledAction>(
 export type InstalledActionParams<T extends InstalledAction> = Omit<
   UsesStep,
   "kind" | "action" | "with"
-> & { with: InstalledActionInputs<T> };
+> & { with?: InstalledActionInputs<T> };
 `,
   ];
 
