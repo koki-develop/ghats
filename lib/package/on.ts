@@ -227,7 +227,7 @@ export type Events = {
   }[];
 };
 
-const eventNameMap = {
+const EventNameMap = {
   branchProtectionRule: "branch_protection_rule",
   checkRun: "check_run",
   checkSuite: "check_suite",
@@ -267,11 +267,14 @@ const eventNameMap = {
 
 export type EventName = keyof Events;
 export type EventType<T extends EventName> = Events[T];
-export type On = EventName | EventName[] | { [K in EventName]?: EventType<K> };
+export type On =
+  | (typeof EventNameMap)[keyof typeof EventNameMap]
+  | (typeof EventNameMap)[keyof typeof EventNameMap][]
+  | { [K in EventName]?: EventType<K> };
 
 export function onJSON(on: On): string | string[] | Record<string, unknown> {
-  if (typeof on === "string") return eventNameMap[on];
-  if (Array.isArray(on)) return on.map((event) => eventNameMap[event]);
+  if (typeof on === "string") return on;
+  if (Array.isArray(on)) return on;
 
   return {
     ...(on.branchProtectionRule != null && {
