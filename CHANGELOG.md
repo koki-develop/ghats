@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1](https://github.com/koki-develop/ghats/compare/v0.2.0...v0.2.1) (2025-03-31)
+
+
+### Bug Fixes
+
+* Add explicitly null checks ([#22](https://github.com/koki-develop/ghats/issues/22)) ([10035b9](https://github.com/koki-develop/ghats/commit/10035b9fd76eee512d3972fb563099d7c3bae014))
+* Fixed an issue where cancel-in-progress was omitted ([71bf3ba](https://github.com/koki-develop/ghats/commit/71bf3bac960dc5558ad41b540abe6a2c71a4e6eb))
+
 ## [0.2.0](https://github.com/koki-develop/ghats/compare/v0.1.0...v0.2.0) (2025-03-30)
 
 
