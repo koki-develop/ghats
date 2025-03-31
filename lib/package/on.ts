@@ -227,13 +227,51 @@ export type Events = {
   }[];
 };
 
+const eventNameMap = {
+  branchProtectionRule: "branch_protection_rule",
+  checkRun: "check_run",
+  checkSuite: "check_suite",
+  create: "create",
+  delete: "delete",
+  deployment: "deployment",
+  deploymentStatus: "deployment_status",
+  discussion: "discussion",
+  discussionComment: "discussion_comment",
+  fork: "fork",
+  gollum: "gollum",
+  issueComment: "issue_comment",
+  issues: "issues",
+  label: "label",
+  mergeGroup: "merge_group",
+  milestone: "milestone",
+  pageBuild: "page_build",
+  project: "project",
+  projectCard: "project_card",
+  projectColumn: "project_column",
+  public: "public",
+  pullRequest: "pull_request",
+  pullRequestReview: "pull_request_review",
+  pullRequestReviewComment: "pull_request_review_comment",
+  pullRequestTarget: "pull_request_target",
+  push: "push",
+  registryPackage: "registry_package",
+  release: "release",
+  status: "status",
+  watch: "watch",
+  workflowCall: "workflow_call",
+  workflowDispatch: "workflow_dispatch",
+  workflowRun: "workflow_run",
+  repositoryDispatch: "repository_dispatch",
+  schedule: "schedule",
+} as const;
+
 export type EventName = keyof Events;
 export type EventType<T extends EventName> = Events[T];
 export type On = EventName | EventName[] | { [K in EventName]?: EventType<K> };
 
 export function onJSON(on: On): string | string[] | Record<string, unknown> {
-  if (typeof on === "string") return on;
-  if (Array.isArray(on)) return on;
+  if (typeof on === "string") return eventNameMap[on];
+  if (Array.isArray(on)) return on.map((event) => eventNameMap[event]);
 
   return {
     ...(on.branchProtectionRule != null && {
