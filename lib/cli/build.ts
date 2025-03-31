@@ -4,6 +4,13 @@ import * as path from "node:path";
 import { pathToFileURL } from "node:url";
 
 export async function build(args: string[]) {
+  const ghatsDir = path.resolve(process.cwd(), "node_modules/.ghats");
+  const actionJsPath = path.join(ghatsDir, "action.js");
+  if (!fs.existsSync(actionJsPath)) {
+    fs.mkdirSync(ghatsDir, { recursive: true });
+    fs.writeFileSync(actionJsPath, "export {}");
+  }
+
   register("@swc-node/register/esm", pathToFileURL("./"));
 
   const githubWorkflowsPath = path.resolve(process.cwd(), ".github/workflows");
