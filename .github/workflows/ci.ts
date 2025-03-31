@@ -17,4 +17,33 @@ workflow.addJob(
   }).run("bun test"),
 );
 
+workflow.addJob(
+  setupJob("build-workflow", {
+    permissions: { contents: "read" },
+    timeoutMinutes: 5,
+    withBun: true,
+  })
+    .run(`
+cat <<EOF > ./.github/workflows/example.ts
+import { Workflow, Job } from "ghats";
+
+const workflow = new Workflow("Hello", {
+  on: "push",
+});
+
+workflow.addJob(
+  new Job("hello", {
+    runsOn: "ubuntu-latest",
+  })
+    .uses("actions/checkout@v4")
+    .run("echo 'Hello, world!'"),
+);
+
+export default workflow;
+EOF
+`)
+    .run("bun run ./lib/cli/index.ts build")
+    .run("cat ./.github/workflows/example.yml"),
+);
+
 export default workflow;
