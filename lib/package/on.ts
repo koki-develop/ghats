@@ -532,10 +532,16 @@ export function onJSON(on: On): string | string[] | Record<string, unknown> {
             Object.entries(on.workflowCall.inputs).map(([key, value]) => [
               key,
               {
-                description: value.description,
-                required: value.required,
                 type: value.type,
-                default: value.default,
+                ...(value.description != null && {
+                  description: value.description,
+                }),
+                ...(value.required != null && {
+                  required: value.required,
+                }),
+                ...(value.default != null && {
+                  default: value.default,
+                }),
               },
             ]),
           ),
@@ -545,8 +551,10 @@ export function onJSON(on: On): string | string[] | Record<string, unknown> {
             Object.entries(on.workflowCall.secrets).map(([key, value]) => [
               key,
               {
-                description: value.description,
                 required: value.required,
+                ...(value.description != null && {
+                  description: value.description,
+                }),
               },
             ]),
           ),
@@ -561,25 +569,28 @@ export function onJSON(on: On): string | string[] | Record<string, unknown> {
             Object.entries(on.workflowDispatch.inputs).map(([key, value]) => [
               key,
               (() => {
+                const base = {
+                  type: value.type,
+                  description: value.description,
+                  ...(value.deprecationMessage != null && {
+                    deprecationMessage: value.deprecationMessage,
+                  }),
+                  ...(value.required != null && {
+                    required: value.required,
+                  }),
+                  ...(value.default != null && {
+                    default: value.default,
+                  }),
+                };
                 switch (value.type) {
                   case "string":
                   case "boolean":
                   case "number":
                   case "environment":
-                    return {
-                      type: value.type,
-                      description: value.description,
-                      deprecationMessage: value.deprecationMessage,
-                      required: value.required,
-                      default: value.default,
-                    };
+                    return base;
                   case "choice":
                     return {
-                      type: value.type,
-                      description: value.description,
-                      deprecationMessage: value.deprecationMessage,
-                      required: value.required,
-                      default: value.default,
+                      ...base,
                       options: value.options,
                     };
                 }
@@ -592,10 +603,18 @@ export function onJSON(on: On): string | string[] | Record<string, unknown> {
 
     ...(on.workflowRun != null && {
       workflow_run: {
-        types: on.workflowRun.types,
-        workflows: on.workflowRun.workflows,
-        branches: on.workflowRun.branches,
-        "branches-ignore": on.workflowRun.branchesIgnore,
+        ...(on.workflowRun.types != null && {
+          types: on.workflowRun.types,
+        }),
+        ...(on.workflowRun.workflows != null && {
+          workflows: on.workflowRun.workflows,
+        }),
+        ...(on.workflowRun.branches != null && {
+          branches: on.workflowRun.branches,
+        }),
+        ...(on.workflowRun.branchesIgnore != null && {
+          "branches-ignore": on.workflowRun.branchesIgnore,
+        }),
       },
     }),
 
