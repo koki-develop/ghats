@@ -18,12 +18,20 @@ export type UsesStep = StepBase & {
 export type Step = RunStep | UsesStep;
 
 export function stepJSON(step: Step): Record<string, unknown> {
-  const base = { id: step.id, name: step.name, env: step.env };
+  const base = {
+    ...(step.id != null && { id: step.id }),
+    ...(step.name != null && { name: step.name }),
+    ...(step.env != null && { env: step.env }),
+  };
 
   switch (step.kind) {
     case "run":
       return { ...base, run: step.command };
     case "uses":
-      return { ...base, uses: step.action, with: step.with };
+      return {
+        ...base,
+        ...(step.with != null && { with: step.with }),
+        uses: step.action,
+      };
   }
 }
