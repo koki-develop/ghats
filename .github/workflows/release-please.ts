@@ -1,4 +1,4 @@
-import { action, Workflow } from "ghats";
+import { action, Job, Workflow } from "ghats";
 import { setupJob } from "./_helpers";
 
 const workflow = new Workflow("Release Please", {
@@ -12,8 +12,8 @@ const workflow = new Workflow("Release Please", {
   },
 });
 
-const releasePleaseJob = setupJob("releasePlease", {
-  withoutCheckout: true,
+const releasePleaseJob = new Job("releasePlease", {
+  runsOn: "ubuntu-latest",
   timeoutMinutes: 10,
   permissions: {
     contents: "write",
