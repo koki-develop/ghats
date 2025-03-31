@@ -10,6 +10,7 @@ export type WorkflowConfig = {
   on: On;
   permissions?: Permissions;
   env?: Env;
+  // TODO: defaults
 };
 
 export class Workflow {
@@ -40,8 +41,6 @@ export class Workflow {
       }),
 
       ...(this._config.env && { env: envJSON(this._config.env) }),
-
-      // TODO: defaults
 
       ...(this._config.concurrency && {
         concurrency: concurrencyJSON(this._config.concurrency),

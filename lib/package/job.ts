@@ -8,6 +8,18 @@ export type JobConfig = {
   outputs?: Record<string, string>;
   needs?: string | string[];
   if?: string | boolean | number;
+  // TODO: environment
+  // TODO: concurrency
+  // TODO: outputs
+  // TODO: env
+  // TODO: defaults
+  // TODO: strategy
+  // TODO: continue-on-error
+  // TODO: container
+  // TODO: services
+  // TODO: uses
+  // TODO: with
+  // TODO: secrets
 };
 
 export class Job {

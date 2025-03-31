@@ -2,11 +2,16 @@ export type StepBase = {
   id?: string;
   name?: string;
   env?: Record<string, string>;
+  // TODO: if
+  // TODO: continue-on-error
+  // TODO: timeout-minutes
 };
 
 export type RunStep = StepBase & {
   kind: "run";
   command: string;
+  // TODO: working-directory
+  // TODO: shell
 };
 
 export type UsesStep = StepBase & {
