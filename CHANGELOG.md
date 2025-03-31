@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/koki-develop/ghats/compare/v0.2.1...v0.2.2) (2025-03-31)
+
+
+### Bug Fixes
+
+* Removed camel case conversion for event names ([e6924f8](https://github.com/koki-develop/ghats/commit/e6924f88ee4e648607ca5ab0023e0edef3d16dd2))
+
 ## [0.2.1](https://github.com/koki-develop/ghats/compare/v0.2.0...v0.2.1) (2025-03-31)
 
 
