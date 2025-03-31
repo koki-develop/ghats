@@ -235,268 +235,340 @@ export function onJSON(on: On): string | string[] | Record<string, unknown> {
   if (typeof on === "string") return on;
   if (Array.isArray(on)) return on;
 
-  const result: Record<string, unknown> = {};
+  return {
+    ...(on.branchProtectionRule != null && {
+      branch_protection_rule: {
+        ...(on.branchProtectionRule.types != null && {
+          types: on.branchProtectionRule.types,
+        }),
+      },
+    }),
 
-  if (on.branchProtectionRule) {
-    result.branch_protection_rule = {
-      types: on.branchProtectionRule.types,
-    };
-  }
+    ...(on.checkRun != null && {
+      check_run: {
+        ...(on.checkRun.types != null && {
+          types: on.checkRun.types,
+        }),
+      },
+    }),
 
-  if (on.checkRun) {
-    result.check_run = {
-      types: on.checkRun.types,
-    };
-  }
+    ...(on.checkSuite != null && {
+      check_suite: {
+        ...(on.checkSuite.types != null && {
+          types: on.checkSuite.types,
+        }),
+      },
+    }),
 
-  if (on.checkSuite) {
-    result.check_suite = {
-      types: on.checkSuite.types,
-    };
-  }
+    ...(on.create != null && {
+      create: {},
+    }),
 
-  if (on.create) {
-    result.create = {};
-  }
+    ...(on.delete != null && {
+      delete: {},
+    }),
 
-  if (on.delete) {
-    result.delete = {};
-  }
+    ...(on.deployment != null && {
+      deployment: {},
+    }),
 
-  if (on.deployment) {
-    result.deployment = {};
-  }
+    ...(on.deploymentStatus != null && {
+      deployment_status: {},
+    }),
 
-  if (on.deploymentStatus) {
-    result.deployment_status = {};
-  }
+    ...(on.discussion != null && {
+      discussion: {
+        ...(on.discussion.types != null && {
+          types: on.discussion.types,
+        }),
+      },
+    }),
 
-  if (on.discussion) {
-    result.discussion = {
-      types: on.discussion.types,
-    };
-  }
+    ...(on.discussionComment != null && {
+      discussion_comment: {
+        ...(on.discussionComment.types != null && {
+          types: on.discussionComment.types,
+        }),
+      },
+    }),
 
-  if (on.discussionComment) {
-    result.discussion_comment = {
-      types: on.discussionComment.types,
-    };
-  }
+    ...(on.fork != null && {
+      fork: {},
+    }),
 
-  if (on.fork) {
-    result.fork = {};
-  }
+    ...(on.gollum != null && {
+      gollum: {},
+    }),
 
-  if (on.gollum) {
-    result.gollum = {};
-  }
+    ...(on.issueComment != null && {
+      issue_comment: {
+        ...(on.issueComment.types != null && {
+          types: on.issueComment.types,
+        }),
+      },
+    }),
 
-  if (on.issueComment) {
-    result.issue_comment = {
-      types: on.issueComment.types,
-    };
-  }
+    ...(on.issues != null && {
+      issues: {
+        ...(on.issues.types != null && {
+          types: on.issues.types,
+        }),
+      },
+    }),
 
-  if (on.issues) {
-    result.issues = {
-      types: on.issues.types,
-    };
-  }
+    ...(on.label != null && {
+      label: {
+        ...(on.label.types != null && {
+          types: on.label.types,
+        }),
+      },
+    }),
 
-  if (on.label) {
-    result.label = {
-      types: on.label.types,
-    };
-  }
+    ...(on.mergeGroup != null && {
+      merge_group: {
+        ...(on.mergeGroup.types != null && {
+          types: on.mergeGroup.types,
+        }),
+      },
+    }),
 
-  if (on.mergeGroup) {
-    result.merge_group = {
-      types: on.mergeGroup.types,
-    };
-  }
+    ...(on.milestone != null && {
+      milestone: {
+        ...(on.milestone.types != null && {
+          types: on.milestone.types,
+        }),
+      },
+    }),
 
-  if (on.milestone) {
-    result.milestone = {
-      types: on.milestone.types,
-    };
-  }
+    ...(on.pageBuild != null && {
+      page_build: {},
+    }),
 
-  if (on.pageBuild) {
-    result.page_build = {};
-  }
+    ...(on.project != null && {
+      project: {
+        ...(on.project.types != null && {
+          types: on.project.types,
+        }),
+      },
+    }),
 
-  if (on.project) {
-    result.project = {
-      types: on.project.types,
-    };
-  }
+    ...(on.projectCard != null && {
+      project_card: {
+        ...(on.projectCard.types != null && {
+          types: on.projectCard.types,
+        }),
+      },
+    }),
 
-  if (on.projectCard) {
-    result.project_card = {
-      types: on.projectCard.types,
-    };
-  }
+    ...(on.projectColumn != null && {
+      project_column: {
+        ...(on.projectColumn.types != null && {
+          types: on.projectColumn.types,
+        }),
+      },
+    }),
 
-  if (on.projectColumn) {
-    result.project_column = {
-      types: on.projectColumn.types,
-    };
-  }
+    ...(on.public != null && {
+      public: {},
+    }),
 
-  if (on.public) {
-    result.public = {};
-  }
+    ...(on.pullRequest != null && {
+      pull_request: {
+        ...(on.pullRequest.types != null && {
+          types: on.pullRequest.types,
+        }),
+        ...(on.pullRequest.branches != null && {
+          branches: on.pullRequest.branches,
+        }),
+        ...(on.pullRequest.branchesIgnore != null && {
+          "branches-ignore": on.pullRequest.branchesIgnore,
+        }),
+        ...(on.pullRequest.tags != null && {
+          tags: on.pullRequest.tags,
+        }),
+        ...(on.pullRequest.tagsIgnore != null && {
+          "tags-ignore": on.pullRequest.tagsIgnore,
+        }),
+        ...(on.pullRequest.paths != null && {
+          paths: on.pullRequest.paths,
+        }),
+        ...(on.pullRequest.pathsIgnore != null && {
+          "paths-ignore": on.pullRequest.pathsIgnore,
+        }),
+      },
+    }),
 
-  if (on.pullRequest) {
-    result.pull_request = {
-      types: on.pullRequest.types,
-      branches: on.pullRequest.branches,
-      "branches-ignore": on.pullRequest.branchesIgnore,
-      tags: on.pullRequest.tags,
-      "tags-ignore": on.pullRequest.tagsIgnore,
-      paths: on.pullRequest.paths,
-      "paths-ignore": on.pullRequest.pathsIgnore,
-    };
-  }
+    ...(on.pullRequestReview != null && {
+      pull_request_review: {
+        ...(on.pullRequestReview.types != null && {
+          types: on.pullRequestReview.types,
+        }),
+      },
+    }),
 
-  if (on.pullRequestReview) {
-    result.pull_request_review = {
-      types: on.pullRequestReview.types,
-    };
-  }
+    ...(on.pullRequestReviewComment != null && {
+      pull_request_review_comment: {
+        ...(on.pullRequestReviewComment.types != null && {
+          types: on.pullRequestReviewComment.types,
+        }),
+      },
+    }),
 
-  if (on.pullRequestReviewComment) {
-    result.pull_request_review_comment = {
-      types: on.pullRequestReviewComment.types,
-    };
-  }
+    ...(on.pullRequestTarget != null && {
+      pull_request_target: {
+        ...(on.pullRequestTarget.types != null && {
+          types: on.pullRequestTarget.types,
+        }),
+        ...(on.pullRequestTarget.branches != null && {
+          branches: on.pullRequestTarget.branches,
+        }),
+        ...(on.pullRequestTarget.branchesIgnore != null && {
+          "branches-ignore": on.pullRequestTarget.branchesIgnore,
+        }),
+        ...(on.pullRequestTarget.tags != null && {
+          tags: on.pullRequestTarget.tags,
+        }),
+        ...(on.pullRequestTarget.tagsIgnore != null && {
+          "tags-ignore": on.pullRequestTarget.tagsIgnore,
+        }),
+        ...(on.pullRequestTarget.paths != null && {
+          paths: on.pullRequestTarget.paths,
+        }),
+        ...(on.pullRequestTarget.pathsIgnore != null && {
+          "paths-ignore": on.pullRequestTarget.pathsIgnore,
+        }),
+      },
+    }),
 
-  if (on.pullRequestTarget) {
-    result.pull_request_target = {
-      types: on.pullRequestTarget.types,
-      branches: on.pullRequestTarget.branches,
-      "branches-ignore": on.pullRequestTarget.branchesIgnore,
-      tags: on.pullRequestTarget.tags,
-      "tags-ignore": on.pullRequestTarget.tagsIgnore,
-      paths: on.pullRequestTarget.paths,
-      "paths-ignore": on.pullRequestTarget.pathsIgnore,
-    };
-  }
+    ...(on.push != null && {
+      push: {
+        ...(on.push.branches != null && {
+          branches: on.push.branches,
+        }),
+        ...(on.push.branchesIgnore != null && {
+          "branches-ignore": on.push.branchesIgnore,
+        }),
+        ...(on.push.tags != null && {
+          tags: on.push.tags,
+        }),
+        ...(on.push.tagsIgnore != null && {
+          "tags-ignore": on.push.tagsIgnore,
+        }),
+        ...(on.push.paths != null && {
+          paths: on.push.paths,
+        }),
+        ...(on.push.pathsIgnore != null && {
+          "paths-ignore": on.push.pathsIgnore,
+        }),
+      },
+    }),
 
-  if (on.push) {
-    result.push = {
-      branches: on.push.branches,
-      "branches-ignore": on.push.branchesIgnore,
-      tags: on.push.tags,
-      "tags-ignore": on.push.tagsIgnore,
-      paths: on.push.paths,
-      "paths-ignore": on.push.pathsIgnore,
-    };
-  }
+    ...(on.registryPackage != null && {
+      registry_package: {
+        ...(on.registryPackage.types != null && {
+          types: on.registryPackage.types,
+        }),
+      },
+    }),
 
-  if (on.registryPackage) {
-    result.registry_package = {
-      types: on.registryPackage.types,
-    };
-  }
+    ...(on.release != null && {
+      release: {
+        ...(on.release.types != null && {
+          types: on.release.types,
+        }),
+      },
+    }),
 
-  if (on.release) {
-    result.release = {
-      types: on.release.types,
-    };
-  }
+    ...(on.status != null && {
+      status: {},
+    }),
 
-  if (on.status) {
-    result.status = {};
-  }
+    ...(on.watch != null && {
+      watch: {},
+    }),
 
-  if (on.watch) {
-    result.watch = {};
-  }
+    ...(on.workflowCall != null && {
+      workflow_call: {
+        ...(on.workflowCall.inputs != null && {
+          inputs: Object.fromEntries(
+            Object.entries(on.workflowCall.inputs).map(([key, value]) => [
+              key,
+              {
+                description: value.description,
+                required: value.required,
+                type: value.type,
+                default: value.default,
+              },
+            ]),
+          ),
+        }),
+        ...(on.workflowCall.secrets != null && {
+          secrets: Object.fromEntries(
+            Object.entries(on.workflowCall.secrets).map(([key, value]) => [
+              key,
+              {
+                description: value.description,
+                required: value.required,
+              },
+            ]),
+          ),
+        }),
+      },
+    }),
 
-  if (on.workflowCall) {
-    result.workflow_call = {
-      inputs:
-        on.workflowCall.inputs &&
-        Object.fromEntries(
-          Object.entries(on.workflowCall.inputs).map(([key, value]) => [
-            key,
-            {
-              description: value.description,
-              required: value.required,
-              type: value.type,
-              default: value.default,
-            },
-          ]),
-        ),
-      secrets:
-        on.workflowCall.secrets &&
-        Object.fromEntries(
-          Object.entries(on.workflowCall.secrets).map(([key, value]) => [
-            key,
-            {
-              description: value.description,
-              required: value.required,
-            },
-          ]),
-        ),
-    };
-  }
+    ...(on.workflowDispatch != null && {
+      workflow_dispatch: {
+        ...(on.workflowDispatch.inputs != null && {
+          inputs: Object.fromEntries(
+            Object.entries(on.workflowDispatch.inputs).map(([key, value]) => [
+              key,
+              (() => {
+                switch (value.type) {
+                  case "string":
+                  case "boolean":
+                  case "number":
+                  case "environment":
+                    return {
+                      type: value.type,
+                      description: value.description,
+                      deprecationMessage: value.deprecationMessage,
+                      required: value.required,
+                      default: value.default,
+                    };
+                  case "choice":
+                    return {
+                      type: value.type,
+                      description: value.description,
+                      deprecationMessage: value.deprecationMessage,
+                      required: value.required,
+                      default: value.default,
+                      options: value.options,
+                    };
+                }
+              })(),
+            ]),
+          ),
+        }),
+      },
+    }),
 
-  if (on.workflowDispatch) {
-    result.workflow_dispatch = {
-      inputs:
-        on.workflowDispatch.inputs &&
-        Object.fromEntries(
-          Object.entries(on.workflowDispatch.inputs).map(([key, value]) => [
-            key,
-            (() => {
-              switch (value.type) {
-                case "string":
-                case "boolean":
-                case "number":
-                case "environment":
-                  return {
-                    type: value.type,
-                    description: value.description,
-                    deprecationMessage: value.deprecationMessage,
-                    required: value.required,
-                    default: value.default,
-                  };
-                case "choice":
-                  return {
-                    type: value.type,
-                    description: value.description,
-                    deprecationMessage: value.deprecationMessage,
-                    required: value.required,
-                    default: value.default,
-                    options: value.options,
-                  };
-              }
-            })(),
-          ]),
-        ),
-    };
-  }
+    ...(on.workflowRun != null && {
+      workflow_run: {
+        types: on.workflowRun.types,
+        workflows: on.workflowRun.workflows,
+        branches: on.workflowRun.branches,
+        "branches-ignore": on.workflowRun.branchesIgnore,
+      },
+    }),
 
-  if (on.workflowRun) {
-    result.workflow_run = {
-      types: on.workflowRun.types,
-      workflows: on.workflowRun.workflows,
-      branches: on.workflowRun.branches,
-      "branches-ignore": on.workflowRun.branchesIgnore,
-    };
-  }
+    ...(on.repositoryDispatch != null && {
+      repository_dispatch: {},
+    }),
 
-  if (on.repositoryDispatch) {
-    result.repository_dispatch = {};
-  }
-
-  if (on.schedule) {
-    result.schedule = on.schedule.map((schedule) => ({
-      cron: schedule.cron,
-    }));
-  }
-
-  return result;
+    ...(on.schedule != null && {
+      schedule: on.schedule.map((schedule) => ({
+        cron: schedule.cron,
+      })),
+    }),
+  };
 }
