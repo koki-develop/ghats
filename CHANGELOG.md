@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3](https://github.com/koki-develop/ghats/compare/v0.2.2...v0.2.3) (2025-03-31)
+
+
+### Bug Fixes
+
+* Create action.js if it does not exist during build ([8a7f23b](https://github.com/koki-develop/ghats/commit/8a7f23ba23b5b6c53e2a169f39b034933cdbc265))
+
 ## [0.2.2](https://github.com/koki-develop/ghats/compare/v0.2.1...v0.2.2) (2025-03-31)
 
 
