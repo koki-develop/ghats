@@ -14,7 +14,7 @@ export function concurrencyJSON(
 
   return {
     group: concurrency.group,
-    ...(concurrency.cancelInProgress && {
+    ...(concurrency.cancelInProgress != null && {
       "cancel-in-progress": concurrency.cancelInProgress,
     }),
   };

@@ -8,6 +8,10 @@ describe("concurrencyJSON", () => {
       { group: "group", cancelInProgress: true },
       { group: "group", "cancel-in-progress": true },
     ],
+    [
+      { group: "group", cancelInProgress: false },
+      { group: "group", "cancel-in-progress": false },
+    ],
   ])("concurrencyJSON(%j) returns %j", (input, expected) => {
     expect(concurrencyJSON(input)).toEqual(expected);
   });
