@@ -52,19 +52,19 @@ export class Job {
     return {
       "runs-on": this._config.runsOn,
 
-      ...(this._config.permissions && {
+      ...(this._config.permissions != null && {
         permissions: permissionsJSON(this._config.permissions),
       }),
 
-      ...(this._config.timeoutMinutes && {
+      ...(this._config.timeoutMinutes != null && {
         "timeout-minutes": this._config.timeoutMinutes,
       }),
 
-      ...(this._config.outputs && { outputs: this._config.outputs }),
+      ...(this._config.outputs != null && { outputs: this._config.outputs }),
 
-      ...(this._config.needs && { needs: this._config.needs }),
+      ...(this._config.needs != null && { needs: this._config.needs }),
 
-      ...(this._config.if && { if: this._config.if }),
+      ...(this._config.if != null && { if: this._config.if }),
 
       steps: this._steps.map((step) => stepJSON(step)),
     };
