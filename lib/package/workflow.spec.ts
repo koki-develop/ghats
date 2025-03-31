@@ -3,106 +3,73 @@ import { Job } from "./job";
 import { Workflow } from "./workflow";
 
 describe("Workflow", () => {
-  test("simple workflow", () => {
-    const workflow = new Workflow("simple", {
-      on: "push",
-    });
-
-    expect(workflow.toJSON()).toEqual({
-      name: "simple",
-      on: "push",
-      jobs: {},
-    });
-  });
-
-  test("workflow with run-name", () => {
-    const workflow = new Workflow("simple", {
-      runName: "Simple Workflow",
-      on: "push",
-    });
-
-    expect(workflow.toJSON()).toEqual({
-      name: "simple",
-      "run-name": "Simple Workflow",
-      on: "push",
-      jobs: {},
-    });
-  });
-
-  test("workflow with permissions", () => {
-    const workflow = new Workflow("simple", {
-      on: "push",
-      permissions: { contents: "read" },
-    });
-
-    expect(workflow.toJSON()).toEqual({
-      name: "simple",
-      on: "push",
-      permissions: { contents: "read" },
-      jobs: {},
-    });
-  });
-
-  test("workflow with env", () => {
-    const workflow = new Workflow("simple", {
-      on: "push",
-      env: {
-        FOO: "foo",
-        BAR: "bar",
+  test.each<[Workflow, Record<string, unknown>]>([
+    [
+      new Workflow("simple", { on: "push" }),
+      { name: "simple", on: "push", jobs: {} },
+    ],
+    [
+      new Workflow("simple", { runName: "Simple Workflow", on: "push" }),
+      { name: "simple", "run-name": "Simple Workflow", on: "push", jobs: {} },
+    ],
+    [
+      new Workflow("simple", { on: "push", permissions: { contents: "read" } }),
+      {
+        name: "simple",
+        on: "push",
+        permissions: { contents: "read" },
+        jobs: {},
       },
-    });
-
-    expect(workflow.toJSON()).toEqual({
-      name: "simple",
-      on: "push",
-      env: {
-        FOO: "foo",
-        BAR: "bar",
+    ],
+    [
+      new Workflow("simple", { on: "push", env: { FOO: "foo", BAR: "bar" } }),
+      {
+        name: "simple",
+        on: "push",
+        env: {
+          FOO: "foo",
+          BAR: "bar",
+        },
+        jobs: {},
       },
-      jobs: {},
-    });
-  });
-
-  test("workflow with concurrency", () => {
-    const workflow = new Workflow("simple", {
-      on: "push",
-      concurrency: {
-        group: "group",
-        cancelInProgress: true,
+    ],
+    [
+      new Workflow("simple", {
+        on: "push",
+        concurrency: { group: "group", cancelInProgress: true },
+      }),
+      {
+        name: "simple",
+        on: "push",
+        concurrency: {
+          group: "group",
+          "cancel-in-progress": true,
+        },
+        jobs: {},
       },
-    });
-
-    expect(workflow.toJSON()).toEqual({
-      name: "simple",
-      on: "push",
-      concurrency: {
-        group: "group",
-        "cancel-in-progress": true,
-      },
-      jobs: {},
-    });
-  });
-
-  test("workflow with jobs", () => {
-    const workflow = new Workflow("simple", {
-      on: "push",
-    });
-
-    workflow.addJob(
-      new Job("test", {
-        runsOn: "ubuntu-latest",
-      }).run("echo 'Hello, world!'"),
-    );
-
-    expect(workflow.toJSON()).toEqual({
-      name: "simple",
-      on: "push",
-      jobs: {
-        test: {
-          "runs-on": "ubuntu-latest",
-          steps: [{ run: "echo 'Hello, world!'" }],
+    ],
+    [
+      (() => {
+        const workflow = new Workflow("simple", { on: "push" });
+        workflow.addJob(
+          new Job("test", {
+            runsOn: "ubuntu-latest",
+          }).run("echo 'Hello, world!'"),
+        );
+        return workflow;
+      })(),
+      {
+        name: "simple",
+        on: "push",
+        jobs: {
+          test: {
+            "runs-on": "ubuntu-latest",
+            steps: [{ run: "echo 'Hello, world!'" }],
+          },
         },
       },
-    });
+    ],
+  ])("workflow.toJSON() -> %j", (workflow, expected) => {
+    expect(workflow.toJSON()).toEqual(expected);
   });
 });
