@@ -48,6 +48,18 @@ describe("stepJSON", () => {
         },
         { "continue-on-error": "${{ foo }}", run: "echo 'Hello, world!'" },
       ],
+      [
+        { kind: "run", timeoutMinutes: 10, command: "echo 'Hello, world!'" },
+        { "timeout-minutes": 10, run: "echo 'Hello, world!'" },
+      ],
+      [
+        {
+          kind: "run",
+          timeoutMinutes: "${{ foo }}",
+          command: "echo 'Hello, world!'",
+        },
+        { "timeout-minutes": "${{ foo }}", run: "echo 'Hello, world!'" },
+      ],
     ])("stepJSON(%j) -> %j", (input, expected) => {
       expect(stepJSON(input)).toEqual(expected);
     });
@@ -94,6 +106,18 @@ describe("stepJSON", () => {
           action: "actions/checkout@v4",
         },
         { "continue-on-error": "${{ foo }}", uses: "actions/checkout@v4" },
+      ],
+      [
+        { kind: "uses", timeoutMinutes: 10, action: "actions/checkout@v4" },
+        { "timeout-minutes": 10, uses: "actions/checkout@v4" },
+      ],
+      [
+        {
+          kind: "uses",
+          timeoutMinutes: "${{ foo }}",
+          action: "actions/checkout@v4",
+        },
+        { "timeout-minutes": "${{ foo }}", uses: "actions/checkout@v4" },
       ],
     ])("stepJSON(%j) -> %j", (input, expected) => {
       expect(stepJSON(input)).toEqual(expected);
