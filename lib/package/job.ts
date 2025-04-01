@@ -1,9 +1,11 @@
 import { concurrencyJSON } from "../internal/concurrency";
 import { defaultsJSON } from "../internal/defaults";
+import { environmentJSON } from "../internal/environment";
 import { permissionsJSON } from "../internal/permissions";
 import { stepJSON } from "../internal/step";
 import { type Concurrency } from "./concurrency";
 import type { Defaults } from "./defaults";
+import type { Environment } from "./environment";
 import type { Expression } from "./expression";
 import { type Permissions } from "./permissions";
 import { type RunStep, type Step, type UsesStep } from "./step";
@@ -15,7 +17,7 @@ export type JobConfig = {
   outputs?: Record<string, string>;
   needs?: string | string[];
   if?: string | boolean | number;
-  // TODO: environment
+  environment?: Environment;
   concurrency?: Concurrency;
   // TODO: outputs
   // TODO: env
@@ -84,6 +86,10 @@ export class Job {
       ...(this._config.needs != null && { needs: this._config.needs }),
 
       ...(this._config.if != null && { if: this._config.if }),
+
+      ...(this._config.environment != null && {
+        environment: environmentJSON(this._config.environment),
+      }),
 
       ...(this._config.concurrency != null && {
         concurrency: concurrencyJSON(this._config.concurrency),
