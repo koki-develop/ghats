@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/koki-develop/ghats/compare/v0.5.0...v0.6.0) (2025-04-01)
+
+
+### Features
+
+* **job:** Support strategy ([#45](https://github.com/koki-develop/ghats/issues/45)) ([70185f1](https://github.com/koki-develop/ghats/commit/70185f158edc6c74b118cced443e044a78eda2c0))
+
 ## [0.5.0](https://github.com/koki-develop/ghats/compare/v0.4.0...v0.5.0) (2025-04-01)
 
 
