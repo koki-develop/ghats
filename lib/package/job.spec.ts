@@ -130,6 +130,28 @@ describe("Job", () => {
         steps: [{ run: "echo 'Hello, world!'" }],
       },
     ],
+    [
+      new Job("with-continue-on-error", {
+        runsOn: "ubuntu-latest",
+        continueOnError: true,
+      }).run("echo 'Hello, world!'"),
+      {
+        "runs-on": "ubuntu-latest",
+        "continue-on-error": true,
+        steps: [{ run: "echo 'Hello, world!'" }],
+      },
+    ],
+    [
+      new Job("with-continue-on-error", {
+        runsOn: "ubuntu-latest",
+        continueOnError: "${{ foo }}",
+      }).run("echo 'Hello, world!'"),
+      {
+        "runs-on": "ubuntu-latest",
+        "continue-on-error": "${{ foo }}",
+        steps: [{ run: "echo 'Hello, world!'" }],
+      },
+    ],
   ])("job.toJSON(%j) -> %j", (job, expected) => {
     expect(job.toJSON()).toEqual(expected);
   });
