@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.5.0](https://github.com/koki-develop/ghats/compare/v0.4.0...v0.5.0) (2025-04-01)
+
+
+### Features
+
+* **job:** Support continue-on-error ([#43](https://github.com/koki-develop/ghats/issues/43)) ([6938b38](https://github.com/koki-develop/ghats/commit/6938b38aa34f31b606cc57a65f2060dfded1b232))
+* **job:** Support defaults ([#41](https://github.com/koki-develop/ghats/issues/41)) ([3e5ded7](https://github.com/koki-develop/ghats/commit/3e5ded70f2631cc57180b338ed76d9812b5e8f01))
+* **job:** Support env ([#44](https://github.com/koki-develop/ghats/issues/44)) ([25c3d73](https://github.com/koki-develop/ghats/commit/25c3d73f53a7aa7a85d6e45e71a5325e66e8979a))
+* **job:** Support environment ([#42](https://github.com/koki-develop/ghats/issues/42)) ([67f7516](https://github.com/koki-develop/ghats/commit/67f751688528dfcd0c0b5452b6461594d674d734))
+* **permissions:** Support read-all and write-all ([691f1eb](https://github.com/koki-develop/ghats/commit/691f1eb1c6360373efa79cc66588884283b0e612))
+* **workflow:** Support defaults ([#39](https://github.com/koki-develop/ghats/issues/39)) ([00c27ce](https://github.com/koki-develop/ghats/commit/00c27ceaa8865fe62d307015c236e5d4ef7ddbfc))
+
+
+### Bug Fixes
+
+* Fix types ([06d91fd](https://github.com/koki-develop/ghats/commit/06d91fd1f1c29eb745e51660d83e529071b167cf))
+
 ## [0.4.0](https://github.com/koki-develop/ghats/compare/v0.3.0...v0.4.0) (2025-04-01)
 
 
