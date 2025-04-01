@@ -9,22 +9,33 @@ describe("Workflow", () => {
       { name: "simple", on: "push", jobs: {} },
     ],
     [
-      new Workflow("simple", { runName: "Simple Workflow", on: "push" }),
-      { name: "simple", "run-name": "Simple Workflow", on: "push", jobs: {} },
+      new Workflow("with run-name", { runName: "Simple Workflow", on: "push" }),
+      {
+        name: "with run-name",
+        "run-name": "Simple Workflow",
+        on: "push",
+        jobs: {},
+      },
     ],
     [
-      new Workflow("simple", { on: "push", permissions: { contents: "read" } }),
+      new Workflow("with permissions", {
+        on: "push",
+        permissions: { contents: "read" },
+      }),
       {
-        name: "simple",
+        name: "with permissions",
         on: "push",
         permissions: { contents: "read" },
         jobs: {},
       },
     ],
     [
-      new Workflow("simple", { on: "push", env: { FOO: "foo", BAR: "bar" } }),
+      new Workflow("with env", {
+        on: "push",
+        env: { FOO: "foo", BAR: "bar" },
+      }),
       {
-        name: "simple",
+        name: "with env",
         on: "push",
         env: {
           FOO: "foo",
@@ -34,12 +45,12 @@ describe("Workflow", () => {
       },
     ],
     [
-      new Workflow("simple", {
+      new Workflow("with concurrency", {
         on: "push",
         concurrency: { group: "group", cancelInProgress: true },
       }),
       {
-        name: "simple",
+        name: "with concurrency",
         on: "push",
         concurrency: {
           group: "group",
@@ -49,20 +60,32 @@ describe("Workflow", () => {
       },
     ],
     [
+      new Workflow("with defaults", {
+        on: "push",
+        defaults: { run: { shell: "bash" } },
+      }),
+      {
+        name: "with defaults",
+        on: "push",
+        defaults: { run: { shell: "bash" } },
+        jobs: {},
+      },
+    ],
+    [
       (() => {
-        const workflow = new Workflow("simple", { on: "push" });
+        const workflow = new Workflow("with job", { on: "push" });
         workflow.addJob(
-          new Job("test", {
+          new Job("simple-job", {
             runsOn: "ubuntu-latest",
           }).run("echo 'Hello, world!'"),
         );
         return workflow;
       })(),
       {
-        name: "simple",
+        name: "with job",
         on: "push",
         jobs: {
-          test: {
+          "simple-job": {
             "runs-on": "ubuntu-latest",
             steps: [{ run: "echo 'Hello, world!'" }],
           },

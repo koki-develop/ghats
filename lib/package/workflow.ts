@@ -1,8 +1,10 @@
 import { concurrencyJSON } from "../internal/concurrency";
+import { defaultsJSON } from "../internal/defaults";
 import { envJSON } from "../internal/env";
 import { onJSON } from "../internal/on";
 import { permissionsJSON } from "../internal/permissions";
 import { type Concurrency } from "./concurrency";
+import type { Defaults } from "./defaults";
 import { type Env } from "./env";
 import { Job } from "./job";
 import { type On } from "./on";
@@ -14,7 +16,7 @@ export type WorkflowConfig = {
   on: On;
   permissions?: Permissions;
   env?: Env;
-  // TODO: defaults
+  defaults?: Defaults;
 };
 
 export class Workflow {
@@ -48,6 +50,10 @@ export class Workflow {
 
       ...(this._config.concurrency && {
         concurrency: concurrencyJSON(this._config.concurrency),
+      }),
+
+      ...(this._config.defaults && {
+        defaults: defaultsJSON(this._config.defaults),
       }),
 
       jobs: this._jobs.reduce<Record<string, unknown>>((acc, job) => {
