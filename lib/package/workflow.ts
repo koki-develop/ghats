@@ -1,4 +1,5 @@
-import { type Concurrency, concurrencyJSON } from "./concurrency";
+import { concurrencyJSON } from "../internal/concurrency";
+import { type Concurrency } from "./concurrency";
 import { type Env, envJSON } from "./env";
 import { Job } from "./job";
 import { type On, onJSON } from "./on";

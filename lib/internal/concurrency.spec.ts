@@ -1,5 +1,6 @@
 import { describe, expect, test } from "bun:test";
-import { type Concurrency, concurrencyJSON } from "./concurrency";
+import { concurrencyJSON } from "../internal/concurrency";
+import { type Concurrency } from "../package/concurrency";
 
 describe("concurrencyJSON", () => {
   test.each<[Concurrency, ReturnType<typeof concurrencyJSON>]>([
