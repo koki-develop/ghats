@@ -1,9 +1,10 @@
 import { concurrencyJSON } from "../internal/concurrency";
 import { envJSON } from "../internal/env";
+import { onJSON } from "../internal/on";
 import { type Concurrency } from "./concurrency";
 import { type Env } from "./env";
 import { Job } from "./job";
-import { type On, onJSON } from "./on";
+import { type On } from "./on";
 import { type Permissions, permissionsJSON } from "./permissions";
 
 export type WorkflowConfig = {

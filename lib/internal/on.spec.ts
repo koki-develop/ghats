@@ -1,5 +1,6 @@
 import { describe, expect, test } from "bun:test";
-import { type On, onJSON } from "./on";
+import { type On } from "../package/on";
+import { onJSON } from "./on";
 
 describe("onJSON", () => {
   test.each<[On, ReturnType<typeof onJSON>]>([
