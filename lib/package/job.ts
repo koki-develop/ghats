@@ -1,7 +1,9 @@
 import { concurrencyJSON } from "../internal/concurrency";
+import { defaultsJSON } from "../internal/defaults";
 import { permissionsJSON } from "../internal/permissions";
 import { stepJSON } from "../internal/step";
 import { type Concurrency } from "./concurrency";
+import type { Defaults } from "./defaults";
 import type { Expression } from "./expression";
 import { type Permissions } from "./permissions";
 import { type RunStep, type Step, type UsesStep } from "./step";
@@ -17,7 +19,7 @@ export type JobConfig = {
   concurrency?: Concurrency;
   // TODO: outputs
   // TODO: env
-  // TODO: defaults
+  defaults?: Defaults;
   // TODO: strategy
   // TODO: continue-on-error
   // TODO: container
@@ -85,6 +87,10 @@ export class Job {
 
       ...(this._config.concurrency != null && {
         concurrency: concurrencyJSON(this._config.concurrency),
+      }),
+
+      ...(this._config.defaults != null && {
+        defaults: defaultsJSON(this._config.defaults),
       }),
 
       steps: this._steps.map((step) => stepJSON(step)),

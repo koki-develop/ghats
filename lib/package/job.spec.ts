@@ -4,14 +4,16 @@ import { Job } from "./job";
 describe("Job", () => {
   test.each<[Job, Record<string, unknown>]>([
     [
-      new Job("test", { runsOn: "ubuntu-latest" }).run("echo 'Hello, world!'"),
+      new Job("simple-job", { runsOn: "ubuntu-latest" }).run(
+        "echo 'Hello, world!'",
+      ),
       {
         "runs-on": "ubuntu-latest",
         steps: [{ run: "echo 'Hello, world!'" }],
       },
     ],
     [
-      new Job("test", {
+      new Job("with-permissions", {
         runsOn: "ubuntu-latest",
         permissions: {
           contents: "read",
@@ -28,7 +30,7 @@ describe("Job", () => {
       },
     ],
     [
-      new Job("test", {
+      new Job("with-timeout-minutes", {
         runsOn: "ubuntu-latest",
         timeoutMinutes: 10,
       }),
@@ -39,7 +41,7 @@ describe("Job", () => {
       },
     ],
     [
-      new Job("test", {
+      new Job("with-timeout-minutes", {
         runsOn: "ubuntu-latest",
         timeoutMinutes: "${{ foo }}",
       }),
@@ -50,7 +52,7 @@ describe("Job", () => {
       },
     ],
     [
-      new Job("test", {
+      new Job("with-outputs", {
         runsOn: "ubuntu-latest",
         outputs: {
           "output-name": "output-value",
@@ -63,7 +65,7 @@ describe("Job", () => {
       },
     ],
     [
-      new Job("test", {
+      new Job("with-needs", {
         runsOn: "ubuntu-latest",
         needs: "job-name",
       }).run("echo 'Hello, world!'"),
@@ -74,7 +76,7 @@ describe("Job", () => {
       },
     ],
     [
-      new Job("test", {
+      new Job("with-if", {
         runsOn: "ubuntu-latest",
         if: "always()",
       }).run("echo 'Hello, world!'"),
@@ -85,7 +87,7 @@ describe("Job", () => {
       },
     ],
     [
-      new Job("test", {
+      new Job("with-concurrency", {
         runsOn: "ubuntu-latest",
         concurrency: "group-name",
       }).run("echo 'Hello, world!'"),
@@ -96,13 +98,24 @@ describe("Job", () => {
       },
     ],
     [
-      new Job("test", {
+      new Job("with-concurrency", {
         runsOn: "ubuntu-latest",
         concurrency: { group: "group-name", cancelInProgress: true },
       }).run("echo 'Hello, world!'"),
       {
         "runs-on": "ubuntu-latest",
         concurrency: { group: "group-name", "cancel-in-progress": true },
+        steps: [{ run: "echo 'Hello, world!'" }],
+      },
+    ],
+    [
+      new Job("with-defaults", {
+        runsOn: "ubuntu-latest",
+        defaults: { run: { shell: "bash" } },
+      }).run("echo 'Hello, world!'"),
+      {
+        "runs-on": "ubuntu-latest",
+        defaults: { run: { shell: "bash" } },
         steps: [{ run: "echo 'Hello, world!'" }],
       },
     ],
