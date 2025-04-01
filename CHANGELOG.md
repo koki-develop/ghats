@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.4.0](https://github.com/koki-develop/ghats/compare/v0.3.0...v0.4.0) (2025-04-01)
+
+
+### Features
+
+* **job:** Support concurrency ([#36](https://github.com/koki-develop/ghats/issues/36)) ([845d5c9](https://github.com/koki-develop/ghats/commit/845d5c9c0ed5eb7fe460d3550da2a86f21f79692))
+* **step:** Support timeout-minutes ([#34](https://github.com/koki-develop/ghats/issues/34)) ([0288bf0](https://github.com/koki-develop/ghats/commit/0288bf0c96979ba76343f78e13ec73fdabb8648d))
+
+
+### Bug Fixes
+
+* **job:** Allow timeout-minutes to be specified as an expression ([#33](https://github.com/koki-develop/ghats/issues/33)) ([de24249](https://github.com/koki-develop/ghats/commit/de242491ae5c39304513e53917e1d11a7034c64b))
+* Organize Exports ([#37](https://github.com/koki-develop/ghats/issues/37)) ([a314e14](https://github.com/koki-develop/ghats/commit/a314e14afbfd52cfb85eae9721c6e69a023888c1))
+
 ## [0.3.0](https://github.com/koki-develop/ghats/compare/v0.2.3...v0.3.0) (2025-04-01)
 
 
