@@ -1,8 +1,12 @@
-import { type Concurrency, concurrencyJSON } from "./concurrency";
-import { type Env, envJSON } from "./env";
+import { concurrencyJSON } from "../internal/concurrency";
+import { envJSON } from "../internal/env";
+import { onJSON } from "../internal/on";
+import { permissionsJSON } from "../internal/permissions";
+import { type Concurrency } from "./concurrency";
+import { type Env } from "./env";
 import { Job } from "./job";
-import { type On, onJSON } from "./on";
-import { type Permissions, permissionsJSON } from "./permissions";
+import { type On } from "./on";
+import { type Permissions } from "./permissions";
 
 export type WorkflowConfig = {
   runName?: string;

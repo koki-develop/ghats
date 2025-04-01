@@ -1,6 +1,8 @@
+import { permissionsJSON } from "../internal/permissions";
+import { stepJSON } from "../internal/step";
 import type { Expression } from "./expression";
-import { type Permissions, permissionsJSON } from "./permissions";
-import { type RunStep, type Step, stepJSON, type UsesStep } from "./step";
+import { type Permissions } from "./permissions";
+import { type RunStep, type Step, type UsesStep } from "./step";
 
 export type JobConfig = {
   runsOn: string;
