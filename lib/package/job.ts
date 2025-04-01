@@ -4,6 +4,7 @@ import { envJSON } from "../internal/env";
 import { environmentJSON } from "../internal/environment";
 import { permissionsJSON } from "../internal/permissions";
 import { stepJSON } from "../internal/step";
+import { strategyJSON } from "../internal/strategy";
 import { type Concurrency } from "./concurrency";
 import type { Defaults } from "./defaults";
 import type { Env } from "./env";
@@ -11,6 +12,7 @@ import type { Environment } from "./environment";
 import type { Expression } from "./expression";
 import { type Permissions } from "./permissions";
 import { type RunStep, type Step, type UsesStep } from "./step";
+import type { Strategy } from "./strategy";
 
 export type JobConfig = {
   runsOn: string;
@@ -23,7 +25,7 @@ export type JobConfig = {
   concurrency?: Concurrency;
   env?: Env;
   defaults?: Defaults;
-  // TODO: strategy
+  strategy?: Strategy;
   continueOnError?: boolean | Expression;
   // TODO: container
   // TODO: services
@@ -100,6 +102,10 @@ export class Job {
 
       ...(this._config.defaults != null && {
         defaults: defaultsJSON(this._config.defaults),
+      }),
+
+      ...(this._config.strategy != null && {
+        strategy: strategyJSON(this._config.strategy),
       }),
 
       ...(this._config.continueOnError != null && {
