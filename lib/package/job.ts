@@ -1,5 +1,7 @@
+import { concurrencyJSON } from "../internal/concurrency";
 import { permissionsJSON } from "../internal/permissions";
 import { stepJSON } from "../internal/step";
+import { type Concurrency } from "./concurrency";
 import type { Expression } from "./expression";
 import { type Permissions } from "./permissions";
 import { type RunStep, type Step, type UsesStep } from "./step";
@@ -12,7 +14,7 @@ export type JobConfig = {
   needs?: string | string[];
   if?: string | boolean | number;
   // TODO: environment
-  // TODO: concurrency
+  concurrency?: Concurrency;
   // TODO: outputs
   // TODO: env
   // TODO: defaults
@@ -80,6 +82,10 @@ export class Job {
       ...(this._config.needs != null && { needs: this._config.needs }),
 
       ...(this._config.if != null && { if: this._config.if }),
+
+      ...(this._config.concurrency != null && {
+        concurrency: concurrencyJSON(this._config.concurrency),
+      }),
 
       steps: this._steps.map((step) => stepJSON(step)),
     };

@@ -84,6 +84,28 @@ describe("Job", () => {
         steps: [{ run: "echo 'Hello, world!'" }],
       },
     ],
+    [
+      new Job("test", {
+        runsOn: "ubuntu-latest",
+        concurrency: "group-name",
+      }).run("echo 'Hello, world!'"),
+      {
+        "runs-on": "ubuntu-latest",
+        concurrency: "group-name",
+        steps: [{ run: "echo 'Hello, world!'" }],
+      },
+    ],
+    [
+      new Job("test", {
+        runsOn: "ubuntu-latest",
+        concurrency: { group: "group-name", cancelInProgress: true },
+      }).run("echo 'Hello, world!'"),
+      {
+        "runs-on": "ubuntu-latest",
+        concurrency: { group: "group-name", "cancel-in-progress": true },
+        steps: [{ run: "echo 'Hello, world!'" }],
+      },
+    ],
   ])("job.toJSON(%j) -> %j", (job, expected) => {
     expect(job.toJSON()).toEqual(expected);
   });
