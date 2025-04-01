@@ -18,7 +18,7 @@ export type JobConfig = {
   timeoutMinutes?: number | Expression;
   outputs?: Record<string, string>;
   needs?: string | string[];
-  if?: string | boolean | number;
+  if?: string | boolean;
   environment?: Environment;
   concurrency?: Concurrency;
   env?: Env;

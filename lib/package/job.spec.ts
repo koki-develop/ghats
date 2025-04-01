@@ -122,11 +122,11 @@ describe("Job", () => {
     [
       new Job("with-env", {
         runsOn: "ubuntu-latest",
-        env: { HOGE: "hoge", FUGA: 123 },
+        env: { HOGE: "hoge", FUGA: "fuga" },
       }).run("echo 'Hello, world!'"),
       {
         "runs-on": "ubuntu-latest",
-        env: { HOGE: "hoge", FUGA: 123 },
+        env: { HOGE: "hoge", FUGA: "fuga" },
         steps: [{ run: "echo 'Hello, world!'" }],
       },
     ],

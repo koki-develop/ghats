@@ -5,7 +5,7 @@ export type StepBase = {
   id?: string;
   name?: string;
   env?: Record<string, string>;
-  if?: string | boolean | number;
+  if?: string | boolean;
   continueOnError?: boolean | Expression;
   timeoutMinutes?: number | Expression;
 };
