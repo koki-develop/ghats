@@ -87,6 +87,17 @@ describe("Job", () => {
       },
     ],
     [
+      new Job("with-environment", {
+        runsOn: "ubuntu-latest",
+        environment: "production",
+      }).run("echo 'Hello, world!'"),
+      {
+        "runs-on": "ubuntu-latest",
+        environment: "production",
+        steps: [{ run: "echo 'Hello, world!'" }],
+      },
+    ],
+    [
       new Job("with-concurrency", {
         runsOn: "ubuntu-latest",
         concurrency: "group-name",
