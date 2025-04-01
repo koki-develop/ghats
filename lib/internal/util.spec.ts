@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { removeUndefinedKeys, toUpperCamelCase } from "./util";
+import { toUpperCamelCase } from "./util";
 
 describe("toUpperCamelCase", () => {
   test.each([
@@ -28,14 +28,5 @@ describe("toUpperCamelCase", () => {
     ["foo__bar__baz__qux", "FooBarBazQux"],
   ])("converts %s to %s", (input, expected) => {
     expect(toUpperCamelCase(input)).toBe(expected);
-  });
-});
-
-describe("removeUndefinedKeys", () => {
-  test.each([
-    [{ foo: "bar", baz: undefined }, ["foo"]],
-    [{ foo: "bar", baz: undefined, hoge: "fuga" }, ["foo", "hoge"]],
-  ])("removeUndefinedKeys(%j) returns %j", (input, expected) => {
-    expect(Object.keys(removeUndefinedKeys(input))).toEqual(expected);
   });
 });
