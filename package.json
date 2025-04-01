@@ -1,7 +1,7 @@
 {
   "name": "ghats",
   "description": "GitHub Actions with TypeScript",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "author": "koki-develop <kou.pg.0131@gmail.com>",
   "homepage": "https://github.com/koki-develop/ghats",
   "repository": {
