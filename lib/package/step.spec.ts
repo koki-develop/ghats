@@ -36,6 +36,18 @@ describe("stepJSON", () => {
         { kind: "run", if: "always()", command: "echo 'Hello, world!'" },
         { if: "always()", run: "echo 'Hello, world!'" },
       ],
+      [
+        { kind: "run", continueOnError: true, command: "echo 'Hello, world!'" },
+        { "continue-on-error": true, run: "echo 'Hello, world!'" },
+      ],
+      [
+        {
+          kind: "run",
+          continueOnError: "${{ foo }}",
+          command: "echo 'Hello, world!'",
+        },
+        { "continue-on-error": "${{ foo }}", run: "echo 'Hello, world!'" },
+      ],
     ])("stepJSON(%j) -> %j", (input, expected) => {
       expect(stepJSON(input)).toEqual(expected);
     });
@@ -70,6 +82,18 @@ describe("stepJSON", () => {
       [
         { kind: "uses", if: "always()", action: "actions/checkout@v4" },
         { if: "always()", uses: "actions/checkout@v4" },
+      ],
+      [
+        { kind: "uses", continueOnError: true, action: "actions/checkout@v4" },
+        { "continue-on-error": true, uses: "actions/checkout@v4" },
+      ],
+      [
+        {
+          kind: "uses",
+          continueOnError: "${{ foo }}",
+          action: "actions/checkout@v4",
+        },
+        { "continue-on-error": "${{ foo }}", uses: "actions/checkout@v4" },
       ],
     ])("stepJSON(%j) -> %j", (input, expected) => {
       expect(stepJSON(input)).toEqual(expected);

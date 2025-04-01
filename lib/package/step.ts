@@ -1,3 +1,4 @@
+import type { Expression } from "./expression";
 import type { Shell } from "./shell";
 
 export type StepBase = {
@@ -5,7 +6,7 @@ export type StepBase = {
   name?: string;
   env?: Record<string, string>;
   if?: string | boolean | number;
-  // TODO: continue-on-error
+  continueOnError?: boolean | Expression;
   // TODO: timeout-minutes
 };
 
@@ -30,6 +31,9 @@ export function stepJSON(step: Step): Record<string, unknown> {
     ...(step.name != null && { name: step.name }),
     ...(step.env != null && { env: step.env }),
     ...(step.if != null && { if: step.if }),
+    ...(step.continueOnError != null && {
+      "continue-on-error": step.continueOnError,
+    }),
   };
 
   switch (step.kind) {
