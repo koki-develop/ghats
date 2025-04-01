@@ -23,7 +23,7 @@ export type JobConfig = {
   // TODO: env
   defaults?: Defaults;
   // TODO: strategy
-  // TODO: continue-on-error
+  continueOnError?: boolean | Expression;
   // TODO: container
   // TODO: services
   // TODO: uses
@@ -97,6 +97,10 @@ export class Job {
 
       ...(this._config.defaults != null && {
         defaults: defaultsJSON(this._config.defaults),
+      }),
+
+      ...(this._config.continueOnError != null && {
+        "continue-on-error": this._config.continueOnError,
       }),
 
       steps: this._steps.map((step) => stepJSON(step)),
