@@ -7,7 +7,7 @@ export type StepBase = {
   env?: Record<string, string>;
   if?: string | boolean | number;
   continueOnError?: boolean | Expression;
-  // TODO: timeout-minutes
+  timeoutMinutes?: number | Expression;
 };
 
 export type RunStep = StepBase & {
@@ -33,6 +33,9 @@ export function stepJSON(step: Step): Record<string, unknown> {
     ...(step.if != null && { if: step.if }),
     ...(step.continueOnError != null && {
       "continue-on-error": step.continueOnError,
+    }),
+    ...(step.timeoutMinutes != null && {
+      "timeout-minutes": step.timeoutMinutes,
     }),
   };
 
