@@ -142,6 +142,17 @@ describe("Job", () => {
       },
     ],
     [
+      new Job("with-strategy", {
+        runsOn: "ubuntu-latest",
+        strategy: { matrix: { foo: ["bar", "baz"] } },
+      }).run("echo 'Hello, world!'"),
+      {
+        "runs-on": "ubuntu-latest",
+        strategy: { matrix: { foo: ["bar", "baz"] } },
+        steps: [{ run: "echo 'Hello, world!'" }],
+      },
+    ],
+    [
       new Job("with-continue-on-error", {
         runsOn: "ubuntu-latest",
         continueOnError: true,
