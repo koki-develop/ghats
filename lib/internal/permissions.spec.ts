@@ -1,5 +1,6 @@
 import { describe, expect, test } from "bun:test";
-import { type Permissions, permissionsJSON } from "./permissions";
+import { type Permissions } from "../package/permissions";
+import { permissionsJSON } from "./permissions";
 
 describe("permissionsJSON", () => {
   test.each<[Permissions, Record<string, unknown>]>([
