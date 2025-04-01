@@ -32,6 +32,10 @@ describe("stepJSON", () => {
         { kind: "run", shell: "bash", command: "echo 'Hello, world!'" },
         { shell: "bash", run: "echo 'Hello, world!'" },
       ],
+      [
+        { kind: "run", if: "always()", command: "echo 'Hello, world!'" },
+        { if: "always()", run: "echo 'Hello, world!'" },
+      ],
     ])("stepJSON(%j) -> %j", (input, expected) => {
       expect(stepJSON(input)).toEqual(expected);
     });
@@ -62,6 +66,10 @@ describe("stepJSON", () => {
       [
         { kind: "uses", name: "test", action: "actions/checkout@v4" },
         { name: "test", uses: "actions/checkout@v4" },
+      ],
+      [
+        { kind: "uses", if: "always()", action: "actions/checkout@v4" },
+        { if: "always()", uses: "actions/checkout@v4" },
       ],
     ])("stepJSON(%j) -> %j", (input, expected) => {
       expect(stepJSON(input)).toEqual(expected);
