@@ -3,5 +3,6 @@ export * from "./package/concurrency";
 export * from "./package/job";
 export * from "./package/on";
 export * from "./package/permissions";
+export * from "./package/shell";
 export * from "./package/step";
 export * from "./package/workflow";
