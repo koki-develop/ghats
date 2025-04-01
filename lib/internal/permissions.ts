@@ -2,7 +2,9 @@ import type { Permissions } from "../package/permissions";
 
 export function permissionsJSON(
   permissions: Permissions,
-): Record<string, unknown> {
+): Record<string, unknown> | string {
+  if (typeof permissions === "string") return permissions;
+
   return {
     ...(permissions.actions && { actions: permissions.actions }),
     ...(permissions.attestations && { attestations: permissions.attestations }),

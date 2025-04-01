@@ -3,7 +3,9 @@ import { type Permissions } from "../package/permissions";
 import { permissionsJSON } from "./permissions";
 
 describe("permissionsJSON", () => {
-  test.each<[Permissions, Record<string, unknown>]>([
+  test.each<[Permissions, Record<string, unknown> | string]>([
+    ["read-all", "read-all"],
+    ["write-all", "write-all"],
     [{}, {}],
     [{ actions: "read" }, { actions: "read" }],
     [
