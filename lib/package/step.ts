@@ -1,3 +1,5 @@
+import type { Shell } from "./shell";
+
 export type StepBase = {
   id?: string;
   name?: string;
@@ -11,7 +13,7 @@ export type RunStep = StepBase & {
   kind: "run";
   command: string;
   workingDirectory?: string;
-  // TODO: shell
+  shell?: Shell;
 };
 
 export type UsesStep = StepBase & {
@@ -36,6 +38,7 @@ export function stepJSON(step: Step): Record<string, unknown> {
         ...(step.workingDirectory != null && {
           "working-directory": step.workingDirectory,
         }),
+        ...(step.shell != null && { shell: step.shell }),
         run: step.command,
       };
     case "uses":

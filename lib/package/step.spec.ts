@@ -28,6 +28,10 @@ describe("stepJSON", () => {
         },
         { "working-directory": "./foo/bar", run: "echo 'Hello, world!'" },
       ],
+      [
+        { kind: "run", shell: "bash", command: "echo 'Hello, world!'" },
+        { shell: "bash", run: "echo 'Hello, world!'" },
+      ],
     ])("stepJSON(%j) -> %j", (input, expected) => {
       expect(stepJSON(input)).toEqual(expected);
     });
