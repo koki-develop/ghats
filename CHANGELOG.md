@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.0](https://github.com/koki-develop/ghats/compare/v0.2.3...v0.3.0) (2025-04-01)
+
+
+### Features
+
+* **run:** Support continue-on-error ([#32](https://github.com/koki-develop/ghats/issues/32)) ([9c47bd2](https://github.com/koki-develop/ghats/commit/9c47bd2bf0d0af7373aadf651b11f52304613265))
+* **run:** Support if ([#31](https://github.com/koki-develop/ghats/issues/31)) ([303912d](https://github.com/koki-develop/ghats/commit/303912d32cd245b768d35080e26fe1201802de29))
+* **run:** Support shell ([#30](https://github.com/koki-develop/ghats/issues/30)) ([603f57f](https://github.com/koki-develop/ghats/commit/603f57facb20c932d235037509da266c4e452d1c))
+* **run:** Support working-directory ([#28](https://github.com/koki-develop/ghats/issues/28)) ([b4879e0](https://github.com/koki-develop/ghats/commit/b4879e0b95ef54bf9be225454da6a979ea4f009b))
+
 ## [0.2.3](https://github.com/koki-develop/ghats/compare/v0.2.2...v0.2.3) (2025-03-31)
 
 
