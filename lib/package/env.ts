@@ -1,3 +1,3 @@
 export type Env = {
-  [key: string]: string;
+  [key: string]: string | number | boolean;
 };

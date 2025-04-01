@@ -120,6 +120,17 @@ describe("Job", () => {
       },
     ],
     [
+      new Job("with-env", {
+        runsOn: "ubuntu-latest",
+        env: { HOGE: "hoge", FUGA: 123 },
+      }).run("echo 'Hello, world!'"),
+      {
+        "runs-on": "ubuntu-latest",
+        env: { HOGE: "hoge", FUGA: 123 },
+        steps: [{ run: "echo 'Hello, world!'" }],
+      },
+    ],
+    [
       new Job("with-defaults", {
         runsOn: "ubuntu-latest",
         defaults: { run: { shell: "bash" } },
