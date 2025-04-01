@@ -41,6 +41,17 @@ describe("Job", () => {
     [
       new Job("test", {
         runsOn: "ubuntu-latest",
+        timeoutMinutes: "${{ foo }}",
+      }),
+      {
+        "runs-on": "ubuntu-latest",
+        "timeout-minutes": "${{ foo }}",
+        steps: [],
+      },
+    ],
+    [
+      new Job("test", {
+        runsOn: "ubuntu-latest",
         outputs: {
           "output-name": "output-value",
         },

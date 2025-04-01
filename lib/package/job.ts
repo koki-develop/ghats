@@ -1,10 +1,11 @@
+import type { Expression } from "./expression";
 import { type Permissions, permissionsJSON } from "./permissions";
 import { type RunStep, type Step, stepJSON, type UsesStep } from "./step";
 
 export type JobConfig = {
   runsOn: string;
   permissions?: Permissions;
-  timeoutMinutes?: number;
+  timeoutMinutes?: number | Expression;
   outputs?: Record<string, string>;
   needs?: string | string[];
   if?: string | boolean | number;
