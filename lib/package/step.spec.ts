@@ -20,6 +20,14 @@ describe("stepJSON", () => {
         { kind: "run", name: "test", command: "echo 'Hello, world!'" },
         { name: "test", run: "echo 'Hello, world!'" },
       ],
+      [
+        {
+          kind: "run",
+          workingDirectory: "./foo/bar",
+          command: "echo 'Hello, world!'",
+        },
+        { "working-directory": "./foo/bar", run: "echo 'Hello, world!'" },
+      ],
     ])("stepJSON(%j) -> %j", (input, expected) => {
       expect(stepJSON(input)).toEqual(expected);
     });

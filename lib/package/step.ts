@@ -10,7 +10,7 @@ export type StepBase = {
 export type RunStep = StepBase & {
   kind: "run";
   command: string;
-  // TODO: working-directory
+  workingDirectory?: string;
   // TODO: shell
 };
 
@@ -31,7 +31,13 @@ export function stepJSON(step: Step): Record<string, unknown> {
 
   switch (step.kind) {
     case "run":
-      return { ...base, run: step.command };
+      return {
+        ...base,
+        ...(step.workingDirectory != null && {
+          "working-directory": step.workingDirectory,
+        }),
+        run: step.command,
+      };
     case "uses":
       return {
         ...base,
