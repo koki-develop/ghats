@@ -4,7 +4,7 @@ export type StepBase = {
   id?: string;
   name?: string;
   env?: Record<string, string>;
-  // TODO: if
+  if?: string | boolean | number;
   // TODO: continue-on-error
   // TODO: timeout-minutes
 };
@@ -29,6 +29,7 @@ export function stepJSON(step: Step): Record<string, unknown> {
     ...(step.id != null && { id: step.id }),
     ...(step.name != null && { name: step.name }),
     ...(step.env != null && { env: step.env }),
+    ...(step.if != null && { if: step.if }),
   };
 
   switch (step.kind) {
