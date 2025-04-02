@@ -31,14 +31,14 @@
     "commander": "13.1.0",
     "ink": "5.2.0",
     "octokit": "4.1.2",
-    "react": "18.3.1",
+    "react": "19.1.0",
     "yaml": "2.7.1"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.0-beta.1",
     "@types/bun": "1.2.8",
     "@types/ink": "2.0.3",
-    "@types/react": "18.3.20",
+    "@types/react": "19.1.0",
     "ghats": "0.7.0",
     "husky": "9.1.7",
     "lint-staged": "15.5.0",
