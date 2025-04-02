@@ -2,7 +2,7 @@ import * as fs from "node:fs";
 import { register } from "node:module";
 import * as path from "node:path";
 import { pathToFileURL } from "node:url";
-import { render, Text } from "ink";
+import { render } from "ink";
 import Progress from "../ui/Progress";
 import { success } from "../ui/message";
 
