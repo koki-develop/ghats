@@ -1,6 +1,6 @@
 import { Box, Text } from "ink";
-import Spinner from "../ui/Spinner";
-import { getBuildTargetPath } from ".";
+import Spinner from "../../ui/Spinner";
+import { getBuildTargetPath } from "..";
 
 type BuildUIProps = {
   workflowPaths: string[];
