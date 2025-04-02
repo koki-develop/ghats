@@ -30,7 +30,7 @@ export type JobConfig = {
   strategy?: Strategy;
   continueOnError?: boolean | Expression;
   container?: Container;
-  // TODO: services
+  services?: Record<string, Container>;
   // TODO: uses
   // TODO: with
   // TODO: secrets
@@ -116,6 +116,15 @@ export class Job {
 
       ...(this._config.container != null && {
         container: containerJSON(this._config.container),
+      }),
+
+      ...(this._config.services != null && {
+        services: Object.fromEntries(
+          Object.entries(this._config.services).map(([name, service]) => [
+            name,
+            containerJSON(service),
+          ]),
+        ),
       }),
 
       steps: this._steps.map((step) => stepJSON(step)),

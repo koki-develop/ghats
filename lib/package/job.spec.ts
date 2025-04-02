@@ -185,6 +185,34 @@ describe("Job", () => {
         steps: [{ run: "echo 'Hello, world!'" }],
       },
     ],
+    [
+      new Job("with-services", {
+        runsOn: "ubuntu-latest",
+        services: { redis: { image: "redis:latest" } },
+      }).run("echo 'Hello, world!'"),
+      {
+        "runs-on": "ubuntu-latest",
+        services: { redis: { image: "redis:latest" } },
+        steps: [{ run: "echo 'Hello, world!'" }],
+      },
+    ],
+    [
+      new Job("with-services", {
+        runsOn: "ubuntu-latest",
+        services: {
+          redis: { image: "redis:latest" },
+          postgres: { image: "postgres:latest" },
+        },
+      }).run("echo 'Hello, world!'"),
+      {
+        "runs-on": "ubuntu-latest",
+        services: {
+          redis: { image: "redis:latest" },
+          postgres: { image: "postgres:latest" },
+        },
+        steps: [{ run: "echo 'Hello, world!'" }],
+      },
+    ],
   ])("job.toJSON(%j) -> %j", (job, expected) => {
     expect(job.toJSON()).toEqual(expected);
   });
