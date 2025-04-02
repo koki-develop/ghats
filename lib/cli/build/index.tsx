@@ -2,8 +2,9 @@ import * as fs from "node:fs";
 import { register } from "node:module";
 import * as path from "node:path";
 import { pathToFileURL } from "node:url";
-import { render } from "ink";
-import BuildUI from "./ui";
+import { render, Text } from "ink";
+import Progress from "../ui/Progress";
+import { success } from "../ui/message";
 
 export async function build(args: string[]) {
   const ghatsDir = path.resolve(process.cwd(), "node_modules/.ghats");
@@ -33,27 +34,22 @@ export async function build(args: string[]) {
     );
   }
 
-  const { unmount, rerender } = render(
-    <BuildUI workflowPaths={workflowPaths} currentIndex={0} />
-  );
+  const { rerender, unmount } = render(null);
   try {
-    for (
-      let currentIndex = 0;
-      currentIndex < workflowPaths.length;
-      currentIndex++
-    ) {
-      const workflowPath = workflowPaths[currentIndex];
-      await _buildWorkflow(workflowPath!);
+    for (const workflowPath of workflowPaths) {
       rerender(
-        <BuildUI
-          workflowPaths={workflowPaths}
-          currentIndex={currentIndex + 1}
-        />
+        <Progress status="in-progress" title={`Building ${workflowPath}`} />
+      );
+      await _buildWorkflow(workflowPath);
+      rerender(
+        <Progress status="done" title={getBuildTargetPath(workflowPath)} />
       );
     }
   } finally {
     unmount();
   }
+
+  success("All workflows built successfully!");
 }
 
 async function _buildWorkflow(workflowPath: string) {
