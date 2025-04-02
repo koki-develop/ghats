@@ -1,8 +1,10 @@
 import { Static, Text } from "ink";
 import Spinner from "./Spinner";
 
+export type ProgressStatus = "in-progress" | "done";
+
 export type ProgressProps = {
-  status: "in-progress" | "done";
+  status: ProgressStatus;
   title: string;
 };
 
