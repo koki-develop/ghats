@@ -13,6 +13,7 @@ import type { Env } from "./env";
 import type { Environment } from "./environment";
 import type { Expression } from "./expression";
 import { type Permissions } from "./permissions";
+import type { RunsOn } from "./runs-on";
 import { type RunStep, type Step, type UsesStep } from "./step";
 import type { Strategy } from "./strategy";
 
@@ -26,7 +27,7 @@ type JobConfigBase = {
 };
 
 export type NormalJobConfig = JobConfigBase & {
-  runsOn: string; // TODO: fix
+  runsOn: RunsOn;
   environment?: Environment;
   outputs?: Record<string, string>;
   env?: Env;
