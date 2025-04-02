@@ -1,6 +1,7 @@
 {
   "actions/cache": "v4.2.3",
   "actions/checkout": "v4.2.2",
+  "codecov/codecov-action": "v5.4.0",
   "googleapis/release-please-action": "v4.2.0",
   "jdx/mise-action": "v2.1.11",
   "koki-develop/github-actions-lint/actionlint": "v1.1.0",

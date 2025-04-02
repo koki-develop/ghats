@@ -1,6 +1,7 @@
 # GitHub Actions with TypeScript
 
 [![NPM Version](https://img.shields.io/npm/v/ghats)](https://www.npmjs.com/package/ghats)
+[![codecov](https://codecov.io/gh/koki-develop/ghats/graph/badge.svg?token=M38AAFPXC1)](https://codecov.io/gh/koki-develop/ghats)
 [![GitHub License](https://img.shields.io/github/license/koki-develop/ghats)](./LICENSE)
 
 ```ts
