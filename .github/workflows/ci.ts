@@ -1,4 +1,4 @@
-import { Workflow } from "ghats";
+import { action, Workflow } from "ghats";
 import { setupJob } from "./_helpers";
 
 const workflow = new Workflow("CI", {
@@ -14,7 +14,18 @@ workflow.addJob(
     permissions: { contents: "read" },
     timeoutMinutes: 5,
     withBun: true,
-  }).run("bun test"),
+  })
+    .run("bun test --coverage --coverage-reporter=lcov")
+    .uses(
+      action("codecov/codecov-action", {
+        with: {
+          token: "${{ secrets.CODECOV_TOKEN }}",
+          files: "coverage/lcov.info",
+          disable_search: "true",
+          verbose: "true",
+        },
+      }),
+    ),
 );
 
 workflow.addJob(
