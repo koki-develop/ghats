@@ -4,7 +4,7 @@ import * as path from "node:path";
 import { pathToFileURL } from "node:url";
 import { render } from "ink";
 import Progress from "../ui/Progress";
-import { success } from "../ui/message";
+import { success } from "../ui/Message";
 
 export async function build(args: string[]) {
   const ghatsDir = path.resolve(process.cwd(), "node_modules/.ghats");
