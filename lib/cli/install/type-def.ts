@@ -1,39 +1,11 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { parse as parseYaml } from "yaml";
-import {
-  loadActionsJson,
-  loadActionsLockJson,
-  saveActionsJson,
-  saveActionsLockJson,
-} from "../internal/actions";
-import { getCommit, getFileContent, getLatestRelease } from "../internal/git";
-import { toUpperCamelCase } from "../internal/util";
+import type { ActionsJson, ActionsLockJson } from "../../internal/actions";
+import { getFileContent } from "../../internal/git";
+import { toUpperCamelCase } from "../../internal/util";
 
-export async function install(actions: string[]) {
-  const actionsJson = loadActionsJson();
-  const actionsLockJson = loadActionsLockJson();
-
-  for (const action of actions) {
-    // if action is already installed, skip
-    if (actionsJson[action]) continue;
-
-    const [owner, repo] = action.split("/"); // TODO: use regex
-    if (!owner || !repo) {
-      throw new Error(`Invalid action format: ${action}`);
-    }
-
-    const latestRelease = await getLatestRelease(owner, repo);
-    const version = latestRelease.tag_name;
-    const commit = await getCommit(owner, repo, version);
-
-    actionsJson[action] = version;
-    actionsLockJson.actions[`${action}@${version}`] = commit.sha;
-  }
-
-  // ---
-
-  const actionJs = `import * as fs from "node:fs";
+const actionJs = `import * as fs from "node:fs";
 import * as path from "node:path";
 
 function action(name, params) {
@@ -55,6 +27,14 @@ function action(name, params) {
 export { action };
 `;
 
+export function buildActionJs() {
+  return actionJs;
+}
+
+export async function buildActionDts(
+  actionsJson: ActionsJson,
+  actionsLockJson: ActionsLockJson,
+): Promise<string> {
   const actionDtsLines: string[] = [
     `import type { UsesStep } from "ghats";
 
@@ -103,55 +83,7 @@ export type InstalledActionParams<T extends InstalledAction> = Omit<
     `}[T];`,
   );
 
-  const dir = path.resolve(process.cwd(), "node_modules/.ghats");
-  fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(
-    path.resolve(dir, "action.d.ts"),
-    actionDtsLines.join("\n") + "\n",
-  );
-  fs.writeFileSync(path.resolve(dir, "action.js"), actionJs);
-
-  saveActionsJson(actionsJson);
-  saveActionsLockJson(actionsLockJson);
-}
-
-async function _downloadActionYaml(
-  action: string,
-  sha: string,
-): Promise<string> {
-  const cacheDir = path.resolve(
-    process.cwd(),
-    path.join("node_modules", ".cache", "ghats", "actions", action, sha),
-  );
-  const cachedActionYamlPath = path.join(cacheDir, "action.yml");
-  if (fs.existsSync(cachedActionYamlPath)) {
-    return fs.readFileSync(cachedActionYamlPath, "utf8");
-  }
-
-  const [owner, repo, ...rest] = action.split("/");
-  if (!owner || !repo)
-    throw new Error("Failed to parse action name: " + action);
-
-  const actionYamlRaw = await getFileContent(
-    owner,
-    repo,
-    sha,
-    path.join(...rest, "action.yml"),
-  ).catch(async (error) => {
-    if (error.status !== 404) throw error;
-
-    const actionYamlRaw = await getFileContent(
-      owner,
-      repo,
-      sha,
-      path.join(...rest, "action.yaml"),
-    );
-    return actionYamlRaw;
-  });
-  fs.mkdirSync(cacheDir, { recursive: true });
-  fs.writeFileSync(cachedActionYamlPath, actionYamlRaw);
-
-  return actionYamlRaw;
+  return actionDtsLines.join("\n") + "\n";
 }
 
 function _buildInputsTypeDefinition(
@@ -193,4 +125,43 @@ function _buildInputsTypeDefinition(
   lines.push("};");
 
   return lines.join("\n") + "\n";
+}
+
+async function _downloadActionYaml(
+  action: string,
+  sha: string,
+): Promise<string> {
+  const cacheDir = path.resolve(
+    process.cwd(),
+    path.join("node_modules", ".cache", "ghats", "actions", action, sha),
+  );
+  const cachedActionYamlPath = path.join(cacheDir, "action.yml");
+  if (fs.existsSync(cachedActionYamlPath)) {
+    return fs.readFileSync(cachedActionYamlPath, "utf8");
+  }
+
+  const [owner, repo, ...rest] = action.split("/");
+  if (!owner || !repo)
+    throw new Error("Failed to parse action name: " + action);
+
+  const actionYamlRaw = await getFileContent(
+    owner,
+    repo,
+    sha,
+    path.join(...rest, "action.yml"),
+  ).catch(async (error) => {
+    if (error.status !== 404) throw error;
+
+    const actionYamlRaw = await getFileContent(
+      owner,
+      repo,
+      sha,
+      path.join(...rest, "action.yaml"),
+    );
+    return actionYamlRaw;
+  });
+  fs.mkdirSync(cacheDir, { recursive: true });
+  fs.writeFileSync(cachedActionYamlPath, actionYamlRaw);
+
+  return actionYamlRaw;
 }
