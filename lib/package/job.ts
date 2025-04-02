@@ -1,4 +1,5 @@
 import { concurrencyJSON } from "../internal/concurrency";
+import { containerJSON } from "../internal/container";
 import { defaultsJSON } from "../internal/defaults";
 import { envJSON } from "../internal/env";
 import { environmentJSON } from "../internal/environment";
@@ -6,6 +7,7 @@ import { permissionsJSON } from "../internal/permissions";
 import { stepJSON } from "../internal/step";
 import { strategyJSON } from "../internal/strategy";
 import { type Concurrency } from "./concurrency";
+import type { Container } from "./container";
 import type { Defaults } from "./defaults";
 import type { Env } from "./env";
 import type { Environment } from "./environment";
@@ -27,7 +29,7 @@ export type JobConfig = {
   defaults?: Defaults;
   strategy?: Strategy;
   continueOnError?: boolean | Expression;
-  // TODO: container
+  container?: Container;
   // TODO: services
   // TODO: uses
   // TODO: with
@@ -110,6 +112,10 @@ export class Job {
 
       ...(this._config.continueOnError != null && {
         "continue-on-error": this._config.continueOnError,
+      }),
+
+      ...(this._config.container != null && {
+        container: containerJSON(this._config.container),
       }),
 
       steps: this._steps.map((step) => stepJSON(step)),

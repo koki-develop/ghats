@@ -1,5 +1,6 @@
 export * from "ghats/../.ghats/action.js";
 export * from "./package/concurrency";
+export * from "./package/container";
 export * from "./package/defaults";
 export * from "./package/env";
 export * from "./package/environment";
