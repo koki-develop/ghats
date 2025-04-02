@@ -174,6 +174,17 @@ describe("Job", () => {
         steps: [{ run: "echo 'Hello, world!'" }],
       },
     ],
+    [
+      new Job("with-container", {
+        runsOn: "ubuntu-latest",
+        container: { image: "node:20" },
+      }).run("echo 'Hello, world!'"),
+      {
+        "runs-on": "ubuntu-latest",
+        container: { image: "node:20" },
+        steps: [{ run: "echo 'Hello, world!'" }],
+      },
+    ],
   ])("job.toJSON(%j) -> %j", (job, expected) => {
     expect(job.toJSON()).toEqual(expected);
   });
