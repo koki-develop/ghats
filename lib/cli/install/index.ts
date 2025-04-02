@@ -6,9 +6,13 @@ import {
   loadActionsLockJson,
   saveActionsJson,
   saveActionsLockJson,
-} from "../internal/actions";
-import { getCommit, getFileContent, getLatestRelease } from "../internal/git";
-import { toUpperCamelCase } from "../internal/util";
+} from "../../internal/actions";
+import {
+  getCommit,
+  getFileContent,
+  getLatestRelease,
+} from "../../internal/git";
+import { toUpperCamelCase } from "../../internal/util";
 
 export async function install(actions: string[]) {
   const actionsJson = loadActionsJson();
