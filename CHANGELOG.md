@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.7.0](https://github.com/koki-develop/ghats/compare/v0.6.0...v0.7.0) (2025-04-02)
+
+
+### Features
+
+* **job:** Support container ([#48](https://github.com/koki-develop/ghats/issues/48)) ([e8700af](https://github.com/koki-develop/ghats/commit/e8700afb4b1a75b363a7f37a088bd4174d59ab44))
+* **job:** Support reusable workflow call ([#51](https://github.com/koki-develop/ghats/issues/51)) ([2135308](https://github.com/koki-develop/ghats/commit/2135308530e8ad8f2f760b2d6385d730c5925273))
+* **job:** Support services ([#50](https://github.com/koki-develop/ghats/issues/50)) ([e9d2eeb](https://github.com/koki-develop/ghats/commit/e9d2eeb0d68abcb1edc4c70c15e2db017aa74420))
+
+
+### Bug Fixes
+
+* **job:** Fix runsOn type ([#52](https://github.com/koki-develop/ghats/issues/52)) ([c8df6e3](https://github.com/koki-develop/ghats/commit/c8df6e338a4074a1e286cc13ddb912fd4261224a))
+
 ## [0.6.0](https://github.com/koki-develop/ghats/compare/v0.5.0...v0.6.0) (2025-04-01)
 
 
