@@ -1,7 +1,7 @@
 import type { Expression } from "./expression";
 import type { Shell } from "./shell";
 
-export type StepBase = {
+type StepBase = {
   id?: string;
   name?: string;
   env?: Record<string, string>;

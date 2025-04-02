@@ -16,25 +16,34 @@ import { type Permissions } from "./permissions";
 import { type RunStep, type Step, type UsesStep } from "./step";
 import type { Strategy } from "./strategy";
 
-export type JobConfig = {
-  runsOn: string;
-  permissions?: Permissions;
-  timeoutMinutes?: number | Expression;
-  outputs?: Record<string, string>;
+type JobConfigBase = {
+  name?: string;
   needs?: string | string[];
+  permissions?: Permissions;
   if?: string | boolean;
-  environment?: Environment;
+  strategy?: Strategy;
   concurrency?: Concurrency;
+};
+
+export type NormalJobConfig = JobConfigBase & {
+  runsOn: string; // TODO: fix
+  environment?: Environment;
+  outputs?: Record<string, string>;
   env?: Env;
   defaults?: Defaults;
-  strategy?: Strategy;
+  timeoutMinutes?: number | Expression;
   continueOnError?: boolean | Expression;
   container?: Container;
   services?: Record<string, Container>;
-  // TODO: uses
-  // TODO: with
-  // TODO: secrets
 };
+
+export type ReusableWorkflowCallJobConfig = JobConfigBase & {
+  uses: string;
+  with?: Record<string, string>;
+  secrets?: "inherit" | Record<string, string>;
+};
+
+export type JobConfig = NormalJobConfig | ReusableWorkflowCallJobConfig;
 
 export class Job {
   private readonly _id: string;
@@ -75,59 +84,85 @@ export class Job {
   }
 
   public toJSON(): Record<string, unknown> {
-    return {
-      "runs-on": this._config.runsOn,
+    if ("runsOn" in this._config) {
+      // normal job
+      return {
+        "runs-on": this._config.runsOn,
 
-      ...(this._config.permissions != null && {
-        permissions: permissionsJSON(this._config.permissions),
-      }),
+        ...(this._config.permissions != null && {
+          permissions: permissionsJSON(this._config.permissions),
+        }),
 
-      ...(this._config.timeoutMinutes != null && {
-        "timeout-minutes": this._config.timeoutMinutes,
-      }),
+        ...(this._config.timeoutMinutes != null && {
+          "timeout-minutes": this._config.timeoutMinutes,
+        }),
 
-      ...(this._config.outputs != null && { outputs: this._config.outputs }),
+        ...(this._config.outputs != null && { outputs: this._config.outputs }),
 
-      ...(this._config.needs != null && { needs: this._config.needs }),
+        ...(this._config.needs != null && { needs: this._config.needs }),
 
-      ...(this._config.if != null && { if: this._config.if }),
+        ...(this._config.if != null && { if: this._config.if }),
 
-      ...(this._config.environment != null && {
-        environment: environmentJSON(this._config.environment),
-      }),
+        ...(this._config.environment != null && {
+          environment: environmentJSON(this._config.environment),
+        }),
 
-      ...(this._config.concurrency != null && {
-        concurrency: concurrencyJSON(this._config.concurrency),
-      }),
+        ...(this._config.concurrency != null && {
+          concurrency: concurrencyJSON(this._config.concurrency),
+        }),
 
-      ...(this._config.env != null && { env: envJSON(this._config.env) }),
+        ...(this._config.env != null && { env: envJSON(this._config.env) }),
 
-      ...(this._config.defaults != null && {
-        defaults: defaultsJSON(this._config.defaults),
-      }),
+        ...(this._config.defaults != null && {
+          defaults: defaultsJSON(this._config.defaults),
+        }),
 
-      ...(this._config.strategy != null && {
-        strategy: strategyJSON(this._config.strategy),
-      }),
+        ...(this._config.strategy != null && {
+          strategy: strategyJSON(this._config.strategy),
+        }),
 
-      ...(this._config.continueOnError != null && {
-        "continue-on-error": this._config.continueOnError,
-      }),
+        ...(this._config.continueOnError != null && {
+          "continue-on-error": this._config.continueOnError,
+        }),
 
-      ...(this._config.container != null && {
-        container: containerJSON(this._config.container),
-      }),
+        ...(this._config.container != null && {
+          container: containerJSON(this._config.container),
+        }),
 
-      ...(this._config.services != null && {
-        services: Object.fromEntries(
-          Object.entries(this._config.services).map(([name, service]) => [
-            name,
-            containerJSON(service),
-          ]),
-        ),
-      }),
+        ...(this._config.services != null && {
+          services: Object.fromEntries(
+            Object.entries(this._config.services).map(([name, service]) => [
+              name,
+              containerJSON(service),
+            ]),
+          ),
+        }),
 
-      steps: this._steps.map((step) => stepJSON(step)),
-    };
+        steps: this._steps.map((step) => stepJSON(step)),
+      };
+    } else {
+      // reusable workflow call job
+      return {
+        ...(this._config.permissions != null && {
+          permissions: permissionsJSON(this._config.permissions),
+        }),
+
+        ...(this._config.needs != null && { needs: this._config.needs }),
+
+        ...(this._config.if != null && { if: this._config.if }),
+
+        ...(this._config.concurrency != null && {
+          concurrency: concurrencyJSON(this._config.concurrency),
+        }),
+
+        ...(this._config.strategy != null && {
+          strategy: strategyJSON(this._config.strategy),
+        }),
+
+        uses: this._config.uses,
+        ...(this._config.with != null && { with: this._config.with }),
+        ...(this._config.secrets != null && { secrets: this._config.secrets }),
+      };
+    }
   }
 }
