@@ -19,12 +19,11 @@ export default function BuildUI({ workflowPaths, currentIndex }: BuildUIProps) {
   return (
     <Box flexDirection="column">
       {workflowPaths.map((workflowPath, index) => (
-        <Text key={workflowPath}>
-          <WorkflowPath
-            status={getStatus(index, currentIndex)}
-            workflowPath={workflowPath}
-          />
-        </Text>
+        <WorkflowPath
+          key={workflowPath}
+          status={getStatus(index, currentIndex)}
+          workflowPath={workflowPath}
+        />
       ))}
     </Box>
   );
@@ -46,19 +45,19 @@ function WorkflowPath({ status, workflowPath }: WorkflowPathProps) {
       );
     case "building":
       return (
-        <>
+        <Text>
           <Spinner />
           <Text dimColor> {workflowPath}</Text>
-        </>
+        </Text>
       );
     case "done":
       return (
-        <>
+        <Text>
           <Text color="green" bold>
             ✔
           </Text>
           <Text bold> {getBuildTargetPath(workflowPath)}</Text>
-        </>
+        </Text>
       );
   }
 }
