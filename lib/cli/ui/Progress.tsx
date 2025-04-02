@@ -1,4 +1,4 @@
-import { Static, Text } from "ink";
+import { render, Static, Text } from "ink";
 import Spinner from "./Spinner";
 
 export type ProgressStatus = "in-progress" | "done";
@@ -32,4 +32,18 @@ export default function Progress({ status, title }: ProgressProps) {
       </Static>
     );
   }
+}
+
+export function progress() {
+  const { rerender, unmount } = render(null);
+
+  return {
+    unmount,
+    inProgress: (title: string) => {
+      rerender(<Progress status="in-progress" title={title} />);
+    },
+    done: (title: string) => {
+      rerender(<Progress status="done" title={title} />);
+    },
+  };
 }

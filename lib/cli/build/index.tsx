@@ -2,8 +2,7 @@ import * as fs from "node:fs";
 import { register } from "node:module";
 import * as path from "node:path";
 import { pathToFileURL } from "node:url";
-import { render } from "ink";
-import Progress from "../ui/Progress";
+import { progress } from "../ui/Progress";
 import { success } from "../ui/Message";
 
 export async function build(args: string[]) {
@@ -34,16 +33,12 @@ export async function build(args: string[]) {
     );
   }
 
-  const { rerender, unmount } = render(null);
+  const { inProgress, done, unmount } = progress();
   try {
     for (const workflowPath of workflowPaths) {
-      rerender(
-        <Progress status="in-progress" title={`Building ${workflowPath}`} />
-      );
+      inProgress(`Building ${workflowPath}`);
       await _buildWorkflow(workflowPath);
-      rerender(
-        <Progress status="done" title={getBuildTargetPath(workflowPath)} />
-      );
+      done(getBuildTargetPath(workflowPath));
     }
   } finally {
     unmount();
