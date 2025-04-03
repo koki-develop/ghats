@@ -1,6 +1,6 @@
-import { action, Job, JobConfig } from "ghats";
+import { action, Job, NormalJobConfig } from "ghats";
 
-export type SetupJobConfig = Omit<JobConfig, "runsOn"> & {
+export type SetupJobConfig = Omit<NormalJobConfig, "runsOn"> & {
   withBun?: boolean;
 };
 
