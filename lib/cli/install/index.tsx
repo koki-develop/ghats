@@ -120,6 +120,7 @@ export async function install(args: string[]) {
 
     // clear building type definitions message
     clear();
+    await new Promise((resolve) => setTimeout(resolve)); // wait for the message to be cleared
 
     // save actions.json and actions-lock.json
     saveActionsJson(actionsJson);
