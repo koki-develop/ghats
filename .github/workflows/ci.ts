@@ -53,6 +53,7 @@ workflow.addJob(
 export default workflow;
 EOF
 `)
+    .run("bun run ./lib/cli/index.ts install")
     .run("bun run ./lib/cli/index.ts build ./.github/workflows/example.ts")
     .run("cat ./.github/workflows/example.yml"),
 );
