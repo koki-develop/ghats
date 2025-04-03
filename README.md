@@ -82,7 +82,7 @@ workflow.addJob(
     .uses(
       // ↓↓ Like this! ↓↓
       action("actions/checkout", {
-        "persist-credentials": "false",
+        with: { "persist-credentials": "false" },
       }),
     )
     // ...
