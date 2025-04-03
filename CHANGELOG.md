@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.1](https://github.com/koki-develop/ghats/compare/v0.8.0...v0.8.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* Add margin bottom to success message ([3226052](https://github.com/koki-develop/ghats/commit/3226052701869d526ab6366c4bbc2561ff6fa0cc))
+
 ## [0.8.0](https://github.com/koki-develop/ghats/compare/v0.7.0...v0.8.0) (2025-04-03)
 
 
