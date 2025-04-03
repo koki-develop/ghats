@@ -45,5 +45,8 @@ export function progress() {
     done: (title: string) => {
       rerender(<Progress status="done" title={title} />);
     },
+    clear: () => {
+      rerender(null);
+    },
   };
 }
