@@ -1,10 +1,12 @@
-import { render, Text } from "ink";
+import { Box, render, Text } from "ink";
 
 export function success(message: string) {
   const { unmount } = render(
-    <Text color="green" bold>
-      {"  "}🎉 {message}
-    </Text>,
+    <Box marginBottom={1}>
+      <Text color="green" bold>
+        {"  "}🎉 {message}
+      </Text>
+    </Box>,
   );
   unmount();
 }
