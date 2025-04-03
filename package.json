@@ -21,6 +21,7 @@
   "type": "module",
   "scripts": {
     "prepare": "husky",
+    "lint": "biome check .",
     "fmt": "biome check --write --unsafe .",
     "gha:install": "ghats install",
     "gha:build": "ghats build",
