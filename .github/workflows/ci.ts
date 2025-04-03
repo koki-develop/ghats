@@ -10,6 +10,16 @@ const workflow = new Workflow("CI", {
 });
 
 workflow.addJob(
+  setupJob("lint", {
+    permissions: {
+      contents: "read",
+    },
+    timeoutMinutes: 5,
+    withBun: true,
+  }).run("bun run lint"),
+);
+
+workflow.addJob(
   setupJob("test", {
     permissions: { contents: "read" },
     timeoutMinutes: 5,
