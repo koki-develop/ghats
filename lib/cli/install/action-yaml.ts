@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import { parse as parseYaml } from "yaml";
 import { getFileContent } from "../../internal/git";
 

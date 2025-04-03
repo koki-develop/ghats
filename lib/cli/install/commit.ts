@@ -1,5 +1,5 @@
 import * as fs from "node:fs";
-import path from "path";
+import path from "node:path";
 import { getCommit as getCommitFromGithub } from "../../internal/git";
 
 type Cache = {
