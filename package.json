@@ -39,7 +39,7 @@
     "@types/bun": "1.2.8",
     "@types/ink": "2.0.3",
     "@types/react": "18.3.20",
-    "ghats": "0.7.0",
+    "ghats": "0.8.0",
     "husky": "9.1.7",
     "lint-staged": "15.5.0",
     "oxc-transform": "0.61.2",
