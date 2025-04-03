@@ -68,11 +68,12 @@ export async function install(args: string[]) {
       })();
 
       // get commit by tag name
-      const sha = await getCommit(
-        parsedAction.owner,
-        parsedAction.repo,
-        tagName,
-      );
+      const sha = await (async () => {
+        const lockedSha =
+          actionsLockJson.actions[`${parsedAction.fullName}@${tagName}`];
+        if (lockedSha != null) return lockedSha;
+        return await getCommit(parsedAction.owner, parsedAction.repo, tagName);
+      })();
 
       // update actions.json and actions-lock.json
       actionsJson[parsedAction.fullName] = tagName;
