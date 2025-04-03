@@ -16,7 +16,7 @@
         "@types/bun": "1.2.8",
         "@types/ink": "2.0.3",
         "@types/react": "18.3.20",
-        "ghats": "0.8.0",
+        "ghats": "0.8.1",
         "husky": "9.1.7",
         "lint-staged": "15.5.0",
         "oxc-transform": "0.61.2",
@@ -253,7 +253,7 @@
 
     "get-stream": ["get-stream@8.0.1", "", {}, "sha512-VaUJspBffn/LMCJVoMvSAdmscJyS1auj5Zulnn5UoYcY531UWmdwhRWkcGKnGU93m5HSXP9LP2usOryrBtQowA=="],
 
-    "ghats": ["ghats@0.8.0", "", { "dependencies": { "@swc-node/register": "1.10.10", "commander": "13.1.0", "ink": "5.2.0", "octokit": "4.1.2", "react": "18.3.1", "yaml": "2.7.1" }, "bin": { "ghats": "dist/cli/index.js" } }, "sha512-WGOl2CoWS8V4dIRfued8MMYwnpVvopcclIQM0jFYjgDMsCds5lJC7v6GChK0shFTxiKLu4emnqXK/xIZUa65sQ=="],
+    "ghats": ["ghats@0.8.1", "", { "dependencies": { "@swc-node/register": "1.10.10", "commander": "13.1.0", "ink": "5.2.0", "octokit": "4.1.2", "react": "18.3.1", "yaml": "2.7.1" }, "bin": { "ghats": "dist/cli/index.js" } }, "sha512-rwWAIgKEs5AqJvnergMXV34sXsGYAY8HG0yYsnEKv8NUU+g3aOk1cngF0a0slU2q/T2BjvpQDtV8llZbCqWvPw=="],
 
     "human-signals": ["human-signals@5.0.0", "", {}, "sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ=="],
 
