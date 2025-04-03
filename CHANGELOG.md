@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.8.0](https://github.com/koki-develop/ghats/compare/v0.7.0...v0.8.0) (2025-04-03)
+
+
+### Features
+
+* Implement `build` UI ([#55](https://github.com/koki-develop/ghats/issues/55)) ([ef67413](https://github.com/koki-develop/ghats/commit/ef6741362fb5a50e2b64c49de2a2c09f6fbc5b8a))
+* Implement install ui ([#59](https://github.com/koki-develop/ghats/issues/59)) ([05bf29f](https://github.com/koki-develop/ghats/commit/05bf29f3a7f898579399b9d36817e294c7bd691f))
+
+
+### Bug Fixes
+
+* fix ([95c4b62](https://github.com/koki-develop/ghats/commit/95c4b62ae7b050783c11ca5c2d877803fc586b7e))
+* Fix build UI ([#58](https://github.com/koki-develop/ghats/issues/58)) ([55915c1](https://github.com/koki-develop/ghats/commit/55915c16ce11019db07536a38a12f1779201c3fa))
+* Locked sha is now given priority ([ccbc653](https://github.com/koki-develop/ghats/commit/ccbc65311cb979be7880bb116268d9604f92b894))
+
 ## [0.7.0](https://github.com/koki-develop/ghats/compare/v0.6.0...v0.7.0) (2025-04-02)
 
 
