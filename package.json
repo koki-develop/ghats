@@ -44,6 +44,6 @@
     "husky": "9.1.7",
     "lint-staged": "15.5.0",
     "oxc-transform": "0.61.2",
-    "typescript": "5.8.2"
+    "typescript": "5.8.3"
   }
 }
