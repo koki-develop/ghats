@@ -33,12 +33,17 @@ export async function build(args: string[]) {
     );
   }
 
-  const { inProgress, done, unmount } = progress();
+  const { inProgress, done, fail, unmount } = progress();
   try {
     for (const workflowPath of workflowPaths) {
-      await inProgress(`Building ${workflowPath}`);
-      await _buildWorkflow(workflowPath);
-      await done(getBuildTargetPath(workflowPath));
+      try {
+        await inProgress(`Building ${workflowPath}`);
+        await _buildWorkflow(workflowPath);
+        await done(getBuildTargetPath(workflowPath));
+      } catch (error) {
+        await fail(workflowPath);
+        throw error;
+      }
     }
   } finally {
     unmount();

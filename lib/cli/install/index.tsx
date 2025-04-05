@@ -6,7 +6,7 @@ import {
   saveActionsJson,
   saveActionsLockJson,
 } from "../../internal/actions";
-import { getLatestRelease } from "../../internal/git";
+import { getLatestRelease } from "../lib/github";
 import { success } from "../ui/Message";
 import { progress } from "../ui/Progress";
 import { type ActionYaml, downloadActionYaml } from "./action-yaml";
@@ -50,47 +50,59 @@ export async function install(args: string[]) {
     }
   }
 
-  const { inProgress, done, clear, unmount } = progress();
+  const { inProgress, fail, done, clear, unmount } = progress();
   try {
     for (const parsedAction of Object.values(targetActions)) {
       await inProgress(
         `Installing ${parsedAction.fullName}@${parsedAction.version}`,
       );
 
-      // get tag name
-      const tagName = await (async () => {
-        if (parsedAction.version == null || parsedAction.version === "latest") {
-          const latestRelease = await getLatestRelease(
+      try {
+        // get tag name
+        const tagName = await (async () => {
+          if (
+            parsedAction.version == null ||
+            parsedAction.version === "latest"
+          ) {
+            const latestRelease = await getLatestRelease(
+              parsedAction.owner,
+              parsedAction.repo,
+            );
+            return latestRelease.tag_name;
+          }
+          return parsedAction.version;
+        })();
+
+        // get commit by tag name
+        const sha = await (async () => {
+          const lockedSha =
+            actionsLockJson.actions[`${parsedAction.fullName}@${tagName}`];
+          if (lockedSha != null) return lockedSha;
+          return await getCommit(
             parsedAction.owner,
             parsedAction.repo,
+            tagName,
           );
-          return latestRelease.tag_name;
-        }
-        return parsedAction.version;
-      })();
+        })();
 
-      // get commit by tag name
-      const sha = await (async () => {
-        const lockedSha =
-          actionsLockJson.actions[`${parsedAction.fullName}@${tagName}`];
-        if (lockedSha != null) return lockedSha;
-        return await getCommit(parsedAction.owner, parsedAction.repo, tagName);
-      })();
+        // update actions.json and actions-lock.json
+        actionsJson[parsedAction.fullName] = tagName;
+        actionsLockJson.actions[`${parsedAction.fullName}@${tagName}`] = sha;
 
-      // update actions.json and actions-lock.json
-      actionsJson[parsedAction.fullName] = tagName;
-      actionsLockJson.actions[`${parsedAction.fullName}@${tagName}`] = sha;
+        // download action.yml
+        const actionYaml = await downloadActionYaml(
+          parsedAction.owner,
+          parsedAction.repo,
+          parsedAction.action,
+          sha,
+        );
+        actionYamls[parsedAction.fullName] = actionYaml;
 
-      // download action.yml
-      const actionYaml = await downloadActionYaml(
-        parsedAction.owner,
-        parsedAction.repo,
-        parsedAction.action,
-        sha,
-      );
-      actionYamls[parsedAction.fullName] = actionYaml;
-
-      await done(`${parsedAction.fullName}@${tagName}`);
+        await done(`${parsedAction.fullName}@${tagName}`);
+      } catch (error) {
+        await fail(`${parsedAction.fullName}@${parsedAction.version}`);
+        throw error;
+      }
     }
 
     await inProgress("Building type definitions...");
