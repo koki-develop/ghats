@@ -2,8 +2,8 @@ import * as fs from "node:fs";
 import { register } from "node:module";
 import * as path from "node:path";
 import { pathToFileURL } from "node:url";
-import { success } from "../ui/Message";
-import { progress } from "../ui/Progress";
+import { success } from "../../ui/Message";
+import { progress } from "../../ui/Progress";
 
 export async function build(args: string[]) {
   const ghatsDir = path.resolve(process.cwd(), "node_modules/.ghats");

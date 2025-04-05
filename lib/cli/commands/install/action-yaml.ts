@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { parse as parseYaml } from "yaml";
-import { getFileContent } from "../lib/github";
+import { getFileContent } from "../../lib/github";
 
 export type ActionYaml = {
   inputs?: Record<

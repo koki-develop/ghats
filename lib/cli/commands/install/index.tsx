@@ -5,10 +5,10 @@ import {
   loadActionsLockJson,
   saveActionsJson,
   saveActionsLockJson,
-} from "../../internal/actions";
-import { getLatestRelease } from "../lib/github";
-import { success } from "../ui/Message";
-import { progress } from "../ui/Progress";
+} from "../../lib/actions";
+import { getLatestRelease } from "../../lib/github";
+import { success } from "../../ui/Message";
+import { progress } from "../../ui/Progress";
 import { type ActionYaml, downloadActionYaml } from "./action-yaml";
 import { getCommit } from "./commit";
 import { type ParsedAction, parseAction } from "./parse";

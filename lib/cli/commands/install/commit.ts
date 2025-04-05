@@ -1,6 +1,6 @@
 import * as fs from "node:fs";
 import path from "node:path";
-import { getCommit as getCommitFromGithub } from "../lib/github";
+import { getCommit as getCommitFromGithub } from "../../lib/github";
 
 type Cache = {
   commit: string;

@@ -1,4 +1,4 @@
-import { toUpperCamelCase } from "../lib/util";
+import { toUpperCamelCase } from "../../lib/util";
 import type { ActionYaml } from "./action-yaml";
 
 const actionJs = `import * as fs from "node:fs";
