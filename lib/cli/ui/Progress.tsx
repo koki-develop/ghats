@@ -39,14 +39,15 @@ export function progress() {
 
   return {
     unmount,
-    inProgress: (title: string) => {
+    inProgress: async (title: string) => {
       rerender(<Progress status="in-progress" title={title} />);
     },
-    done: (title: string) => {
+    done: async (title: string) => {
       rerender(<Progress status="done" title={title} />);
     },
-    clear: () => {
+    clear: async () => {
       rerender(null);
+      await new Promise((resolve) => setTimeout(resolve)); // wait for the message to be cleared
     },
   };
 }

@@ -53,7 +53,9 @@ export async function install(args: string[]) {
   const { inProgress, done, clear, unmount } = progress();
   try {
     for (const parsedAction of Object.values(targetActions)) {
-      inProgress(`Installing ${parsedAction.fullName}@${parsedAction.version}`);
+      await inProgress(
+        `Installing ${parsedAction.fullName}@${parsedAction.version}`,
+      );
 
       // get tag name
       const tagName = await (async () => {
@@ -88,10 +90,10 @@ export async function install(args: string[]) {
       );
       actionYamls[parsedAction.fullName] = actionYaml;
 
-      done(`${parsedAction.fullName}@${tagName}`);
+      await done(`${parsedAction.fullName}@${tagName}`);
     }
 
-    inProgress("Building type definitions...");
+    await inProgress("Building type definitions...");
 
     // download action.yml for actions that are not installed
     for (const [actionFullNameWithVersion, sha] of Object.entries(
@@ -119,8 +121,7 @@ export async function install(args: string[]) {
     );
 
     // clear building type definitions message
-    clear();
-    await new Promise((resolve) => setTimeout(resolve)); // wait for the message to be cleared
+    await clear();
 
     // save actions.json and actions-lock.json
     saveActionsJson(actionsJson);

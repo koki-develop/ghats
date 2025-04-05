@@ -36,9 +36,9 @@ export async function build(args: string[]) {
   const { inProgress, done, unmount } = progress();
   try {
     for (const workflowPath of workflowPaths) {
-      inProgress(`Building ${workflowPath}`);
+      await inProgress(`Building ${workflowPath}`);
       await _buildWorkflow(workflowPath);
-      done(getBuildTargetPath(workflowPath));
+      await done(getBuildTargetPath(workflowPath));
     }
   } finally {
     unmount();
