@@ -41,7 +41,10 @@ export default function Progress({ status, title }: ProgressProps) {
             <Text color="red" bold>
               ✗
             </Text>
-            <Text bold> {title}</Text>
+            <Text color="red" bold>
+              {" "}
+              {title}
+            </Text>
           </Text>
         )}
       </Static>
