@@ -1,6 +1,7 @@
 # GitHub Actions with TypeScript
 
 [![NPM Version](https://img.shields.io/npm/v/ghats)](https://www.npmjs.com/package/ghats)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/koki-develop/ghats/release-please.yml)](https://github.com/koki-develop/ghats/actions/workflows/release-please.yml)
 [![codecov](https://codecov.io/gh/koki-develop/ghats/graph/badge.svg?token=M38AAFPXC1)](https://codecov.io/gh/koki-develop/ghats)
 [![GitHub License](https://img.shields.io/github/license/koki-develop/ghats)](./LICENSE)
 
@@ -106,7 +107,7 @@ The `ghats install` command uses the GitHub API internally.
 If you're using remote actions from private repositories or want to pass a GitHub API token to avoid rate limits, set the `GITHUB_TOKEN` environment variable.
 
 ```console
-$ GITHUB_TOKEN=<YOUR_GITHUB_TOKEN> npx ghats install
+$ GITHUB_TOKEN="<YOUR_GITHUB_TOKEN>" npx ghats install
 ```
 
 ## License
