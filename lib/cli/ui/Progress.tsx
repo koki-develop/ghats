@@ -1,7 +1,7 @@
 import { render, Static, Text } from "ink";
 import Spinner from "./Spinner";
 
-export type ProgressStatus = "in-progress" | "done" | "error";
+export type ProgressStatus = "in-progress" | "done" | "fail";
 
 export type ProgressProps = {
   status: ProgressStatus;
@@ -33,7 +33,7 @@ export default function Progress({ status, title }: ProgressProps) {
     );
   }
 
-  if (status === "error") {
+  if (status === "fail") {
     return (
       <Static items={[title]}>
         {(title) => (
@@ -60,8 +60,8 @@ export function progress() {
     done: async (title: string) => {
       rerender(<Progress status="done" title={title} />);
     },
-    error: async (title: string) => {
-      rerender(<Progress status="error" title={title} />);
+    fail: async (title: string) => {
+      rerender(<Progress status="fail" title={title} />);
     },
     clear: async () => {
       rerender(null);
