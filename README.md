@@ -29,7 +29,7 @@ export default workflow;
 $ npm install -D ghats
 ```
 
-## Usage
+## Getting Started
 
 Create workflow in `.github/workflows/*.ts` using the `ghats`.
 
@@ -99,6 +99,15 @@ Installed actions are recorded in `.github/workflows/action.json` and `.github/w
 
 By default, `ghats build` builds all `.github/workflows/*.ts` files, but ignores files that start with `_` (e.g. `.github/workflows/_helpers.ts`).  
 It's recommended to write common utilities and non-workflow code in these ignored files.
+
+### Configuring GitHub API Token
+
+The `ghats install` command uses the GitHub API internally.  
+If you're using remote actions from private repositories or want to pass a GitHub API token to avoid rate limits, set the `GITHUB_TOKEN` environment variable.
+
+```console
+$ GITHUB_TOKEN=<YOUR_GITHUB_TOKEN> npx ghats install
+```
 
 ## License
 
