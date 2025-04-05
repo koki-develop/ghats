@@ -2,6 +2,7 @@ import { Octokit } from "octokit";
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
+  throttle: { enabled: false },
 });
 
 export async function getLatestRelease(owner: string, repo: string) {
