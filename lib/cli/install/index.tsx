@@ -6,7 +6,7 @@ import {
   saveActionsJson,
   saveActionsLockJson,
 } from "../../internal/actions";
-import { getLatestRelease } from "../../internal/git";
+import { getLatestRelease } from "../lib/github";
 import { success } from "../ui/Message";
 import { progress } from "../ui/Progress";
 import { type ActionYaml, downloadActionYaml } from "./action-yaml";
