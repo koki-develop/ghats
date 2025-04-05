@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.9.0](https://github.com/koki-develop/ghats/compare/v0.8.2...v0.9.0) (2025-04-05)
+
+
+### Features
+
+* Implement `cache clear` command ([#66](https://github.com/koki-develop/ghats/issues/66)) ([1b5843f](https://github.com/koki-develop/ghats/commit/1b5843f689f223c37eb591befd00d98b55b4e539))
+* Improve fail progress message ([#64](https://github.com/koki-develop/ghats/issues/64)) ([7574e23](https://github.com/koki-develop/ghats/commit/7574e2370b6a0322367202fcc341bc461b7954ab))
+
+
+### Bug Fixes
+
+* Disable octokit throttle ([a7441e6](https://github.com/koki-develop/ghats/commit/a7441e67aa7344991fcbcea302968415b237d16b))
+
 ## [0.8.2](https://github.com/koki-develop/ghats/compare/v0.8.1...v0.8.2) (2025-04-03)
 
 
