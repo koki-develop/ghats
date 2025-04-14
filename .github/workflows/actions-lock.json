@@ -2,7 +2,7 @@
   "actions": {
     "actions/cache@v4.2.3": "5a3ec84eff668545956fd18022155c47e93e2684",
     "actions/checkout@v4.2.2": "11bd71901bbe5b1630ceea73d27597364c9af683",
-    "codecov/codecov-action@v5.4.0": "0565863a31f2c772f9f0395002a31e3f06189574",
+    "codecov/codecov-action@v5.4.2": "ad3126e916f78f00edff4ed0317cf185271ccc2d",
     "googleapis/release-please-action@v4.2.0": "a02a34c4d625f9be7cb89156071d8567266a2445",
     "jdx/mise-action@v2.1.11": "5083fe46898c414b2475087cc79da59e7da859e8",
     "koki-develop/github-actions-lint/actionlint@v1.1.0": "cd40a2834e54895146e4a73ae17dcc37944ffb0f",
