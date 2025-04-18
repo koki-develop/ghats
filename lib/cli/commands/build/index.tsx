@@ -54,6 +54,10 @@ export async function build(args: string[]) {
 
 async function _buildWorkflow(workflowPath: string) {
   const module = await import(path.resolve(process.cwd(), workflowPath));
+  if (!module.default) {
+    throw new Error(`${workflowPath} does not have a default export`);
+  }
+
   const workflowYml = JSON.stringify(module.default);
 
   const dirname = path.dirname(workflowPath);
