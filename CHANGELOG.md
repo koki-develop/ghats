@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.9.1](https://github.com/koki-develop/ghats/compare/v0.9.0...v0.9.1) (2025-04-19)
+
+
+### Bug Fixes
+
+* add check for default export ([4b4ee04](https://github.com/koki-develop/ghats/commit/4b4ee04ffaff1394b103ec23e438ad5d92068827))
+* **deps:** update dependency octokit to v4.1.3 ([#69](https://github.com/koki-develop/ghats/issues/69)) ([d61b417](https://github.com/koki-develop/ghats/commit/d61b417fabc8f5ada52c9eaca5e8d62b47a56d7e))
+
 ## [0.9.0](https://github.com/koki-develop/ghats/compare/v0.8.2...v0.9.0) (2025-04-05)
 
 
