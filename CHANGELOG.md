@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.2](https://github.com/koki-develop/ghats/compare/v0.9.1...v0.9.2) (2025-04-22)
+
+
+### Bug Fixes
+
+* Added cleanup process for actions-lock.json ([9fbacaa](https://github.com/koki-develop/ghats/commit/9fbacaaa5d85d5e58d47d12b62218aa04868f6ba))
+
 ## [0.9.1](https://github.com/koki-develop/ghats/compare/v0.9.0...v0.9.1) (2025-04-19)
 
 
