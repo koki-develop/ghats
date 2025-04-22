@@ -135,6 +135,16 @@ export async function install(args: string[]) {
     // clear building type definitions message
     await clear();
 
+    // clean up actions-lock.json
+    for (const actionFullNameWithVersion of Object.keys(
+      actionsLockJson.actions,
+    )) {
+      const parsedAction = parseAction(actionFullNameWithVersion);
+      if (actionsJson[parsedAction.fullName] !== parsedAction.version) {
+        delete actionsLockJson.actions[actionFullNameWithVersion];
+      }
+    }
+
     // save actions.json and actions-lock.json
     saveActionsJson(actionsJson);
     saveActionsLockJson(actionsLockJson);
