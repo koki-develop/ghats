@@ -30,6 +30,7 @@ workflow.addJob(
     withBun: true,
   })
     .run("bun test --coverage --coverage-reporter=lcov")
+    .run("echo hello world")
     .uses(
       action("codecov/codecov-action", {
         with: {
