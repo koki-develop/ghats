@@ -6,5 +6,6 @@
   "jdx/mise-action": "v2.2.1",
   "koki-develop/github-actions-lint/actionlint": "v1.1.0",
   "koki-develop/github-actions-lint/ghalint": "v1.1.0",
-  "koki-develop/github-actions-lint/zizmor": "v1.1.0"
+  "koki-develop/github-actions-lint/zizmor": "v1.1.0",
+  "peter-evans/create-pull-request": "v7.0.8"
 }

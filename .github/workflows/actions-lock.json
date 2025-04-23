@@ -7,6 +7,7 @@
     "jdx/mise-action@v2.2.1": "7a111ead46986ccad89a74ad013ba2a7c08c9e67",
     "koki-develop/github-actions-lint/actionlint@v1.1.0": "cd40a2834e54895146e4a73ae17dcc37944ffb0f",
     "koki-develop/github-actions-lint/ghalint@v1.1.0": "cd40a2834e54895146e4a73ae17dcc37944ffb0f",
-    "koki-develop/github-actions-lint/zizmor@v1.1.0": "cd40a2834e54895146e4a73ae17dcc37944ffb0f"
+    "koki-develop/github-actions-lint/zizmor@v1.1.0": "cd40a2834e54895146e4a73ae17dcc37944ffb0f",
+    "peter-evans/create-pull-request@v7.0.8": "271a8d0340265f705b14b6d32b9829c1cb33d45e"
   }
 }
