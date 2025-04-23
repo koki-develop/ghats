@@ -110,6 +110,18 @@ If you're using remote actions from private repositories or want to pass a GitHu
 $ GITHUB_TOKEN="<YOUR_GITHUB_TOKEN>" npx ghats install
 ```
 
+### Updating `actions.json` and `actions-lock.json` with Renovate
+
+ghats records the versions of installed remote actions in `.github/workflows/actions.json` and `.github/workflows/actions-lock.json`.  
+To automatically update these remote action versions with Renovate, add `"github>koki-develop/ghats"` to the `extends` in your configuration file.
+
+```json5
+// renovate.json
+{
+  "extends": ["github>koki-develop/ghats"]
+}
+```
+
 ## License
 
 [MIT](./LICENSE)
