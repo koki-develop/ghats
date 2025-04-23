@@ -19,6 +19,7 @@ workflow.addJob(
     timeoutMinutes: 5,
     withBun: true,
   })
+    .run("bunx ghats install")
     .run("bun run gha:build")
     .run(
       `
