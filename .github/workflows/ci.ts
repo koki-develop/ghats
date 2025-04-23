@@ -7,6 +7,10 @@ const workflow = new Workflow("CI", {
     push: { branches: ["main"] },
   },
   permissions: {},
+  concurrency: {
+    group: "${{ github.workflow }}-${{ github.ref }}",
+    cancelInProgress: false,
+  },
 });
 
 workflow.addJob(
