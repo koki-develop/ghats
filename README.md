@@ -122,6 +122,9 @@ To automatically update these remote action versions with Renovate, add `"github
 }
 ```
 
+> [!NOTE]
+> Note that after updating `actions.json` and `actions-lock.json`, you need to rebuild your workflows.
+
 ## License
 
 [MIT](./LICENSE)
