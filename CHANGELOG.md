@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.3](https://github.com/koki-develop/ghats/compare/v0.9.2...v0.9.3) (2025-04-25)
+
+
+### Bug Fixes
+
+* Prevent adding duplicate job IDs ([#81](https://github.com/koki-develop/ghats/issues/81)) ([4c0615c](https://github.com/koki-develop/ghats/commit/4c0615c063168c00abf012f753d94c1419d16d8f))
+
 ## [0.9.2](https://github.com/koki-develop/ghats/compare/v0.9.1...v0.9.2) (2025-04-22)
 
 
