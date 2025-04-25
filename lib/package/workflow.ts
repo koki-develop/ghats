@@ -46,7 +46,7 @@ export type WorkflowConfig = {
 export class Workflow {
   private readonly _name: string;
   private readonly _config: WorkflowConfig;
-  private readonly _jobs: Job[] = [];
+  private readonly _jobs: Map<string, Job> = new Map();
 
   public constructor(name: string, config: WorkflowConfig) {
     this._name = name;
@@ -54,7 +54,12 @@ export class Workflow {
   }
 
   public addJob(...jobs: Job[]): Workflow {
-    this._jobs.push(...jobs);
+    for (const job of jobs) {
+      if (this._jobs.has(job.id)) {
+        throw new Error(`Job ${job.id} already exists`);
+      }
+      this._jobs.set(job.id, job);
+    }
     return this;
   }
 
@@ -80,10 +85,9 @@ export class Workflow {
         defaults: defaultsJSON(this._config.defaults),
       }),
 
-      jobs: this._jobs.reduce<Record<string, unknown>>((acc, job) => {
-        acc[job.id] = job.toJSON();
-        return acc;
-      }, {}),
+      jobs: Object.fromEntries(
+        Array.from(this._jobs.entries()).map(([id, job]) => [id, job.toJSON()]),
+      ),
     };
   }
 }
