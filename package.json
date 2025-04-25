@@ -42,7 +42,7 @@
     "ghats": "0.9.2",
     "husky": "9.1.7",
     "lint-staged": "15.5.1",
-    "oxc-transform": "0.61.2",
+    "oxc-transform": "0.66.0",
     "typescript": "5.8.3"
   }
 }
