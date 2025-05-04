@@ -4,7 +4,7 @@
   "codecov/codecov-action": "v5.4.2",
   "googleapis/release-please-action": "v4.2.0",
   "jdx/mise-action": "v2.2.1",
-  "koki-develop/github-actions-lint/actionlint": "v1.1.0",
+  "koki-develop/github-actions-lint/actionlint": "v1.2.0",
   "koki-develop/github-actions-lint/ghalint": "v1.1.0",
   "koki-develop/github-actions-lint/zizmor": "v1.1.0"
 }
