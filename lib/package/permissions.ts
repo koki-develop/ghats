@@ -1,3 +1,5 @@
+// https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/controlling-permissions-for-github_token#defining-access-for-the-github_token-permissions
+
 export type Permission = "read" | "write" | "none";
 
 /**
@@ -15,6 +17,7 @@ export type Permissions =
       discussions?: Permission;
       idToken?: Permission;
       issues?: Permission;
+      models?: "read" | "none";
       packages?: Permission;
       pages?: Permission;
       pullRequests?: Permission;

@@ -14,6 +14,7 @@ export function permissionsJSON(
     ...(permissions.discussions && { discussions: permissions.discussions }),
     ...(permissions.idToken && { "id-token": permissions.idToken }),
     ...(permissions.issues && { issues: permissions.issues }),
+    ...(permissions.models && { models: permissions.models }),
     ...(permissions.packages && { packages: permissions.packages }),
     ...(permissions.pages && { pages: permissions.pages }),
     ...(permissions.pullRequests && {
