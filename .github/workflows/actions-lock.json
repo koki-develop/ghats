@@ -6,7 +6,7 @@
     "googleapis/release-please-action@v4.2.0": "a02a34c4d625f9be7cb89156071d8567266a2445",
     "jdx/mise-action@v2.2.1": "7a111ead46986ccad89a74ad013ba2a7c08c9e67",
     "koki-develop/github-actions-lint/actionlint@v1.1.0": "cd40a2834e54895146e4a73ae17dcc37944ffb0f",
-    "koki-develop/github-actions-lint/ghalint@v1.1.0": "cd40a2834e54895146e4a73ae17dcc37944ffb0f",
+    "koki-develop/github-actions-lint/ghalint@v1.2.0": "79e44f1c8de97bff90f5bf8497a8b2af1f66193c",
     "koki-develop/github-actions-lint/zizmor@v1.1.0": "cd40a2834e54895146e4a73ae17dcc37944ffb0f"
   }
 }
