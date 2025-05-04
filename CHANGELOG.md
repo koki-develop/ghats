@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.10.0](https://github.com/koki-develop/ghats/compare/v0.9.4...v0.10.0) (2025-05-04)
+
+
+### Features
+
+* Add models permission ([#95](https://github.com/koki-develop/ghats/issues/95)) ([17217e7](https://github.com/koki-develop/ghats/commit/17217e7d1ef12d474673c4ed8325b71095effd64))
+
+
+### Bug Fixes
+
+* id-token permission allows only `write`/`none` ([#96](https://github.com/koki-develop/ghats/issues/96)) ([ee45125](https://github.com/koki-develop/ghats/commit/ee4512584460c5f9bcb8c3a65905b747181fd358))
+
 ## [0.9.4](https://github.com/koki-develop/ghats/compare/v0.9.3...v0.9.4) (2025-05-04)
 
 
