@@ -1,4 +1,4 @@
-/** biome-ignore-all lint/complexity/noBannedTypes: */
+/** biome-ignore-all lint/complexity/noBannedTypes: ok */
 
 export type Events = {
   /**
