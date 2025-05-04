@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.4](https://github.com/koki-develop/ghats/compare/v0.9.3...v0.9.4) (2025-05-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ink to v5.2.1 ([#87](https://github.com/koki-develop/ghats/issues/87)) ([3aaa079](https://github.com/koki-develop/ghats/commit/3aaa079ec23ec66c94be6fcddb811836e74e3853))
+
 ## [0.9.3](https://github.com/koki-develop/ghats/compare/v0.9.2...v0.9.3) (2025-04-25)
 
 
