@@ -15,7 +15,7 @@ export type Permissions =
       contents?: Permission;
       deployments?: Permission;
       discussions?: Permission;
-      idToken?: Permission;
+      idToken?: "write" | "none";
       issues?: Permission;
       models?: "read" | "none";
       packages?: Permission;
