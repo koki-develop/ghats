@@ -35,7 +35,7 @@ workflow.addJob(
       action("peter-evans/create-pull-request", {
         if: "${{ failure() && steps.check.outcome == 'failure' }}",
         with: {
-          token: "${{ github.token }}",
+          token: "${{ secrets.PERSONAL_ACCESS_TOKEN }}",
           title: "chore: Build Workflows",
           "commit-message": "chore: Build Workflows",
           body: "Created from #${{ github.event.pull_request.number }}.",
