@@ -3,5 +3,15 @@
   "extends": [
     "github>koki-develop/renovate-config",
     "github>koki-develop/ghats"
+  ],
+  "packageRules": [
+    {
+      "groupName": "koki-develop/github-actions-lint",
+      "matchPackageNames": [
+        "koki-develop/github-actions-lint/actionlint",
+        "koki-develop/github-actions-lint/ghalint",
+        "koki-develop/github-actions-lint/zizmor"
+      ]
+    }
   ]
 }
