@@ -25,7 +25,8 @@
     "fmt": "biome check --write --unsafe .",
     "gha:install": "ghats install",
     "gha:build": "ghats build",
-    "build:package": "bun run tasks/build.ts"
+    "build:package": "bun run tasks/build.ts",
+    "prepublishOnly": "bun run build:package"
   },
   "dependencies": {
     "@swc-node/register": "1.10.10",

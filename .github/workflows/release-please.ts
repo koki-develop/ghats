@@ -38,7 +38,6 @@ const releaseJob = setupJob("release", {
     contents: "read",
   },
 })
-  .run("bun run build:package")
   .run(
     `
 (
