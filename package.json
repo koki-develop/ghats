@@ -42,7 +42,7 @@
     "@types/react": "18.3.21",
     "ghats": "0.10.0",
     "husky": "9.1.7",
-    "lint-staged": "15.5.2",
+    "lint-staged": "16.0.0",
     "oxc-transform": "0.68.1",
     "typescript": "5.8.3"
   }
