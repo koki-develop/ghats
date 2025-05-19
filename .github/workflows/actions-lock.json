@@ -5,8 +5,8 @@
     "codecov/codecov-action@v5.4.3": "18283e04ce6e62d37312384ff67231eb8fd56d24",
     "googleapis/release-please-action@v4.2.0": "a02a34c4d625f9be7cb89156071d8567266a2445",
     "jdx/mise-action@v2.2.2": "c94f0bf9e520b150e34c017db785461f7e71c5fb",
-    "koki-develop/github-actions-lint/actionlint@v1.2.0": "79e44f1c8de97bff90f5bf8497a8b2af1f66193c",
-    "koki-develop/github-actions-lint/ghalint@v1.2.0": "79e44f1c8de97bff90f5bf8497a8b2af1f66193c",
-    "koki-develop/github-actions-lint/zizmor@v1.2.0": "79e44f1c8de97bff90f5bf8497a8b2af1f66193c"
+    "koki-develop/github-actions-lint/actionlint@v1.4.0": "46a15ec95d25fd2fed6657d591e67d1c1cdae92b",
+    "koki-develop/github-actions-lint/ghalint@v1.4.0": "46a15ec95d25fd2fed6657d591e67d1c1cdae92b",
+    "koki-develop/github-actions-lint/zizmor@v1.4.0": "46a15ec95d25fd2fed6657d591e67d1c1cdae92b"
   }
 }
