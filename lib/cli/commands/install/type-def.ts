@@ -72,7 +72,7 @@ export type InstalledActionParams<T extends InstalledAction> = Omit<
     `}[T];`,
   );
 
-  return actionDtsLines.join("\n") + "\n";
+  return `${actionDtsLines.join("\n")}\n`;
 }
 
 function _buildInputsTypeDefinition(action: string, actionYaml: ActionYaml) {
@@ -102,5 +102,5 @@ function _buildInputsTypeDefinition(action: string, actionYaml: ActionYaml) {
 
   lines.push("};");
 
-  return lines.join("\n") + "\n";
+  return `${lines.join("\n")}\n`;
 }

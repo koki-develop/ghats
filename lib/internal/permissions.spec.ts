@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { type Permissions } from "../package/permissions";
+import type { Permissions } from "../package/permissions";
 import { permissionsJSON } from "./permissions";
 
 describe("permissionsJSON", () => {

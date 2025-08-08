@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { type Step } from "../package/step";
+import type { Step } from "../package/step";
 import { stepJSON } from "./step";
 
 describe("stepJSON", () => {

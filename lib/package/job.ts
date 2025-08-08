@@ -6,15 +6,15 @@ import { environmentJSON } from "../internal/environment";
 import { permissionsJSON } from "../internal/permissions";
 import { stepJSON } from "../internal/step";
 import { strategyJSON } from "../internal/strategy";
-import { type Concurrency } from "./concurrency";
+import type { Concurrency } from "./concurrency";
 import type { Container } from "./container";
 import type { Defaults } from "./defaults";
 import type { Env } from "./env";
 import type { Environment } from "./environment";
 import type { Expression } from "./expression";
-import { type Permissions } from "./permissions";
+import type { Permissions } from "./permissions";
 import type { RunsOn } from "./runs-on";
-import { type RunStep, type Step, type UsesStep } from "./step";
+import type { RunStep, Step, UsesStep } from "./step";
 import type { Strategy } from "./strategy";
 
 type JobConfigBase = {

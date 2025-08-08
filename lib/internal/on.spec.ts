@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { type On } from "../package/on";
+import type { On } from "../package/on";
 import { onJSON } from "./on";
 
 describe("onJSON", () => {

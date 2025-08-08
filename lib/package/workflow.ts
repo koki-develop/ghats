@@ -3,12 +3,12 @@ import { defaultsJSON } from "../internal/defaults";
 import { envJSON } from "../internal/env";
 import { onJSON } from "../internal/on";
 import { permissionsJSON } from "../internal/permissions";
-import { type Concurrency } from "./concurrency";
+import type { Concurrency } from "./concurrency";
 import type { Defaults } from "./defaults";
-import { type Env } from "./env";
-import { Job } from "./job";
-import { type On } from "./on";
-import { type Permissions } from "./permissions";
+import type { Env } from "./env";
+import type { Job } from "./job";
+import type { On } from "./on";
+import type { Permissions } from "./permissions";
 
 export type WorkflowConfig = {
   /**

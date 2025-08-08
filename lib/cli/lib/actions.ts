@@ -38,7 +38,7 @@ export function saveActionsJson(actionsJson: ActionsJson) {
   _prepareGitHubDir();
   fs.writeFileSync(
     _actionsJsonPath(),
-    JSON.stringify(sortedActionsJson, null, 2) + "\n",
+    `${JSON.stringify(sortedActionsJson, null, 2)}\n`,
   );
 }
 
@@ -64,6 +64,6 @@ export function saveActionsLockJson(actionsLockJson: ActionsLockJson) {
   _prepareGitHubDir();
   fs.writeFileSync(
     _actionsLockJsonPath(),
-    JSON.stringify(sortedActionsLockJson, null, 2) + "\n",
+    `${JSON.stringify(sortedActionsLockJson, null, 2)}\n`,
   );
 }
