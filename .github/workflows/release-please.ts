@@ -36,22 +36,11 @@ const releaseJob = setupJob("release", {
   if: `\${{ needs.${releasePleaseJob.id}.outputs.shouldRelease }}`,
   permissions: {
     contents: "read",
+    idToken: "write",
   },
 })
-  .run(
-    `
-(
-  # shellcheck disable=SC2016
-  echo '//registry.npmjs.org/:_authToken=\${NODE_AUTH_TOKEN}'
-  echo 'registry=https://registry.npmjs.org'
-) > .npmrc
-`,
-  )
-  .run("npm publish", {
-    env: {
-      NODE_AUTH_TOKEN: "${{ secrets.NPM_TOKEN }}",
-    },
-  });
+  .run("echo 'registry=https://registry.npmjs.org' > .npmrc")
+  .run("npm publish");
 
 workflow.addJob(releasePleaseJob, releaseJob);
 
