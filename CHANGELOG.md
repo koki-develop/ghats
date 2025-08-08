@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.1](https://github.com/koki-develop/ghats/compare/v0.10.0...v0.10.1) (2025-08-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency yaml to v2.8.0 ([#108](https://github.com/koki-develop/ghats/issues/108)) ([a4e54ed](https://github.com/koki-develop/ghats/commit/a4e54ed7f8e208de59567b7e2cdc3da3f80b3759))
+
 ## [0.10.0](https://github.com/koki-develop/ghats/compare/v0.9.4...v0.10.0) (2025-05-04)
 
 
