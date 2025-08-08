@@ -20,6 +20,9 @@
       "correctness": {
         "noUnusedImports": "error",
         "noUnusedVariables": "error"
+      },
+      "suspicious": {
+        "noTemplateCurlyInString": "off"
       }
     }
   },
