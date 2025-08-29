@@ -1,5 +1,5 @@
 {
-  "actions/cache": "v4.2.3",
+  "actions/cache": "v4.2.4",
   "actions/checkout": "v4.2.2",
   "codecov/codecov-action": "v5.4.3",
   "googleapis/release-please-action": "v4.2.0",
