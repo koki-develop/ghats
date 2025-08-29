@@ -107,7 +107,7 @@ export type NormalJobConfig = JobConfigBase & {
 
 export type ReusableWorkflowCallJobConfig = JobConfigBase & {
   uses: string;
-  with?: Record<string, string>;
+  with?: Record<string, string | boolean | number>;
   secrets?: "inherit" | Record<string, string>;
 };
 
