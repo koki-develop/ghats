@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.2](https://github.com/koki-develop/ghats/compare/v0.10.1...v0.10.2) (2025-08-29)
+
+
+### Bug Fixes
+
+* Allow boolean and number values in reusable workflow inputs ([#117](https://github.com/koki-develop/ghats/issues/117)) ([8236338](https://github.com/koki-develop/ghats/commit/8236338f8d80f0a68267c2ae1f9748edeeb45a25))
+
 ## [0.10.1](https://github.com/koki-develop/ghats/compare/v0.10.0...v0.10.1) (2025-08-08)
 
 
