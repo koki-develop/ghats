@@ -226,6 +226,17 @@ describe("Job", () => {
         { uses: "./workflow.yml" },
       ],
       [
+        new Job("with-inputs", {
+          uses: "./workflow.yml",
+          with: {
+            foo: "bar",
+            bar: 1,
+            baz: true,
+          },
+        }),
+        { uses: "./workflow.yml", with: { foo: "bar", bar: 1, baz: true } },
+      ],
+      [
         new Job("with-permissions", {
           uses: "./workflow.yml",
           permissions: {
