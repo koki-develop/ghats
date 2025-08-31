@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.3](https://github.com/koki-develop/ghats/compare/v0.10.2...v0.10.3) (2025-08-31)
+
+
+### Bug Fixes
+
+* **deps:** update dependency octokit to v4.1.4 ([#122](https://github.com/koki-develop/ghats/issues/122)) ([e52e064](https://github.com/koki-develop/ghats/commit/e52e064b7482bcc5a28103f4a9cbb7af3ce2e53d))
+* **deps:** update dependency yaml to v2.8.1 ([#124](https://github.com/koki-develop/ghats/issues/124)) ([b655177](https://github.com/koki-develop/ghats/commit/b65517795f7129e39ccaa2a089fe2c3383667898))
+
 ## [0.10.2](https://github.com/koki-develop/ghats/compare/v0.10.1...v0.10.2) (2025-08-29)
 
 
