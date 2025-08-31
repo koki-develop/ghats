@@ -4,6 +4,7 @@
   "codecov/codecov-action": "v5.4.3",
   "googleapis/release-please-action": "v4.2.0",
   "jdx/mise-action": "v2.4.4",
+  "koki-develop/claude-renovate-review": "v1.0.7",
   "koki-develop/github-actions-lint/actionlint": "v1.4.1",
   "koki-develop/github-actions-lint/ghalint": "v1.4.1",
   "koki-develop/github-actions-lint/zizmor": "v1.4.1"
