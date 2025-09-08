@@ -5,6 +5,7 @@ const workflow = new Workflow("Claude Renovate Review", {
   on: {
     pullRequest: { types: ["opened", "edited"] },
   },
+  permissions: {},
   concurrency: {
     group: "${{ github.workflow }}-${{ github.ref }}",
     cancelInProgress: true,
