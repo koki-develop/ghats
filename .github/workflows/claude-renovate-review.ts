@@ -14,7 +14,7 @@ const workflow = new Workflow("Claude Renovate Review", {
 
 workflow.addJob(
   setupJob("claude-code-review", {
-    if: "github.event.pull_request.user.login == 'renovate[bot]'",
+    if: "github.event.pull_request.user.login == 'mend[bot]'",
     timeoutMinutes: 30,
     permissions: {
       contents: "read",
