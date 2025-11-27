@@ -39,7 +39,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.2.3",
     "@types/bun": "1.2.21",
-    "@types/react": "18.3.24",
+    "@types/react": "18.3.27",
     "ghats": "0.10.3",
     "husky": "9.1.7",
     "lint-staged": "16.2.7",
