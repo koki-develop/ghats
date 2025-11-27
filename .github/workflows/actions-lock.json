@@ -2,7 +2,7 @@
   "actions": {
     "actions/cache@v4.2.4": "0400d5f644dc74513175e3cd8d07132dd4860809",
     "actions/checkout@v4.3.1": "34e114876b0b11c390a56381ad16ebd13914f8d5",
-    "codecov/codecov-action@v5.4.3": "18283e04ce6e62d37312384ff67231eb8fd56d24",
+    "codecov/codecov-action@v5.5.1": "5a1091511ad55cbe89839c7260b706298ca349f7",
     "googleapis/release-please-action@v4.4.0": "16a9c90856f42705d54a6fda1823352bdc62cf38",
     "jdx/mise-action@v2.4.4": "c37c93293d6b742fc901e1406b8f764f6fb19dac",
     "koki-develop/claude-renovate-review@v1.0.7": "cda94ca660ec4eb22dc7808745e6e511b98b6ebc",
