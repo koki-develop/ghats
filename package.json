@@ -37,7 +37,7 @@
     "yaml": "2.8.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.3",
+    "@biomejs/biome": "2.3.7",
     "@types/bun": "1.2.21",
     "@types/react": "18.3.27",
     "ghats": "0.10.3",
