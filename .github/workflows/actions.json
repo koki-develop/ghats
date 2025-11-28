@@ -5,7 +5,7 @@
   "googleapis/release-please-action": "v4.4.0",
   "jdx/mise-action": "v2.4.4",
   "koki-develop/claude-renovate-review": "v1.0.8",
-  "koki-develop/github-actions-lint/actionlint": "v1.4.1",
-  "koki-develop/github-actions-lint/ghalint": "v1.4.1",
-  "koki-develop/github-actions-lint/zizmor": "v1.4.1"
+  "koki-develop/github-actions-lint/actionlint": "v1.6.0",
+  "koki-develop/github-actions-lint/ghalint": "v1.6.0",
+  "koki-develop/github-actions-lint/zizmor": "v1.6.0"
 }
