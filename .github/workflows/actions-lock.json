@@ -6,8 +6,8 @@
     "googleapis/release-please-action@v4.4.0": "16a9c90856f42705d54a6fda1823352bdc62cf38",
     "jdx/mise-action@v2.4.4": "c37c93293d6b742fc901e1406b8f764f6fb19dac",
     "koki-develop/claude-renovate-review@v1.0.8": "e3b6fc8f6ce1460c17b70ad0e106ba774d4efc62",
-    "koki-develop/github-actions-lint/actionlint@v1.4.1": "62dfef5c9854a07712bad7af3bee7edb0c1109b1",
-    "koki-develop/github-actions-lint/ghalint@v1.4.1": "62dfef5c9854a07712bad7af3bee7edb0c1109b1",
-    "koki-develop/github-actions-lint/zizmor@v1.4.1": "62dfef5c9854a07712bad7af3bee7edb0c1109b1"
+    "koki-develop/github-actions-lint/actionlint@v1.6.0": "5ecd42b59803f14bfaa7ed0bfb8de8c1dc1b4c6d",
+    "koki-develop/github-actions-lint/ghalint@v1.6.0": "5ecd42b59803f14bfaa7ed0bfb8de8c1dc1b4c6d",
+    "koki-develop/github-actions-lint/zizmor@v1.6.0": "5ecd42b59803f14bfaa7ed0bfb8de8c1dc1b4c6d"
   }
 }
